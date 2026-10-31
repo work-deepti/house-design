@@ -38,10 +38,12 @@ DESC = {   # short descriptions for marks R0 does not schedule
     "GL-F": "Curved frameless glass facade, floor to ceiling", "GD-1": "Frameless glass pivot entry door (in GL-F)",
     "GS-1": "Glass screen with 1000 gate", "KD-1": "Sliding door, fluted glass in black frame",
     "KW-1": "Vent window with exhaust fan, into OTS", "KW-2": "Vent window with exhaust fan, into OTS",
+    "GL-5a": "uPVC sliding door, one sash fixed; mesh; MS grille inside (replaces GL-5)",
+    "GL-5b": "uPVC window, fixed + sliding; mesh; MS grille outside (replaces GL-5)",
     "PD-1": "Glazed door to terrace", "PD-2": "Flush Door", "PW-1": "Glass Window Openable",
     "D1": "Flush Door, double leaf (main door)", "D4": "As Lift, as per lift vendor",
 }
-MARK_ORDER = ["GL-1", "GL-2", "GL-3", "GL-4", "GL-5", "GL-6", "GL-7", "GL-8", "GL-9", "GL-10", "GL-F", "GD-1", "GS-1",
+MARK_ORDER = ["GL-1", "GL-2", "GL-3", "GL-4", "GL-5", "GL-5a", "GL-5b", "GL-6", "GL-7", "GL-8", "GL-9", "GL-10", "GL-F", "GD-1", "GS-1",
               "KD-1", "KW-1", "KW-2", "PD-1", "PW-1", "D1", "D2", "D3", "PD-2", "D4"]
 DRAWN_ON_R0 = ("GL-F", "GD-1", "GS-1")   # drawn on R0 but not in its schedule
 REMARKS = {   # what R1 does in the room, beyond its finishes (ASSUMPTIONS.md section E)
@@ -75,7 +77,8 @@ REVISION_NOTES = [
     ("B4", "GF Kitchen", "No construction outside: GL-4 back at its R0 position; wash nook (double sink) inside, vent KW-1 into the OTS."),
     ("B5", "GF Study", "Becomes Guest Lounge / Study: desk on the east wall, sofa, settee, TV."),
     ("B7", "GF Panel & Janitor", "Becomes under-stair storage with inverter / network rack; DB-1 moves to the kitchen east wall (SE)."),
-    ("B15", "GF Back lawn", "Deck and pergola outside GL-5; tulsi vrindavan in the lawn's NE corner on the boundary wall."),
+    ("B15", "GF Back lawn", "Deck and pergola outside the lounge; tulsi vrindavan in the lawn's NE corner on the boundary wall."),
+    ("F18", "GF Family Lounge", "All-glass GL-5 replaced: uPVC sliding door GL-5a (3'-5\" clear) + window GL-5b on a 2'-11\" sill; mesh, grilles; pergola +6\"."),
     ("C10", "FF Master suite", "Washroom and dresser swapped (bedroom → dresser → washroom); bath tub with over-tub screen; vent KW-2."),
     ("D-04, C9", "FF Bedrooms", "Front-left room is Bedroom 3, front-right is the Kids Room; kids toilet back at its R0 place."),
     ("C8", "FF Lobby", "Cupboard by the lift becomes a pantry counter with wall cupboards, 10\" clear of the lift door."),
@@ -89,6 +92,7 @@ HOLD_POINTS = [
     ("GF toilet vanity at the south end (R0 position kept)", "Architect"),
     ("Tank stand on the SF roof, OTS opening, lift pit and overrun", "Structural, lift vendor"),
     ("Deck pergola under \"no outside construction\"", "Owner"),
+    ("Deck to lawn: 1'-0\" (0.30 m) drop without a step; rear door GL-5a on the south wall", "Architect, Vastu consultant"),
     ("Living / bedroom floors: Option A marble or Option B tiles", "Owner"),
     ("Tulsi in the plot's SE zone; guest-room AC unit in the NE; DB-3 in the E zone", "Vastu consultant"),
     ("Master headboard on the W wall (red-line asks S); SF rooms not in the S / SW", "Vastu consultant"),

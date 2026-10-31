@@ -23,6 +23,7 @@ FT = 3.28084
 SHEET_8X4 = 2.4384 * 1.2192          # m2, MDF / ply board
 GYP_BOARD = 1.8 * 1.2                # m2, 12.5 mm gypsum board
 PARTY_X = (115, 9266)                # centrelines of the E / W party walls (GH-17 / GH-19)
+UPVC = {'grille_kg_m2': 14}   # MS grille, 16 mm square bars at ~120 mm with flats (indicative weight)
 DOORS = ('door', 'sliding_door', 'glass_door', 'pivot_door', 'lift_door')
 GLASS_KINDS = ('glass_wall', 'glass_partition', 'glass_railing', 'railing', 'screen')
 
@@ -187,7 +188,7 @@ def is_wet(room):
 def take_off(h):
     floors = {f['id']: f for f in h['floors']}
     fur = [(fl['id'], f) for fl in h['floors'] for f in fl['furniture'] if f.get('variant') != 'art']
-    rooms_out, rows = {}, {k: [] for k in ('tiles', 'pipes', 'wires', 'paint', 'pop', 'granite', 'timber', 'mdf', 'lights')}
+    rooms_out, rows = {}, {k: [] for k in ('tiles', 'pipes', 'wires', 'paint', 'pop', 'granite', 'timber', 'mdf', 'lights', 'upvc')}
     tot = {}
 
     def add(k, v):
@@ -397,6 +398,26 @@ def take_off(h):
         rows['timber'].append(['GF', 'Pergola', '%d posts 150x150x%.1f m, beam 100x250x%.1f m, ledger 100x200x%.1f m, %d rafters 60x200x%.2f m' % (
             posts, ph, beam, ledger, n_raf, raf_len), 'cft', r(cft, 1), '', 'hardwood, walnut stain, outdoor PU'])
         add('pergola_cft', cft)
+
+    # ---------------- uPVC doors and windows with mesh and grilles (F18 rear wall; openings tagged mesh / grille)
+    for fid, fl in floors.items():
+        for w in fl['walls']:
+            for o in w.get('openings', []):
+                if not (o.get('mesh') or o.get('grille')):
+                    continue
+                W, H = o['width'] / 1000, o['height'] / 1000
+                door = o['type'] == 'sliding_door'
+                fixed_m2 = (W / 2 if door and o.get('open') else (o.get('fixed', 0) / 1000)) * H
+                sliding_m2 = W * H - fixed_m2
+                mesh_m2 = sliding_m2 if o.get('mesh') else 0
+                grille_m2 = (fixed_m2 if door else W * H) if o.get('grille') else 0     # door: sliding grille the size of one sash
+                frame = 2 * (W + H) + (1 if door else 2) * H                            # outer frame + sash meeting / mullion lines
+                kind = 'Sliding door, 2 sashes (one fixed), 3 tracks' if door else 'Window: fixed lite + 2 sliding sashes, 3 tracks'
+                rows['upvc'].append([fid, o['id'], '%s %s' % (o['mark'], kind), '%d x %d' % (o['width'], o['height']), r(frame, 1), r(W * H, 2),
+                                     r(fixed_m2, 2), r(mesh_m2, 2), r(grille_m2, 2), r(grille_m2 * UPVC['grille_kg_m2'], 0),
+                                     'grille %s' % ('inside, sliding, parks behind the fixed sash' if door else 'outside, fixed')])
+                add('upvc_openings', 1); add('upvc_frame_m', frame); add('upvc_glass_m2', W * H); add('upvc_laminated_m2', fixed_m2)
+                add('upvc_mesh_m2', mesh_m2); add('upvc_grille_m2', grille_m2)
     flights = len(st['flights']) * storeys
     rail = flights * math.hypot(st['flights'][0]['treads'] * st['going'], st['flights'][0]['risers'] * st['riser']) / 1000 + storeys * 1.3
     rows['timber'].append(['GF-SF', 'Stair handrail', 'Walnut handrail 60 x 50 mm on the spine', 'm', r(rail, 1), r(rail * FT, 1), ''])
@@ -547,9 +568,12 @@ HEAD = {
     'mdf': ['Floor', 'Id', 'Unit', 'Room', 'Size w x d x h mm', 'Board', 'Carcass m2', 'Shutters m2', 'Back 8 mm m2', 'Sheets 18/19 mm (8x4, +15%)',
             'Sheets 8 mm', 'Shutters (desks / dressers: drawers)', 'Soft-close hinges', 'Edge band m', 'Laminate m2 (shutter faces)'],
     'lights': ['Fitting', 'Qty', 'Unit', 'Where'],
+    'upvc': ['Floor', 'Id', 'Item', 'Size w x h mm', 'Frame + sash lines m', 'Glass m2 (solar-control DGU)', 'of which laminated (fixed) m2',
+             'Mosquito mesh m2', 'MS grille m2', 'Grille kg (approx.)', 'Note'],
 }
 TITLE = {'tiles': '1. Tiles', 'pipes': '2. Pipes', 'wires': '3. Wires', 'paint': '4. Paint', 'pop': '5. POP (false ceiling)', 'granite': '6. Granite & stone',
-         'timber': '7. Timber & veneer', 'mdf': '8. MDF board (wardrobes and storage)', 'lights': '9. Lights & fittings'}
+         'timber': '7. Timber & veneer', 'mdf': '8. MDF board (wardrobes and storage)', 'lights': '9. Lights & fittings',
+         'upvc': '10. uPVC doors & windows (rear wall)'}
 
 
 def summary_lines(rooms, tot):
@@ -581,6 +605,8 @@ def summary_lines(rooms, tot):
             g('mdf_wardrobe_hinges') + g('mdf_other_hinges') + g('ply_hinges'))),
         ('9. Lights', '%d downlights (on %d light points), %d fans, %.0f m cove LED, %.0f m under-cabinet LED, %d mirror, %d wall, %d garden lights' % (
             g('downlights'), g('light:light'), g('light:fan'), g('cove_m'), g('ucl_m'), g('light:ml'), g('light:wl'), g('light:gl'))),
+        ('10. uPVC', '%d openings on the rear wall: frame %.0f m, solar-control glass %s sq ft (%s sq ft laminated), mosquito mesh %s sq ft, MS grilles %s sq ft' % (
+            g('upvc_openings'), g('upvc_frame_m'), sqft(g('upvc_glass_m2')), sqft(g('upvc_laminated_m2')), sqft(g('upvc_mesh_m2')), sqft(g('upvc_grille_m2')))),
     ]
 
 
@@ -614,7 +640,7 @@ def write_xlsx(path, h, rooms, rows, tot):
                    sqft(v.get('wall_cladding_m2', 0) + v.get('fluted_m2', 0)) or '', sqft(v['pop']['area_m2']) if 'pop' in v else '',
                    r(v['pop']['cove_m'] * FT, 0) if 'pop' in v and v['pop']['cove_m'] else '', v.get('lights', {}).get('downlights', ''), v.get('lights', {}).get('fan', '')])
     sheets = [('Rooms', wr)]
-    for key in ('tiles', 'pipes', 'wires', 'paint', 'pop', 'granite', 'timber', 'mdf', 'lights'):
+    for key in ('tiles', 'pipes', 'wires', 'paint', 'pop', 'granite', 'timber', 'mdf', 'lights', 'upvc'):
         s = wb.create_sheet(TITLE[key].split('. ')[1].split(' (')[0][:28])
         s.append(HEAD[key])
         for row in rows[key]:
@@ -651,7 +677,9 @@ NOTES = [
     '- Lights: counts from the electrical points; cove LED = cove length; under-cabinet LED = the cabinet runs.',
     '- Pipes: lengths along the modelled routes and stacks, 3 m lengths +10%; bends counted where a route changes direction (tees and couplers extra).',
     '- Wires: route length of each circuit x 3 cores (phase, neutral, earth) +10%; 90 m coils; sub-main sizes indicative (electrician to size).',
-    'Not included: labour, adhesives other than noted, hardware beyond hinges, sanitaryware, glass, aluminium windows, the lift, ACs and appliances.',
+    '- uPVC (F18): the rear-wall door and window only: heavy-series steel-reinforced uPVC, 3 tracks (2 glass + mesh), solar-control double glazing,'
+    ' laminated in the fixed lites; door with multi-point lock and a recessed bottom track; MS grilles powder-coated black. The other windows are not in this take-off.',
+    'Not included: labour, adhesives other than noted, hardware beyond hinges, sanitaryware, glass and windows other than the uPVC rear wall, the lift, ACs and appliances.',
 ]
 
 
@@ -682,7 +710,7 @@ def write_html(path, h, rooms, rows, tot):
             sqft(v['wall_tile']['net_m2']) if 'wall_tile' in v else '', sqft(v['pop']['area_m2']) if 'pop' in v else '',
             r(v['pop']['cove_m'] * FT, 0) if 'pop' in v and v['pop']['cove_m'] else '', lights]) + '</tr>')
     out.append('</table>')
-    for key in ('tiles', 'pipes', 'wires', 'paint', 'pop', 'granite', 'timber', 'mdf', 'lights'):
+    for key in ('tiles', 'pipes', 'wires', 'paint', 'pop', 'granite', 'timber', 'mdf', 'lights', 'upvc'):
         out.append('<h2>%s</h2><table><tr>%s</tr>' % (TITLE[key], ''.join('<th>%s</th>' % esc(x) for x in HEAD[key])))
         for row in rows[key]:
             out.append('<tr>%s</tr>' % ''.join('<td>%s</td>' % esc(x) for x in row))

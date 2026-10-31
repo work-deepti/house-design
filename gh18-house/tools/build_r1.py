@@ -762,7 +762,7 @@ def e13_electrical(h):
     acs = {p['room']: p for p in pts if p['kind'] == 'ac'}
     G0 = lambda r: lv[r[:2]]['ffl']  # noqa: E731
     ref = [
-        dict(ac=acs['GF-DRW']['id'], odu='SF-AC3', note='out above the GL-5 head, up the balcony west wall (inside the plot), over the parapet',
+        dict(ac=acs['GF-DRW']['id'], odu='SF-AC3', note='out above the GL-5b window head, up the balcony west wall (inside the plot), over the parapet',
              pts=[acs['GF-DRW']['at'], [9050, 7083, 3300], [9050, 5750, 3300], [9050, 5750, 8250], [9050, 6900, 8250], [7775, 6900, 8250], [7775, 6955, 7650]]),
         dict(ac=acs['FF-MST']['id'], odu='SF-AC4', note='straight up through the slab to the back terrace',
              pts=[acs['FF-MST']['at'], [9050, 7300, 6900], [9050, 7300, 7350], [8540, 7300, 7350], [8540, 6955, 7650]]),
@@ -794,8 +794,35 @@ def f16_materials(h):
                 f['top'] = 'granite_black'
 
 
+def f18_rear_glazing(h):
+    """F18 (owner, Oct 2026): the all-glass rear wall GL-5 (5700 x 2300, two ~2.85 m sliders) is not practical:
+    too heavy to slide, half of it behind the sofa, a 100 mm track hump, the south sun, no mesh or grille - and,
+    since B4 removed the kitchen back door, it is the only way to the back garden and the tulsi. The owner chose
+    "practical and secure", uPVC, mesh, grilles, current furniture layout. So, east to west:
+    - a 500 pier (behind the planter);
+    - GL-5a: uPVC sliding door 2200 x 2400, flush recessed track (sill 0); the east sash opens (1050 clear),
+      in line with the 1.50 m walkway behind the sofa; the west sash is fixed (sofa behind it). Mesh sash on a
+      third track; MS sliding security grille inside, parked behind the fixed sash;
+    - GL-5b: uPVC window 3000 x 1500 on a 900 sill wall, head in line with the door: fixed behind the sofa,
+      sliding sashes + mesh over the open floor; fixed MS grille outside; laminated glass in the fixed lites.
+    The floor lamp moves out of the doorway to the free strip by the window. The pergola is raised 150 so its
+    ledger clears the new 2400 head (+2850): top +3150, still below the FF balcony soffit (+3450)."""
+    gf = floor(h, 'GF')
+    w = find(gf['walls'], 'GF-W01')
+    drop(w['openings'], 'GF-GL5')
+    w['openings'] += [
+        base.O('GF-GL5a', 'GL-5a', 'sliding_door', 3570, 2200, 2400, 0, open='a', grille='+y', mesh=True,
+               note='R1-F18 uPVC sliding door; east sash opens (1050 clear), west sash fixed; recessed track, MS grille inside'),
+        base.O('GF-GL5b', 'GL-5b', 'window', 5770, 3000, 1500, 900, fixed=750, grille='-y', mesh=True,
+               note='R1-F18 uPVC window on a 900 sill wall: fixed 750 behind the sofa, sliding sashes + mesh; MS grille outside'),
+    ]
+    find(gf['furniture'], 'GF-F08').update(pos=[7000, 5950], note='R1-F18 moved out of the new doorway to the strip by the window')
+    gf['pergola'].update(z_top=3150, note='R1-F18 top at +3150 (2.85 m above deck) so the ledger clears the 2400 door head; below the FF balcony soffit (+3450)')
+
+
 PATCHES = [a1_orientation, a2_units, b3_family_lounge, b4_kitchen_wash, b5_guest_lounge, b6_mandir, b7_under_stair,
-           c8_pantry, c9_kids_toilet_back, c10_master_suite, d11_utility_terrace, b15_tulsi, e12_plumbing, e13_electrical, f16_materials]
+           c8_pantry, c9_kids_toilet_back, c10_master_suite, d11_utility_terrace, b15_tulsi, f18_rear_glazing,
+           e12_plumbing, e13_electrical, f16_materials]
 
 
 def build():

@@ -46,7 +46,7 @@
 <polygon points="4584,2889 4734,2889 4734,3039 4584,3039" fill="#8a6a44" stroke="none" stroke-width="0" />
 <polygon points="6755,2889 6905,2889 6905,3039 6755,3039" fill="#8a6a44" stroke="none" stroke-width="0" />
 <polygon points="8926,2889 9076,2889 9076,3039 8926,3039" fill="#8a6a44" stroke="none" stroke-width="0" />
-<text x="5782.5" y="2769" font-size="120" fill="#8a6a44" text-anchor="middle" font-weight="bold" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >PERGOLA OVER DECK (top +3000) — BRIEF CHANGE</text>
+<text x="5782.5" y="2769" font-size="120" fill="#8a6a44" text-anchor="middle" font-weight="bold" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >PERGOLA OVER DECK, top +10'-4" (3.15 m) — BRIEF CHANGE</text>
 </g>
 <g id="furn">
 <polygon points="700,15345 3100,15345 3100,18345 700,18345" fill="#f5efe4" stroke="#c9b99a" stroke-width="8" stroke-dasharray="60 40"/>
@@ -118,7 +118,7 @@
 <polyline points="5450,8183 5450,5983" fill="none" stroke="#8a7a5c" stroke-width="8" />
 <polygon points="7050,7633 7050,6533 7650,6533 7650,7633" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="9126,6183 9126,7983 8726,7983 8726,6183" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
-<circle cx="4900" cy="5950" r="200" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10"/>
+<circle cx="7000" cy="5950" r="200" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10"/>
 <circle cx="8950" cy="5880" r="225" fill="#e6efd9" stroke="#8a7a5c" stroke-width="10"/>
 <circle cx="3600" cy="5950" r="225" fill="#e6efd9" stroke="#8a7a5c" stroke-width="10"/>
 <polygon points="3300,7700 3300,6300 3750,6300 3750,7700" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
@@ -203,8 +203,8 @@
 </g>
 <g id="walls">
 <polygon points="230,5515 877,5515 877,5665 230,5665" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
-<polygon points="2337,5515 3301,5515 3301,5665 2337,5665" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
-<polygon points="9001,5515 9151,5515 9151,5665 9001,5665" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
+<polygon points="2337,5515 3800,5515 3800,5665 2337,5665" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
+<polygon points="9000,5515 9151,5515 9151,5665 9000,5665" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
 <polygon points="230,5515 230,10451 0,10451 0,5515" fill="#262626" stroke="#262626" stroke-width="4" />
 <polygon points="230,12964 230,19257 0,19257 0,12964" fill="#262626" stroke="#262626" stroke-width="4" />
 <polygon points="9381,5515 9381,21506 9151,21506 9151,5515" fill="#262626" stroke="#262626" stroke-width="4" />
@@ -251,12 +251,18 @@
 <polyline points="877,5665 2337,5665" fill="none" stroke="#222" stroke-width="8" />
 <polyline points="877,5590 2337,5590" fill="none" stroke="#2aa7c9" stroke-width="14" />
 <polyline points="877,5556.2 2337,5556.2" fill="none" stroke="#222" stroke-width="5" />
-<line x1="3301" y1="5515" x2="3301" y2="5665" stroke="#222" stroke-width="8" />
-<line x1="9001" y1="5515" x2="9001" y2="5665" stroke="#222" stroke-width="8" />
-<polyline points="3301,5515 9001,5515" fill="none" stroke="#222" stroke-width="6" />
-<polyline points="3301,5665 9001,5665" fill="none" stroke="#222" stroke-width="6" />
-<polyline points="3301,5567.5 6251,5567.5" fill="none" stroke="#2aa7c9" stroke-width="22" />
-<polyline points="6051,5612.5 9001,5612.5" fill="none" stroke="#2aa7c9" stroke-width="22" />
+<line x1="3800" y1="5515" x2="3800" y2="5665" stroke="#222" stroke-width="8" />
+<line x1="6000" y1="5515" x2="6000" y2="5665" stroke="#222" stroke-width="8" />
+<polyline points="3800,5515 6000,5515" fill="none" stroke="#222" stroke-width="6" />
+<polyline points="3800,5665 6000,5665" fill="none" stroke="#222" stroke-width="6" />
+<polyline points="3800,5567.5 5000,5567.5" fill="none" stroke="#2aa7c9" stroke-width="22" />
+<polyline points="4800,5612.5 6000,5612.5" fill="none" stroke="#2aa7c9" stroke-width="22" />
+<line x1="6000" y1="5515" x2="6000" y2="5665" stroke="#222" stroke-width="8" />
+<line x1="9000" y1="5515" x2="9000" y2="5665" stroke="#222" stroke-width="8" />
+<polyline points="6000,5515 9000,5515" fill="none" stroke="#222" stroke-width="8" />
+<polyline points="6000,5665 9000,5665" fill="none" stroke="#222" stroke-width="8" />
+<polyline points="6000,5590 9000,5590" fill="none" stroke="#2aa7c9" stroke-width="14" />
+<polyline points="6000,5556.2 9000,5556.2" fill="none" stroke="#222" stroke-width="5" />
 <line x1="1031" y1="10801" x2="731" y2="10801" stroke="#222" stroke-width="8" />
 <line x1="1031" y1="11301" x2="731" y2="11301" stroke="#222" stroke-width="8" />
 <polyline points="1031,10801 1031,11301" fill="none" stroke="#222" stroke-width="8" />
@@ -441,8 +447,10 @@
 <g id="labels">
 <circle cx="1607" cy="5235" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>
 <text x="1607" y="5277" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >GL-4</text>
-<circle cx="6151" cy="5235" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>
-<text x="6151" y="5277" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >GL-5</text>
+<circle cx="4900" cy="5235" r="185" fill="#fff" stroke="#c2185b" stroke-width="10"/>
+<text x="4900" y="5277" font-size="95" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >GL-5a</text>
+<circle cx="7500" cy="5235" r="185" fill="#fff" stroke="#c2185b" stroke-width="10"/>
+<text x="7500" y="5277" font-size="95" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >GL-5b</text>
 <circle cx="451" cy="12091" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>
 <text x="451" y="12133" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >GL-3</text>
 <circle cx="451" cy="11051" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>

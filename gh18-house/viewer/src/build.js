@@ -88,6 +88,16 @@ function addStrip(batch, fid, cat, mat, w, t0, t1, ya, yb, thick, off, fy) {
   }
 }
 
+// MS security grille: 16 mm vertical bars at ~120 mm centres with top and bottom flats, `off` mm off the wall centreline.
+function grilleBars(batch, fid, w, t0, t1, ya, yb, off, fy) {
+  const n = Math.max(2, Math.round((t1 - t0) / 120));
+  for (let i = 0; i <= n; i++) {
+    const t = t0 + ((t1 - t0) * i) / n;
+    addStrip(batch, fid, 'struct', 'black_metal', w, t - 8, t + 8, ya, yb, 16, off, fy);
+  }
+  for (const y of [ya, yb - 0.04]) addStrip(batch, fid, 'struct', 'black_metal', w, t0 - 8, t1 + 8, y, y + 0.04, 16, off, fy);
+}
+
 // Box placed by a plan point, plan direction, size (m) - used for door leaves, posts.
 function orientedBox(cx, cy, dir, len, thick, y0, h) {
   const g = new THREE.BoxGeometry(len, h, thick);
@@ -392,14 +402,20 @@ function buildOpening(batch, colliders, surfaces, fid, w, o, y0, y1, fy) {
       addStrip(batch, fid, 'glass', 'glass', w, t0 + 50, mid + 40, sill + 0.05, head - 0.05, 12, 18, fy);
       addStrip(batch, fid, 'glass', 'glass', w, mid - 40, t1 - 50, sill + 0.05, head - 0.05, 12, -18, fy);
       for (const [a, b, off] of [[mid - 10, mid + 40, 18], [mid - 40, mid + 10, -18]]) addStrip(batch, fid, 'struct', fr, w, a, b, sill, head, 30, off, fy);
-      // sliding doors to outside: treat the glass as a barrier only when "closed" - leave walkable
+      // sliding doors to outside: treat the glass as a barrier only when "closed" - leave walkable.
+      // With `open` ('a' | 'b') only that sash slides: the other half is fixed, so it blocks, and a grille parks behind it.
+      if (o.open) {
+        const [f0, f1] = o.open === 'a' ? [mid, t1] : [t0, mid];
+        colliders.push({ poly: spanPolygon({ ...w, t: 60 }, f0, f1), y0: sill, y1: head });
+        if (o.grille) grilleBars(batch, fid, w, f0 + 60, f1 - 60, sill + 0.05, head - 0.05, swingSign(w, o.grille) * (T / 2 + 30), fy);
+      }
     } else {
       addStrip(batch, fid, 'glass', 'glass', w, t0 + 50, t1 - 50, sill + 0.05, head - 0.05, 12, 0, fy);
-      const n = Math.max(1, Math.round((t1 - t0) / 1200));
-      for (let i = 1; i < n; i++) {
-        const t = t0 + ((t1 - t0) * i) / n;
-        addStrip(batch, fid, 'struct', fr, w, t - 20, t + 20, sill, head, 60, 0, fy);
-      }
+      // mullions: evenly spaced, or after a fixed lite of `fixed` mm with the rest split in two sliding sashes
+      const ts = o.fixed ? [t0 + o.fixed, (t0 + o.fixed + t1) / 2]
+        : Array.from({ length: Math.max(1, Math.round((t1 - t0) / 1200)) - 1 }, (_, i) => t0 + ((t1 - t0) * (i + 1)) / Math.max(1, Math.round((t1 - t0) / 1200)));
+      for (const t of ts) addStrip(batch, fid, 'struct', fr, w, t - 20, t + 20, sill, head, 60, 0, fy);
+      if (o.grille) grilleBars(batch, fid, w, t0 + 60, t1 - 60, sill + 0.05, head - 0.05, swingSign(w, o.grille) * (T / 2 + 30), fy);
       colliders.push({ poly: spanPolygon({ ...w, t: 60 }, t0, t1), y0: sill, y1: head });
     }
     return;

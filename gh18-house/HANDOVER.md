@@ -7,13 +7,13 @@
 - `main` is the repository's default branch and the live branch. GitHub Pages and Netlify both deploy from it.
 - `house-design-v1` is the working branch. Changes are made there and merged into `main` to go live.
 - The first Claude session worked on an auto-named branch, `claude/zen-shannon-ilvm07`, which was then the default. It was renamed to `house-design-v1` and `main` was created from it. The owner has since deleted the old branch (and with it an unneeded Imgbot pull request).
-- **What is where (31 Oct 2026):** `main` has everything up to F16 (materials schedule + Materials view, with the car-colour fix). `house-design-v1` is one step ahead: **F17**, the R1 issue of the architect's drawing. F17 waits for the owner's approval before it is merged into `main`.
+- **What is where (31 Oct 2026):** `main` has everything up to F16 (materials schedule + Materials view, with the car-colour fix). `house-design-v1` is ahead: **F17**, the R1 issue of the architect's drawing, and **F18**, the practical rear wall (uPVC sliding door + window instead of the all-glass GL-5). Both wait for the owner's approval before they are merged into `main`.
 **Live sites:**
 - GitHub Pages: https://work-deepti.github.io/house-design/ (R1 at https://work-deepti.github.io/house-design/v1/). **Not live yet (31 Oct 2026):** Pages is not switched on for the new repo. The owner must set Settings → Pages → Source to "GitHub Actions", allow `main` under Settings → Environments → `github-pages` (§9), then start the first deploy with the workflow's *Run workflow* button.
 - The old site, https://aditya-pandey.github.io/interior-design/, still serves the old repo's `main` and no longer receives updates.
 - Netlify: was linked to the old repository's `main`. It must be re-linked to `work-deepti/house-design` (production branch `main`) to follow the new repo. Netlify sometimes lags behind GitHub Pages.
 
-**State at handover (31 Oct 2026):** everything described here is committed and pushed. The last change is **F17**, the R1 issue of the architect's drawing (`plans/r1/GH-18_R1_drawing.pdf`, made by `tools/sheets.py`), on `house-design-v1`, not yet merged into `main`. Before it came **F16**, the materials and quantities schedule with its 3D view, which is live. All automated checks pass (`check_dims` PASS for main and R1; `check_services` 278 pass, 4 warnings, 0 fail), and GitHub Pages deployed successfully from `main`.
+**State at handover (31 Oct 2026):** everything described here is committed and pushed. The last change is **F17**, the R1 issue of the architect's drawing (`plans/r1/GH-18_R1_drawing.pdf`, made by `tools/sheets.py`), on `house-design-v1`, not yet merged into `main`. Before it came **F16**, the materials and quantities schedule with its 3D view, which is live. **F18** (the practical rear wall) followed on the same branch. All automated checks pass (`check_dims` PASS for main and R1; `check_services` 278 pass, 4 warnings, 0 fail), and GitHub Pages deployed successfully from `main`.
 
 This document is meant to be pasted into a new Claude (or other agent) session as the opening context. It tries to carry everything the previous sessions learned: the goal, the data model, the code, the design decisions and why they were made, the user's preferences, the traps, and the open items. If anything here disagrees with the code, trust the code and fix this document.
 
@@ -97,6 +97,7 @@ This document is meant to be pasted into a new Claude (or other agent) session a
 7. **This handover document** (first version), the branch reorganisation (`main` live, `house-design-v1` working).
 8. **F16 materials and quantities** (owner's nine items: tiles, pipes, wires, paint, POP, granite, timber, MDF board in wardrobes, lights): `tools/boq.py` → Excel + PDF, and a *Materials* view in the 3D tour. Merged to `main`; a follow-up fix stopped the Materials view recolouring the car.
 9. **F17 R1 issue of the architect's drawing:** the owner asked for an updated version of the original R0 sheet "basis how our layout and plan looks like". `tools/sheets.py` → two A3 sheets (§5.6). The FF master-washroom vent window was re-marked **KW-2** at the same time. On `house-design-v1`, awaiting approval.
+10. **F18 rear wall:** the owner found the all-glass GL-5 impractical and asked for ideas, plus a check that a 6-ft man can move freely. After a brainstorm (options: four-panel lift-and-slide, part solid / part glass, bi-fold, French doors) the owner chose practical and secure, uPVC, mesh, grilles, current layout. Built: uPVC sliding door GL-5a + window GL-5b on a sill wall, grilles, pergola raised 150 (§7.3). On `house-design-v1`, awaiting approval.
 
 ---
 
@@ -335,6 +336,7 @@ The R1 checks pass at handover:
   | `b15_tulsi` | B15 | tulsi platform GF-O09 at (645, 1650), rot 270, in the back lawn's NE corner; bamboo planters O10 / O11; fluted panel O12 on the E boundary wall |
   | `e12_plumbing` | E12 | `services.plumbing` |
   | `e13_electrical` | E13 | `services.electrical`; also re-places the ODUs (drops SF-AC2, moves SF-AC1, adds SF-AC5/6 and GF-O08) |
+  | `f18_rear_glazing` | F18 | GL-5 → uPVC sliding door GL-5a (2200 × 2400, east sash opens, `open: 'a'`, grille inside) + window GL-5b (3000 × 1500 on a 900 sill, `fixed: 750`, grille outside); floor lamp GF-F08 to (7000, 5950); pergola `z_top` 3150. Runs before the services. |
   | `f16_materials` | F16 | kitchen, wash-nook and pantry counter tops get `top: 'granite_black'` (the BOQ's granite); quantities come from `tools/boq.py` |
 
 - **To add an R1 change:**
@@ -377,6 +379,7 @@ The R1 checks pass at handover:
   - **Granite:** counter tops with cut-outs, window sills, door thresholds, the stair and flamed paving; the kitchen backsplash is listed as white marble (as designed).
   - **Timber:** door frames and shutters, pergola cft, handrail, veneer cladding (lobby, foyer, guest lounge), fluted walnut, the tulsi panel and the mandir.
   - **MDF:** per wardrobe and storage unit (carcass, shutters, back, sheets, hinges, edge band, laminate). BWP ply for wet units (vanities, sink base, utility, terrace), as the owner asked: MDF elsewhere.
+  - **uPVC (section 10, F18):** the rear-wall door and window only, from openings tagged `mesh` / `grille`: frame length, glass (laminated share), mesh and grille areas.
   - **Lights:** downlights on the 1.4 m grid the 3D shows (each electrical "light point" switches a group), cove and under-cabinet LED, fans, mirror, wall and garden lights, exhaust fans and detectors.
 - **Specs and rates live at the top of the file** (`TILE`, `OPTION_B`, `MARBLE`, `PIPE_SPEC`, `PAINT`, `CABLE_SUBMAIN`). Change a spec there and re-run. No costs are included (owner's choice).
 
@@ -496,6 +499,7 @@ It runs three sections and writes `plans/r1/services_report.txt`.
   - `furn`
   - `emissive`: cove, lamp, jaali_glow and downlight materials; no shadows
   - `site`: ground, street
+- **Opening options (F18):** a `sliding_door` with `open: 'a'|'b'` has only that sash sliding, so the other half blocks the walker; `grille: '+y'` etc. draws MS bars on that side (a door's grille parks behind the fixed half); a `window` with `fixed: mm` puts its mullions after a fixed lite of that width, then splits the rest in two sashes.
 - **Builds:** walls with openings, frames, glass, doors (hinged doors shown open about 90°, sliders closed but walkable), room floors and ceilings (POP + cove + downlights), tile skins in wet rooms, stair, slabs, pergola, canopy, outdoor areas, furniture (`buildFurniture`), backsplashes, and the lights list (rooms; the pendant; `mandir_wall` / `mandir_open` / `tulsi_platform` glow).
 - **Returns:** `{meshes, labels, presets, lights, models, colliders, …}`.
 
@@ -602,6 +606,7 @@ Plus the consultant drawings: wiring, plumbing and electrical.
   - pendant over the 6-seat dining table
   - hand-wash basin with a mirror light in the niche by the kitchen wall (it drains to the GF toilet line)
   - open mandir on the east (kitchen) wall at the NE corner, devotee facing east; the crockery unit is south of it on the same wall
+  - rear wall (F18): uPVC sliding door GL-5a at the east end (3'-5" / 1.05 m clear, toward the tulsi), window GL-5b on a 2'-11" (0.90 m) sill wall behind the sofa and by the TV; mesh and MS grilles; the only way to the back garden
 - **Kitchen (GF-KIT):**
   - closed, with the KD-1 sliding door
   - hob on the east wall (the cook faces east, red-line 7)
@@ -687,6 +692,7 @@ The four warnings in the services report:
 
 Hold points and open questions:
 - **Master washroom over the kitchen:** sunken floor, waterproofing, flood test (architect, structural, plumber).
+- **F18 rear wall:** deck-to-lawn 1'-0" (0.30 m) drop has no step in the model (architect); door on the south wall (Vastu consultant); lintel and the raised pergola ledger (structural).
 - **Living-area floors:** the owner still has to choose A (Italian marble) or B (large-format tiles); both are in the materials schedule.
 - **Master headboard on the W wall** against red-line 13 (S wall). The electrical sheet assumes W.
 - **SF rooms not in the S / SW** (red-line T); the SF is a proposal.
@@ -755,6 +761,7 @@ Hold points and open questions:
   - **Path filter:** the workflow only runs when files under `gh18-house/**` (or the workflow itself) change. A branch pushed with no new changes (e.g. a freshly created `main` identical to the default) triggers nothing. Start it by hand with the workflow's *Run workflow* button (`workflow_dispatch`).
   - **Environment rule:** the `github-pages` environment has a deployment-branch rule. When `main` was created, its deploy job was rejected within a second, with no log, until the owner allowed `main` under Settings → Environments → `github-pages` (and made `main` the default branch). If a deploy job fails instantly with no log, check that rule first.
 - **Branch housekeeping from the agent sandbox:** pushing new branches works. Deleting a remote branch was refused (the connection dropped twice), so ask the user to delete branches in the GitHub UI (Branches page → bin icon).
+- **6-ft movement test:** `viewer/scripts/walk6ft.mjs` walks plan routes through the viewer's floors and colliders (250 mm body radius, 1.86 m head) and prints the nearest obstacle per leg, the biggest step and the lowest overhead. Edit its `routes` for a new change.
 - **The previous agent's render scripts** (`r1_walk.mjs`, `el_shot.mjs`, `svc_ui.mjs`, …) lived in a session scratchpad and are NOT in the repo. Recreate them from the snippet above, or add a `scripts/render.mjs` to the repo.
 - **Client privacy:**
   - The client's name and address are in the JSON `meta` and are stripped from public builds (PUBLIC_BUILD=1).

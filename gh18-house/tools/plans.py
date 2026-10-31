@@ -503,7 +503,8 @@ def draw_overlays(svg, h, fl):
                 y += pg["rafters"]["spacing"]
             for (px, py) in pg["posts"]:
                 svg.poly("over", [(px - 75, py - 75), (px + 75, py - 75), (px + 75, py + 75), (px - 75, py + 75)], fill="#8a6a44")
-            svg.text("over", (x0 + x1) / 2, y0 - 120, "PERGOLA OVER DECK (top +3000) — BRIEF CHANGE", size=120, fill="#8a6a44", weight="bold")
+            svg.text("over", (x0 + x1) / 2, y0 - 120, ("PERGOLA OVER DECK, top +%s (%.2f m) — BRIEF CHANGE" % (hl.ftin(pg["z_top"]), pg["z_top"] / 1000) if FEET
+                     else "PERGOLA OVER DECK (top +%d) — BRIEF CHANGE" % pg["z_top"]), size=120, fill="#8a6a44", weight="bold")
     if fid == "SF":
         cp = fl.get("canopy")
         if cp:

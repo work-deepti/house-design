@@ -190,7 +190,7 @@ PASS  FF-K04 bedside (FF-KID)                              s6, sb2w
 PASS  FF-K05 bedside (FF-KID)                              s6, sb2w
 PASS  GF-E23 AC (GF-DRW) off the glazing, high             2.15 m on GF-W04
 PASS  GF-E23 AC route to SF-AC3                            10.0 m (standard charge to 15 m)
-PASS  GF-E23 AC route clear of the party walls             out above the GL-5 head, up the balcony west wall (inside the plot), over the parapet
+PASS  GF-E23 AC route clear of the party walls             out above the GL-5b window head, up the balcony west wall (inside the plot), over the parapet
 PASS  GF-E52 AC (GF-GST) off the glazing, high             2.45 m on GF-W16
 PASS  GF-E52 AC route to GF-O08                            4.2 m (standard charge to 15 m)
 PASS  GF-E52 AC route clear of the party walls             through the north wall, down to the front-lawn unit (A6)
@@ -381,7 +381,7 @@ UPS    INV   ups          6  16A                  2.5 sq mm        yes    0.19  
 DATA   INV   data         8  -                    Cat-6            -      0.00  Bedroom 3, Family Lounge, Guest Lounge / Study, Guest Room, Kids Room,
 
 AC REFRIGERANT ROUTES
-GF-E23  -> SF-AC3   10.0 m  out above the GL-5 head, up the balcony west wall (inside the plot), over the parapet
+GF-E23  -> SF-AC3   10.0 m  out above the GL-5b window head, up the balcony west wall (inside the plot), over the parapet
 FF-E06  -> SF-AC4    2.4 m  straight up through the slab to the back terrace
 FF-E50  -> SF-AC1   14.3 m  in the ceiling void, through the toilet ceiling into the OTS, up to the back terrace (drains via the OTS)
 FF-E62  -> SF-AC5    3.2 m  up through the slab to the front terrace

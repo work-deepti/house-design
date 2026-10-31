@@ -391,14 +391,30 @@
               "note": "R1-B4: back at its R0 position over the prep counter"
             },
             {
-              "id": "GF-GL5",
-              "mark": "GL-5",
+              "id": "GF-GL5a",
+              "mark": "GL-5a",
               "type": "sliding_door",
-              "offset": 3071,
-              "width": 5700,
-              "height": 2300,
-              "sill": 100,
-              "note": "to deck / lawn"
+              "offset": 3570,
+              "width": 2200,
+              "height": 2400,
+              "sill": 0,
+              "note": "R1-F18 uPVC sliding door; east sash opens (1050 clear), west sash fixed; recessed track, MS grille inside",
+              "open": "a",
+              "grille": "+y",
+              "mesh": true
+            },
+            {
+              "id": "GF-GL5b",
+              "mark": "GL-5b",
+              "type": "window",
+              "offset": 5770,
+              "width": 3000,
+              "height": 1500,
+              "sill": 900,
+              "note": "R1-F18 uPVC window on a 900 sill wall: fixed 750 behind the sofa, sliding sashes + mesh; MS grille outside",
+              "fixed": 750,
+              "grille": "-y",
+              "mesh": true
             }
           ],
           "note": "Rear glazing line (light grey in PDF = new). 5515-5665."
@@ -1480,9 +1496,10 @@
           "id": "GF-F08",
           "room": "GF-DRW",
           "type": "floor_lamp",
-          "pos": [4900, 5950],
+          "pos": [7000, 5950],
           "size": [400, 400, 1650],
-          "rot": 0
+          "rot": 0,
+          "note": "R1-F18 moved out of the new doorway to the strip by the window"
         },
         {
           "id": "GF-F09",
@@ -1745,7 +1762,7 @@
         "id": "GF-PERGOLA",
         "over": "GF-DECK",
         "status": "proposed",
-        "z_top": 3000,
+        "z_top": 3150,
         "material": "walnut-stain hardwood / black metal",
         "posts": [[2489, 2964], [4659, 2964], [6830, 2964], [9001, 2964]],
         "post_size": 150,
@@ -1765,7 +1782,7 @@
           "from_y": 2889,
           "to_y": 5515
         },
-        "note": "top at +3000 (2.7 m above deck); stays below the FF balcony soffit (+3450)"
+        "note": "R1-F18 top at +3150 (2.85 m above deck) so the ledger clears the 2400 door head; below the FF balcony soffit (+3450)"
       }
     },
     {
@@ -7437,7 +7454,7 @@
         {
           "ac": "GF-E23",
           "odu": "SF-AC3",
-          "note": "out above the GL-5 head, up the balcony west wall (inside the plot), over the parapet",
+          "note": "out above the GL-5b window head, up the balcony west wall (inside the plot), over the parapet",
           "pts": [[9131, 7083, 2600], [9050, 7083, 3300], [9050, 5750, 3300], [9050, 5750, 8250], [9050, 6900, 8250], [7775, 6900, 8250], [7775, 6955, 7650]],
           "length": 10015
         },

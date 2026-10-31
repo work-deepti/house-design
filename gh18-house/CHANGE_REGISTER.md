@@ -42,6 +42,7 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | — | Tulsi (follow-up requests) | B15 | First placed in the front lawn's NE; **moved by the owner to the back garden**. It now stands in the back garden's north-east corner, against the east boundary wall just short of the deck. The devotee faces east and it is open to the sky. It follows the owner's reference photo: marble plinth, carved pedestal, brass diyas and bamboo planters. The fluted cladding with a brass Om goes on the existing boundary wall (no new construction). | Done; **warn**: SE zone of the plot (tulsi is usually N / NE / E), for the Vastu consultant |
 | — | Materials (follow-up): tiles, pipes, wires, paint, POP, granite, timber, MDF board in wardrobes, lights | F16 | A quantity schedule for every item, measured from the model by `tools/boq.py`: Excel (`plans/r1/GH-18_R1_materials.xlsx`, one sheet per item plus rooms) and PDF. Living-area floors are given both ways: Italian marble or large-format tiles, for the owner to decide. MDF for wardrobes as asked; BWP ply only for wet units (vanities, sink base, utility, terrace). Kitchen and pantry counter tops become 20 mm black granite in the model. A *Materials & quantities* view in the 3D tour colours every surface by material and shows each room's quantities. | Done; floors: **owner to choose** A (marble) or B (tiles) |
 | — | Updated version of the architect's drawing (follow-up) | F17 | `plans/r1/GH-18_R1_drawing.pdf`: UPS/GH18/PV/001 re-issued as R1 from the model. Sheet 1: GF + FF plans, door-window and finishing schedules, R0's title block. Sheet 2: proposed SF, revision notes, hold points, room areas. | Done; DRN. / CHD. for the architect to sign |
+| — | Rear glass wall not practical (follow-up): practical and secure, uPVC, mesh, grilles, current layout | F18 | GL-5 replaced by a uPVC sliding door GL-5a (3'-5" / 1.05 m clear, east sash, toward the tulsi) and a window GL-5b on a 2'-11" (0.90 m) sill wall. Mosquito mesh on the opening sashes; MS grilles (inside sliding on the door, fixed outside on the window); laminated glass in the fixed lites. Only the floor lamp moves. Pergola raised 6" (150 mm) to clear the door head. A 6-ft person passes every route (tightest 2'-5" / 0.73 m by the mandir pouf). | Done; deck-to-lawn 1'-0" drop has no step (existing, to the architect) |
 
 ## 2. Vastu red-line register (owner instruction to the architect, overlaid on R0)
 
@@ -115,6 +116,9 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | Master headboard W vs red-line S (13) | Vastu consultant | The Electrical sheet assumes W |
 | SF rooms not in the S / SW (red-line T) | Vastu consultant, architect | The SF is a proposal (not on R0) |
 | Deck pergola under "no outside construction" | Owner | Kept for now |
+| Deck to lawn: 1'-0" (0.30 m) drop with no step in the model (F18 6-ft test) | Architect | Two 6" risers or a ramped edge along the deck |
+| Rear door GL-5a on the south wall (F18) | Vastu consultant | East part of the south wall, nearest the tulsi |
+| uPVC lintel over GL-5a / GL-5b and the raised pergola ledger fixing (F18) | Structural | Old GL-5 head kept at 2400; new 900 sill wall |
 | Tank stand on the SF roof, OTS opening, lift pit and overrun, balconies | Structural, lift vendor | |
 | Sewer invert levels and the municipal connection | Plumber, RWA / MCG | |
 | Front curved balcony (red-line 16, P9) | Architect | Not in the model; the kids-room glazing forms the curve |
