@@ -81,6 +81,7 @@ REVISION_NOTES = [
     ("F18", "GF Family Lounge", "All-glass GL-5 replaced: uPVC sliding door GL-5a (3'-5\" clear) + window GL-5b on a 2'-11\" sill; mesh, grilles; pergola +6\"."),
     ("F19", "Electrical", "No inverter or battery: society DG backs up 100% of the load (ACs, geysers, lift included). CCTV, door phone, rack and desk socket on always-on circuit AO (DB-1)."),
     ("F20", "Water", "No underground tank (society supply): 2 × 2000 L soft-water tanks on the roof (W zone), softener on the SF terrace, bypass at the meter for a future booster pump; solar heater + geysers kept."),
+    ("F21", "FF Master bedroom", "All-glass GL-7 replaced: uPVC sliding door GL-7a (3'-5\" clear, east end) + window GL-7b on a 2'-11\" half wall along the bed; mesh, grilles."),
     ("C10", "FF Master suite", "Washroom and dresser swapped (bedroom → dresser → washroom); bath tub with over-tub screen; vent KW-2."),
     ("D-04, C9", "FF Bedrooms", "Front-left room is Bedroom 3, front-right is the Kids Room; kids toilet back at its R0 place."),
     ("C8", "FF Lobby", "Cupboard by the lift becomes a pantry counter with wall cupboards, 10\" clear of the lift door."),

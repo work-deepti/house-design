@@ -607,7 +607,7 @@ def summary_lines(rooms, tot):
             g('mdf_wardrobe_hinges') + g('mdf_other_hinges') + g('ply_hinges'))),
         ('9. Lights', '%d downlights (on %d light points), %d fans, %.0f m cove LED, %.0f m under-cabinet LED, %d mirror, %d wall, %d garden lights' % (
             g('downlights'), g('light:light'), g('light:fan'), g('cove_m'), g('ucl_m'), g('light:ml'), g('light:wl'), g('light:gl'))),
-        ('10. uPVC', '%d openings on the rear wall: frame %.0f m, solar-control glass %s sq ft (%s sq ft laminated), mosquito mesh %s sq ft, MS grilles %s sq ft' % (
+        ('10. uPVC', '%d openings (GF rear wall, FF master balcony): frame %.0f m, solar-control glass %s sq ft (%s sq ft laminated), mosquito mesh %s sq ft, MS grilles %s sq ft' % (
             g('upvc_openings'), g('upvc_frame_m'), sqft(g('upvc_glass_m2')), sqft(g('upvc_laminated_m2')), sqft(g('upvc_mesh_m2')), sqft(g('upvc_grille_m2')))),
     ]
 
@@ -679,7 +679,7 @@ NOTES = [
     '- Lights: counts from the electrical points; cove LED = cove length; under-cabinet LED = the cabinet runs.',
     '- Pipes: lengths along the modelled routes and stacks, 3 m lengths +10%; bends counted where a route changes direction (tees and couplers extra).',
     '- Wires: route length of each circuit x 3 cores (phase, neutral, earth) +10%; 90 m coils; sub-main sizes indicative (electrician to size).',
-    '- uPVC (F18): the rear-wall door and window only: heavy-series steel-reinforced uPVC, 3 tracks (2 glass + mesh), solar-control double glazing,'
+    '- uPVC (F18, F21): the GF rear-wall and FF master-balcony doors and windows only: heavy-series steel-reinforced uPVC, 3 tracks (2 glass + mesh), solar-control double glazing,'
     ' laminated in the fixed lites; door with multi-point lock and a recessed bottom track; MS grilles powder-coated black. The other windows are not in this take-off.',
     'Not included: labour, adhesives other than noted, hardware beyond hinges, sanitaryware, glass and windows other than the uPVC rear wall, the lift, ACs and appliances.',
 ]

@@ -7,13 +7,13 @@
 - `main` is the repository's default branch and the live branch. GitHub Pages and Netlify both deploy from it.
 - `house-design-v1` is the working branch. Changes are made there and merged into `main` to go live.
 - The first Claude session worked on an auto-named branch, `claude/zen-shannon-ilvm07`, which was then the default. It was renamed to `house-design-v1` and `main` was created from it. The owner has since deleted the old branch (and with it an unneeded Imgbot pull request).
-- **What is where (31 Oct 2026):** `main` has everything up to **F19** (F17 R1 drawing sheets, F18 practical rear wall, F19 no inverter + 100% society backup), merged with the owner's approval; `house-design-v1` matches it. **F20** (no underground tank; two soft-water roof tanks, softener, solar + geysers) is on the working branch `house-design-v1-3cmazu` and waits for approval.
+- **What is where (31 Oct 2026):** `main` has everything up to **F20** (F17 R1 drawing sheets, F18 practical rear wall, F19 no inverter + 100% society backup, F20 water: no UGT, softener, two roof tanks), merged with the owner's approval; `house-design-v1` matches it. **F21** (master balcony: door + half wall with window) is on the working branch `house-design-v1-3cmazu` and waits for approval. Netlify is now connected too (`house-deepti.netlify.app`).
 **Live sites:**
 - GitHub Pages: https://work-deepti.github.io/house-design/ (R1 at https://work-deepti.github.io/house-design/v1/). Live since 31 Oct 2026. Pages was switched on for the new repo (Source: GitHub Actions); the first deploy had to be started with the workflow's *Run workflow* button, because the earlier push to `main` came before Actions were enabled. Pushes to `main` that touch `gh18-house/**` now deploy on their own.
 - The old site, https://aditya-pandey.github.io/interior-design/, still serves the old repo's `main` and no longer receives updates.
 - Netlify: was linked to the old repository's `main`. It must be re-linked to `work-deepti/house-design` (production branch `main`) to follow the new repo. Netlify sometimes lags behind GitHub Pages.
 
-**State at handover (31 Oct 2026):** everything described here is committed and pushed. The last change is **F20** (water: no UGT, softener, two 2000 L soft-water roof tanks), on `house-design-v1-3cmazu`, not yet merged into `main`. Before it came **F19** (no inverter; the society's DG backs up 100% of the load), **F18** (practical rear wall) and **F17** (R1 drawing sheets), all live. All automated checks pass (`check_dims` PASS for main and R1; `check_services` all PASS with 4 warnings, 0 fail).
+**State at handover (31 Oct 2026):** everything described here is committed and pushed. The last change is **F21** (master bedroom balcony: uPVC door GL-7a + window GL-7b on a half wall), on `house-design-v1-3cmazu`, not yet merged into `main`. Before it came **F20** (water), **F19** (no inverter), **F18** (rear wall) and **F17** (R1 drawing sheets), all live. All automated checks pass (`check_dims` PASS for main and R1; `check_services` all PASS with 4 warnings, 0 fail).
 
 This document is meant to be pasted into a new Claude (or other agent) session as the opening context. It tries to carry everything the previous sessions learned: the goal, the data model, the code, the design decisions and why they were made, the user's preferences, the traps, and the open items. If anything here disagrees with the code, trust the code and fix this document.
 
@@ -100,6 +100,7 @@ This document is meant to be pasted into a new Claude (or other agent) session a
 10. **F18 rear wall:** the owner found the all-glass GL-5 impractical and asked for ideas, plus a check that a 6-ft man can move freely. After a brainstorm (options: four-panel lift-and-slide, part solid / part glass, bi-fold, French doors) the owner chose practical and secure, uPVC, mesh, grilles, current layout. Built: uPVC sliding door GL-5a + window GL-5b on a sill wall, grilles, pergola raised 150 (§7.3). On `house-design-v1`, awaiting approval.
 11. **F19 no inverter:** the owner said the society has power backup, so the inverter goes. Proposed first (architecture + electrical), then built: the under-stair bay becomes a network shelf + cupboard; the inverter, battery, SM-4 feed and inverter board go; CCTV, door phone, rack and desk UPS socket move to always-on circuit AO on DB-1. The owner then confirmed the society backs up 100% of the load, so nothing is split off backup.
 12. **F20 water:** the owner said there is no underground tank (the society's set-up delivers the water) and asked for two storage tanks with a softener and heater. Proposed with options first; the owner chose both tanks soft, 2 × 2000 L, a bypass at the meter for a future booster, and heater option (a): keep the solar heater + geysers on soft water. Tank 2 first landed in the house centre (Brahmasthan) and was moved over the stair (W zone).
+13. **F21 master balcony:** the owner asked for half wall and half glass with a door instead of the full-glass GL-7. Options asked first (door position, type, grilles); built as GL-7a uPVC sliding door at the east end (west sash opens) + GL-7b window on a 900 half wall, F18's system; balcony seating moved west; 6-ft walk test passed.
 
 ---
 
@@ -338,6 +339,7 @@ The R1 checks pass at handover:
   | `b15_tulsi` | B15 | tulsi platform GF-O09 at (645, 1650), rot 270, in the back lawn's NE corner; bamboo planters O10 / O11; fluted panel O12 on the E boundary wall |
   | `e12_plumbing` | E12 | `services.plumbing` |
   | `e13_electrical` | E13 | `services.electrical`; also re-places the ODUs (drops SF-AC2, moves SF-AC1, adds SF-AC5/6 and GF-O08) |
+  | `f21_master_balcony` | F21 | GL-7 → uPVC sliding door GL-7a (2200 × 2400 at offset 150 on FF-W06, `open: 'b'` = west sash, grille inside) + window GL-7b (1300 × 1500 on a 900 sill, grille outside); lounge chair FF-M07 and balcony seating FF-L02/L03/L04 moved. Runs after F18. |
   | `f18_rear_glazing` | F18 | GL-5 → uPVC sliding door GL-5a (2200 × 2400, east sash opens, `open: 'a'`, grille inside) + window GL-5b (3000 × 1500 on a 900 sill, `fixed: 750`, grille outside); floor lamp GF-F08 to (7000, 5950); pergola `z_top` 3150. Runs before the services. |
   | `f16_materials` | F16 | kitchen, wash-nook and pantry counter tops get `top: 'granite_black'` (the BOQ's granite); quantities come from `tools/boq.py` |
 
@@ -381,7 +383,7 @@ The R1 checks pass at handover:
   - **Granite:** counter tops with cut-outs, window sills, door thresholds, the stair and flamed paving; the kitchen backsplash is listed as white marble (as designed).
   - **Timber:** door frames and shutters, pergola cft, handrail, veneer cladding (lobby, foyer, guest lounge), fluted walnut, the tulsi panel and the mandir.
   - **MDF:** per wardrobe and storage unit (carcass, shutters, back, sheets, hinges, edge band, laminate). BWP ply for wet units (vanities, sink base, utility, terrace), as the owner asked: MDF elsewhere.
-  - **uPVC (section 10, F18):** the rear-wall door and window only, from openings tagged `mesh` / `grille`: frame length, glass (laminated share), mesh and grille areas.
+  - **uPVC (section 10, F18 + F21):** the rear-wall and master-balcony doors and windows only, from openings tagged `mesh` / `grille`: frame length, glass (laminated share), mesh and grille areas.
   - **Lights:** downlights on the 1.4 m grid the 3D shows (each electrical "light point" switches a group), cove and under-cabinet LED, fans, mirror, wall and garden lights, exhaust fans and detectors.
 - **Specs and rates live at the top of the file** (`TILE`, `OPTION_B`, `MARBLE`, `PIPE_SPEC`, `PAINT`, `CABLE_SUBMAIN`). Change a spec there and re-run. No costs are included (owner's choice).
 

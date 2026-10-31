@@ -1918,14 +1918,29 @@
           "status": "new",
           "openings": [
             {
-              "id": "FF-GL7",
-              "mark": "GL-7",
+              "id": "FF-GL7a",
+              "mark": "GL-7a",
               "type": "sliding_door",
               "offset": 150,
-              "width": 3500,
-              "height": 2300,
-              "sill": 100,
-              "note": "master to balcony"
+              "width": 2200,
+              "height": 2400,
+              "sill": 0,
+              "note": "R1-F21 uPVC sliding door; west sash opens (1050 clear), east sash fixed; recessed track, MS grille inside",
+              "open": "b",
+              "grille": "+y",
+              "mesh": true
+            },
+            {
+              "id": "FF-GL7b",
+              "mark": "GL-7b",
+              "type": "window",
+              "offset": 2350,
+              "width": 1300,
+              "height": 1500,
+              "sill": 900,
+              "note": "R1-F21 uPVC window on a 900 half wall along the bed: sliding sashes + mesh; MS grille outside",
+              "grille": "-y",
+              "mesh": true
             }
           ]
         },
@@ -2543,9 +2558,10 @@
           "id": "FF-M07",
           "room": "FF-MST",
           "type": "lounge_chair",
-          "pos": [6100, 7500],
+          "pos": [5750, 7600],
           "size": [800, 800, 780],
-          "rot": 315
+          "rot": 315,
+          "note": "R1-F21 moved east, clear of the walk to the balcony door"
         },
         {
           "id": "FF-M08",
@@ -2714,25 +2730,28 @@
           "id": "FF-L02",
           "room": "FF-BAL",
           "type": "lounge_chair",
-          "pos": [6600, 5950],
+          "pos": [7900, 5500],
           "size": [750, 750, 750],
-          "rot": 180
+          "rot": 180,
+          "note": "R1-F21 moved to the deep west end of the balcony, clear of the door"
         },
         {
           "id": "FF-L03",
           "room": "FF-BAL",
           "type": "lounge_chair",
-          "pos": [7800, 5750],
+          "pos": [8750, 5300],
           "size": [750, 750, 750],
-          "rot": 180
+          "rot": 180,
+          "note": "R1-F21 moved to the deep west end of the balcony, clear of the door"
         },
         {
           "id": "FF-L04",
           "room": "FF-BAL",
           "type": "side_table",
-          "pos": [7200, 6150],
+          "pos": [8325, 6200],
           "size": [450, 450, 450],
-          "rot": 0
+          "rot": 0,
+          "note": "R1-F21 moved to the deep west end of the balcony, clear of the door"
         },
         {
           "id": "FF-L01",

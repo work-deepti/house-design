@@ -47,8 +47,8 @@
 <polyline points="4269.5,10109 3142.5,10109" fill="none" stroke="#8a7a5c" stroke-width="6" />
 <polyline points="4269.5,10669 3142.5,10069" fill="none" stroke="#8a7a5c" stroke-width="5" />
 <polyline points="4269.5,10069 3142.5,10669" fill="none" stroke="#8a7a5c" stroke-width="5" />
-<polygon points="5534.3,7500 6100,6934.3 6665.7,7500 6100,8065.7" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
-<polyline points="5626.2,7535.4 6135.4,7026.2" fill="none" stroke="#8a7a5c" stroke-width="8" />
+<polygon points="5184.3,7600 5750,7034.3 6315.7,7600 5750,8165.7" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polyline points="5276.2,7635.4 5785.4,7126.2" fill="none" stroke="#8a7a5c" stroke-width="8" />
 <polygon points="230,12964 2268,12964 2268,13564 230,13564" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polyline points="230,13524 2268,13524" fill="none" stroke="#8a7a5c" stroke-width="6" />
 <polyline points="230,12964 2268,13564" fill="none" stroke="#8a7a5c" stroke-width="5" />
@@ -85,11 +85,11 @@
 <polygon points="5918.2,19543.7 6426.3,19754.2 6215.8,20262.3 5707.7,20051.8" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polyline points="5920.7,19642.2 6354.9,19822" fill="none" stroke="#8a7a5c" stroke-width="8" />
 <circle cx="5500" cy="18300" r="400" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10"/>
-<polygon points="6975,6325 6225,6325 6225,5575 6975,5575" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
-<polyline points="6935,6235 6265,6235" fill="none" stroke="#8a7a5c" stroke-width="8" />
-<polygon points="8175,6125 7425,6125 7425,5375 8175,5375" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
-<polyline points="8135,6035 7465,6035" fill="none" stroke="#8a7a5c" stroke-width="8" />
-<polygon points="6975,5925 7425,5925 7425,6375 6975,6375" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="8275,5875 7525,5875 7525,5125 8275,5125" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polyline points="8235,5785 7565,5785" fill="none" stroke="#8a7a5c" stroke-width="8" />
+<polygon points="9125,5675 8375,5675 8375,4925 9125,4925" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polyline points="9085,5585 8415,5585" fill="none" stroke="#8a7a5c" stroke-width="8" />
+<polygon points="8100,5975 8550,5975 8550,6425 8100,6425" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="5450,10849 6950,10849 6950,11449 5450,11449" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="5450,10849 6950,10849 6950,11199 5450,11199" fill="none" stroke="#8a7a5c" stroke-width="8" stroke-dasharray="50 35"/>
 <polygon points="6047.5,15306 7112.5,15306 7112.5,15906 6047.5,15906" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
@@ -237,11 +237,17 @@
 <polyline points="881,11516 881,12666" fill="none" stroke="#2aa7c9" stroke-width="14" />
 <polyline points="948.5,11516 948.5,12666" fill="none" stroke="#222" stroke-width="5" />
 <line x1="5499" y1="6655" x2="5499" y2="6805" stroke="#222" stroke-width="8" />
+<line x1="7699" y1="6655" x2="7699" y2="6805" stroke="#222" stroke-width="8" />
+<polyline points="5499,6655 7699,6655" fill="none" stroke="#222" stroke-width="6" />
+<polyline points="5499,6805 7699,6805" fill="none" stroke="#222" stroke-width="6" />
+<polyline points="5499,6707.5 6699,6707.5" fill="none" stroke="#2aa7c9" stroke-width="22" />
+<polyline points="6499,6752.5 7699,6752.5" fill="none" stroke="#2aa7c9" stroke-width="22" />
+<line x1="7699" y1="6655" x2="7699" y2="6805" stroke="#222" stroke-width="8" />
 <line x1="8999" y1="6655" x2="8999" y2="6805" stroke="#222" stroke-width="8" />
-<polyline points="5499,6655 8999,6655" fill="none" stroke="#222" stroke-width="6" />
-<polyline points="5499,6805 8999,6805" fill="none" stroke="#222" stroke-width="6" />
-<polyline points="5499,6707.5 7349,6707.5" fill="none" stroke="#2aa7c9" stroke-width="22" />
-<polyline points="7149,6752.5 8999,6752.5" fill="none" stroke="#2aa7c9" stroke-width="22" />
+<polyline points="7699,6655 8999,6655" fill="none" stroke="#222" stroke-width="8" />
+<polyline points="7699,6805 8999,6805" fill="none" stroke="#222" stroke-width="8" />
+<polyline points="7699,6730 8999,6730" fill="none" stroke="#2aa7c9" stroke-width="14" />
+<polyline points="7699,6696.2 8999,6696.2" fill="none" stroke="#222" stroke-width="5" />
 <line x1="3143" y1="6350" x2="2993" y2="6350" stroke="#222" stroke-width="8" />
 <line x1="3143" y1="7350" x2="2993" y2="7350" stroke="#222" stroke-width="8" />
 <line x1="2993" y1="6350" x2="1993" y2="6350" stroke="#222" stroke-width="16" />
@@ -382,8 +388,10 @@
 <text x="530" y="10213" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >KW-2</text>
 <circle cx="451" cy="12091" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>
 <text x="451" y="12133" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >GL-3</text>
-<circle cx="7249" cy="6375" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>
-<text x="7249" y="6417" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >GL-7</text>
+<circle cx="6599" cy="6375" r="185" fill="#fff" stroke="#c2185b" stroke-width="10"/>
+<text x="6599" y="6417" font-size="95" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >GL-7a</text>
+<circle cx="8349" cy="6375" r="185" fill="#fff" stroke="#c2185b" stroke-width="10"/>
+<text x="8349" y="6417" font-size="95" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >GL-7b</text>
 <circle cx="3403" cy="6850" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>
 <text x="3403" y="6892" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >D2</text>
 <circle cx="1789" cy="8345" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>

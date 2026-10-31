@@ -45,6 +45,7 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | — | Rear glass wall not practical (follow-up): practical and secure, uPVC, mesh, grilles, current layout | F18 | GL-5 replaced by a uPVC sliding door GL-5a (3'-5" / 1.05 m clear, east sash, toward the tulsi) and a window GL-5b on a 2'-11" (0.90 m) sill wall. Mosquito mesh on the opening sashes; MS grilles (inside sliding on the door, fixed outside on the window); laminated glass in the fixed lites. Only the floor lamp moves. Pergola raised 6" (150 mm) to clear the door head. A 6-ft person passes every route (tightest 2'-5" / 0.73 m by the mandir pouf). | Done; deck-to-lawn 1'-0" drop has no step (existing, to the architect) |
 | — | Remove the inverter: the society has power backup (follow-up) | F19 | Inverter, battery, feed SM-4 and the inverter board removed. Under-stair bay → network shelf 1'-11½" (0.60 m) + cupboard 1'-7½" (0.50 m). Society DG backs up 100% of the load (owner). CCTV, door phone, rack and desk UPS socket on always-on circuit AO from DB-1. | Done |
 | — | No underground tank (society supply); 2 water storage tanks with a water softener and heater (follow-up) | F20 | UGT and its pump removed; meter + bypass box VB-1 at the gate (booster-pump provision). Softener on the SF back terrace on the riser. Two 2000 L soft-water tanks on the roof, W zone, balanced. Solar heater (soft-fed) + a geyser per bathroom kept. | Done |
+| — | Master bedroom balcony: half wall and half glass with a door instead of the full-glass door (follow-up) | F21 | GL-7 replaced by a uPVC sliding door GL-7a (3'-5" / 1.05 m clear, east end) and a window GL-7b on a 2'-11" (0.90 m) half wall along the bed. Mesh; MS grilles. Balcony seating moved to the deep west end. | Done |
 
 ## 2. Vastu red-line register (owner instruction to the architect, overlaid on R0)
 
@@ -120,7 +121,7 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | Deck pergola under "no outside construction" | Owner | Kept for now |
 | Deck to lawn: 1'-0" (0.30 m) drop with no step in the model (F18 6-ft test) | Architect | Two 6" risers or a ramped edge along the deck |
 | Rear door GL-5a on the south wall (F18) | Vastu consultant | East part of the south wall, nearest the tulsi |
-| uPVC lintel over GL-5a / GL-5b and the raised pergola ledger fixing (F18) | Structural | Old GL-5 head kept at 2400; new 900 sill wall |
+| uPVC lintel over GL-5a / GL-5b and the raised pergola ledger fixing (F18); new half wall under GL-7b on the FF slab (F21) | Structural | Old GL-5 head kept at 2400; new 900 sill wall |
 | Two 2000 L tanks on the SF roof (about 4.4 t full): slab, beams and stands; OTS opening, lift pit and overrun, balconies | Structural, lift vendor | Tank 2 sits over the stair (F20) |
 | Society supply pressure at the roof tanks (F20) | Plumber, RWA | If short, fit an inline booster at VB-1 (bypass, isolator and conduit provided) |
 | Sewer invert levels and the municipal connection | Plumber, RWA / MCG | |

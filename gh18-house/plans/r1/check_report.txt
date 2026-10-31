@@ -83,9 +83,6 @@ Openings vs door/window schedule
   FF-GL4     GL-4   width  model  1460  schedule  1460     +0  OK
   FF-GL4     GL-4   sill   model   950  schedule   950     +0  OK
   FF-GL4     GL-4   height model  1450  schedule  1450     +0  OK
-  FF-GL7     GL-7   width  model  3500  schedule  3500     +0  OK
-  FF-GL7     GL-7   sill   model   100  schedule   100     +0  OK
-  FF-GL7     GL-7   height model  2300  schedule  2300     +0  OK
   FF-GL9     GL-9   width  model  4096  schedule  4100     -4  OK
   FF-GL9     GL-9   sill   model   100  schedule   100     +0  OK
   FF-GL9     GL-9   height model  2300  schedule  2300     +0  OK

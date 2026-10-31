@@ -8,7 +8,7 @@
   ],
   [
    "   Living floors",
-   "Option A Italian marble 2104 sq ft net (+15% wastage = 2420 sq ft) | Option B 1600 x 800 vitrified 86 boxes | skirting 508 rft"
+   "Option A Italian marble 2104 sq ft net (+15% wastage = 2420 sq ft) | Option B 1600 x 800 vitrified 86 boxes | skirting 512 rft"
   ],
   [
    "2. Pipes",
@@ -20,7 +20,7 @@
   ],
   [
    "4. Paint",
-   "Interior walls 3882 sq ft, ceilings 2535 sq ft, exterior 2729 sq ft; about 92 L interior emulsion, 51 L exterior"
+   "Interior walls 3891 sq ft, ceilings 2535 sq ft, exterior 2738 sq ft; about 93 L interior emulsion, 51 L exterior"
   ],
   [
    "5. POP",
@@ -28,7 +28,7 @@
   ],
   [
    "6. Granite",
-   "Counter tops 84 sq ft, 13 sills 53 sq ft, 24 thresholds 39 sq ft, stair 236 sq ft, flamed paving 147 sq ft"
+   "Counter tops 84 sq ft, 14 sills 56 sq ft, 24 thresholds 37 sq ft, stair 236 sq ft, flamed paving 147 sq ft"
   ],
   [
    "7. Timber",
@@ -44,7 +44,7 @@
   ],
   [
    "10. uPVC",
-   "2 openings on the rear wall: frame 24 m, solar-control glass 105 sq ft (41 sq ft laminated), mosquito mesh 65 sq ft, MS grilles 77 sq ft"
+   "4 openings (GF rear wall, FF master balcony): frame 44 m, solar-control glass 183 sq ft (69 sq ft laminated), mosquito mesh 114 sq ft, MS grilles 126 sq ft"
   ]
  ],
  "rooms": {
@@ -395,8 +395,8 @@
     "net_m2": 25.56,
     "boxes": 11
    },
-   "skirting_m": 16.5,
-   "paint_walls_m2": 37.09,
+   "skirting_m": 17.8,
+   "paint_walls_m2": 37.91,
    "fluted_m2": 10.63,
    "lights": {
     "downlights": 9,
@@ -747,9 +747,9 @@
  },
  "totals": {
   "marble_m2": 195.5,
-  "skirting_living_m": 154.8,
+  "skirting_living_m": 156.1,
   "backsplash_m2": 5.82,
-  "paint_int_m2": 360.65,
+  "paint_int_m2": 361.47,
   "downlights": 88,
   "pop_m2": 235.53,
   "cove_m": 180.57,
@@ -765,23 +765,23 @@
   "tile_floor_m2:vitrified": 9.46,
   "skirting_tile_m": 11.16,
   "cobble_m2": 12.26,
-  "paint_ext_m2": 253.55,
+  "paint_ext_m2": 254.37,
   "granite_stair_m2": 21.89,
   "granite_counter_m2": 7.82,
-  "granite_sill_m2": 4.93,
-  "sills": 13,
-  "granite_threshold_m2": 3.63,
+  "granite_sill_m2": 5.19,
+  "sills": 14,
+  "granite_threshold_m2": 3.44,
   "thresholds": 24,
   "door_frame_cft": 22.74,
   "doors": 15,
   "shutters": 16,
   "pergola_cft": 36.51,
-  "upvc_openings": 2,
-  "upvc_frame_m": 23.6,
-  "upvc_glass_m2": 9.78,
-  "upvc_laminated_m2": 3.77,
-  "upvc_mesh_m2": 6.02,
-  "upvc_grille_m2": 7.14,
+  "upvc_openings": 4,
+  "upvc_frame_m": 43.8,
+  "upvc_glass_m2": 17.01,
+  "upvc_laminated_m2": 6.41,
+  "upvc_mesh_m2": 10.61,
+  "upvc_grille_m2": 11.73,
   "handrail_m": 12.97,
   "mdf_other_sheets18": 75,
   "mdf_other_sheets8": 31,

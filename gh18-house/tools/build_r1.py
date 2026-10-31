@@ -836,8 +836,34 @@ def f18_rear_glazing(h):
     gf['pergola'].update(z_top=3150, note='R1-F18 top at +3150 (2.85 m above deck) so the ledger clears the 2400 door head; below the FF balcony soffit (+3450)')
 
 
+
+def f21_master_balcony(h):
+    """F21 (owner, Oct 2026): the master bedroom's all-glass balcony door GL-7 (3500 x 2300 sliding) becomes a door
+    plus a half wall with a window, in the same uPVC system as the rear wall (F18). Owner's picks: door at the east
+    end (nearest the room door; the half wall goes along the bed), uPVC sliding, MS grilles. East to west:
+    - GL-7a: uPVC sliding door 2200 x 2400, flush recessed track; the west sash opens (1050 clear, onto the middle of
+      the balcony, clear of the bed foot), the east sash is fixed. Mesh sash; MS sliding grille inside, parked
+      behind the fixed sash;
+    - GL-7b: uPVC window 1300 x 1500 on a 900 half wall, head in line with the door: two sliding sashes + mesh;
+      fixed MS grille outside; it sits along the bed, so the half wall gives the bed privacy.
+    The lounge chair moves east out of the walk from the room door to the balcony door (0.85 m past the bed foot);
+    the balcony chairs and table move to its deep west end (6'-9" / 2.06 m), clear of the door."""
+    ff = floor(h, 'FF')
+    w = find(ff['walls'], 'FF-W06')
+    drop(w['openings'], 'FF-GL7')
+    w['openings'] += [
+        base.O('FF-GL7a', 'GL-7a', 'sliding_door', 150, 2200, 2400, 0, open='b', grille='+y', mesh=True,
+               note='R1-F21 uPVC sliding door; west sash opens (1050 clear), east sash fixed; recessed track, MS grille inside'),
+        base.O('FF-GL7b', 'GL-7b', 'window', 2350, 1300, 1500, 900, grille='-y', mesh=True,
+               note='R1-F21 uPVC window on a 900 half wall along the bed: sliding sashes + mesh; MS grille outside'),
+    ]
+    find(ff['furniture'], 'FF-M07').update(pos=[5750, 7600], note='R1-F21 moved east, clear of the walk to the balcony door')
+    for fid, pos in (('FF-L02', [7900, 5500]), ('FF-L03', [8750, 5300]), ('FF-L04', [8325, 6200])):     # balcony seating to the deep west end
+        find(ff['furniture'], fid).update(pos=pos, note='R1-F21 moved to the deep west end of the balcony, clear of the door')
+
+
 PATCHES = [a1_orientation, a2_units, b3_family_lounge, b4_kitchen_wash, b5_guest_lounge, b6_mandir, b7_under_stair,
-           c8_pantry, c9_kids_toilet_back, c10_master_suite, d11_utility_terrace, b15_tulsi, f18_rear_glazing,
+           c8_pantry, c9_kids_toilet_back, c10_master_suite, d11_utility_terrace, b15_tulsi, f18_rear_glazing, f21_master_balcony,
            e12_plumbing, e13_electrical, f16_materials]
 
 
