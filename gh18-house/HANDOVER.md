@@ -1,16 +1,17 @@
 # GH-18 House Model — Handover for the next AI agent or developer
 
 **Project:** GH-18, Celebrity Homes, Palam Vihar, Gurugram, India. Renovation of an existing house, plus a proposed second floor.
-**Owner:** Deepti Jain. The architect's drawing (R0) names **Mr. Praveen Kumar Yadav** as the client, and that name is kept wherever the drawing is reproduced (`meta.client` in the model, the R1 drawing sheets, the plan title blocks). The person giving instructions in the build sessions is the owner's side (the repository owner, `aditya-pandey`).
-**Repository:** `github.com/aditya-pandey/interior-design`.
+**Owner:** Deepti Jain. The architect's drawing (R0) names **Mr. Praveen Kumar Yadav** as the client, and that name is kept wherever the drawing is reproduced (`meta.client` in the model, the R1 drawing sheets, the plan title blocks). The person giving instructions in the build sessions is the owner's side (git user `aditya-pandey`).
+**Repository:** `github.com/work-deepti/house-design` (since 31 Oct 2026; a copy of the original `github.com/aditya-pandey/interior-design`, with the full history and both branches).
 **Branches:**
 - `main` is the repository's default branch and the live branch. GitHub Pages and Netlify both deploy from it.
 - `house-design-v1` is the working branch. Changes are made there and merged into `main` to go live.
 - The first Claude session worked on an auto-named branch, `claude/zen-shannon-ilvm07`, which was then the default. It was renamed to `house-design-v1` and `main` was created from it. The owner has since deleted the old branch (and with it an unneeded Imgbot pull request).
 - **What is where (31 Oct 2026):** `main` has everything up to F16 (materials schedule + Materials view, with the car-colour fix). `house-design-v1` is one step ahead: **F17**, the R1 issue of the architect's drawing. F17 waits for the owner's approval before it is merged into `main`.
 **Live sites:**
-- GitHub Pages: https://aditya-pandey.github.io/interior-design/
-- Netlify, from the same repository's `main` branch (production branch set to `main`). Netlify sometimes lags behind GitHub Pages.
+- GitHub Pages: https://work-deepti.github.io/house-design/ (R1 at https://work-deepti.github.io/house-design/v1/). **Not live yet (31 Oct 2026):** Pages is not switched on for the new repo. The owner must set Settings → Pages → Source to "GitHub Actions", allow `main` under Settings → Environments → `github-pages` (§9), then start the first deploy with the workflow's *Run workflow* button.
+- The old site, https://aditya-pandey.github.io/interior-design/, still serves the old repo's `main` and no longer receives updates.
+- Netlify: was linked to the old repository's `main`. It must be re-linked to `work-deepti/house-design` (production branch `main`) to follow the new repo. Netlify sometimes lags behind GitHub Pages.
 
 **State at handover (31 Oct 2026):** everything described here is committed and pushed. The last change is **F17**, the R1 issue of the architect's drawing (`plans/r1/GH-18_R1_drawing.pdf`, made by `tools/sheets.py`), on `house-design-v1`, not yet merged into `main`. Before it came **F16**, the materials and quantities schedule with its 3D view, which is live. All automated checks pass (`check_dims` PASS for main and R1; `check_services` 278 pass, 4 warnings, 0 fail), and GitHub Pages deployed successfully from `main`.
 
@@ -102,7 +103,7 @@ This document is meant to be pasted into a new Claude (or other agent) session a
 ## 2. Repository layout
 
 ```
-interior-design/                      (repo root)
+house-design/                         (repo root)
   netlify.toml                        Netlify: base gh18-house/viewer, npm run build, publish dist, NODE 20, PUBLIC_BUILD=1
   .github/workflows/pages.yml         GitHub Pages: on push to main touching gh18-house/**
   gh18-house/
@@ -782,7 +783,7 @@ Hold points and open questions:
 
 ### Starter prompt for a new session (copy-paste)
 
-> You are picking up the GH-18 house-model project in the repo `aditya-pandey/interior-design` (folder `gh18-house/`). Read `gh18-house/HANDOVER.md` fully before doing anything; follow its nine rules (§0) and the change checklist (Appendix E). Work on branch `house-design-v1`; merge into `main` (the live site) only when I approve. Keep the main site `/` unchanged; Revision R1 lives at `/v1/`, with feet-inches and metres in brackets. Brainstorm or propose first for big changes, ask when something is ambiguous, and show me screenshots of what you changed. Pending from last time: my approval to merge F17 (the R1 drawing sheets) into `main`, and my choice between floor Option A (Italian marble) and Option B (1600 × 800 tiles).
+> You are picking up the GH-18 house-model project in the repo `work-deepti/house-design` (folder `gh18-house/`). Read `gh18-house/HANDOVER.md` fully before doing anything; follow its nine rules (§0) and the change checklist (Appendix E). Work on branch `house-design-v1`; merge into `main` (the live site) only when I approve. Keep the main site `/` unchanged; Revision R1 lives at `/v1/`, with feet-inches and metres in brackets. Brainstorm or propose first for big changes, ask when something is ambiguous, and show me screenshots of what you changed. Pending from last time: my approval to merge F17 (the R1 drawing sheets) into `main`, and my choice between floor Option A (Italian marble) and Option B (1600 × 800 tiles).
 
 ---
 
