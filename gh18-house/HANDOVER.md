@@ -7,13 +7,13 @@
 - `main` is the repository's default branch and the live branch. GitHub Pages and Netlify both deploy from it.
 - `house-design-v1` is the working branch. Changes are made there and merged into `main` to go live.
 - The first Claude session worked on an auto-named branch, `claude/zen-shannon-ilvm07`, which was then the default. It was renamed to `house-design-v1` and `main` was created from it. The owner has since deleted the old branch (and with it an unneeded Imgbot pull request).
-- **What is where (31 Oct 2026):** `main` has everything up to **F18** (F17 R1 drawing sheets, F18 practical rear wall), merged with the owner's approval. **F19** (no inverter: the society's DG backs up the supply) is on the working branch (`house-design-v1-3cmazu`, a cloud-session branch off `main`) and waits for approval before it is merged into `main`.
+- **What is where (31 Oct 2026):** `main` has everything up to **F19** (F17 R1 drawing sheets, F18 practical rear wall, F19 no inverter), merged with the owner's approval; `house-design-v1` was synced to it. Later changes are made on the working branch (`house-design-v1` or a cloud-session branch such as `house-design-v1-3cmazu`) and merged into `main` only when the owner approves.
 **Live sites:**
 - GitHub Pages: https://work-deepti.github.io/house-design/ (R1 at https://work-deepti.github.io/house-design/v1/). Live since 31 Oct 2026. Pages was switched on for the new repo (Source: GitHub Actions); the first deploy had to be started with the workflow's *Run workflow* button, because the earlier push to `main` came before Actions were enabled. Pushes to `main` that touch `gh18-house/**` now deploy on their own.
 - The old site, https://aditya-pandey.github.io/interior-design/, still serves the old repo's `main` and no longer receives updates.
 - Netlify: was linked to the old repository's `main`. It must be re-linked to `work-deepti/house-design` (production branch `main`) to follow the new repo. Netlify sometimes lags behind GitHub Pages.
 
-**State at handover (31 Oct 2026):** everything described here is committed and pushed. The last change is **F19**, removing the inverter (society DG backup), on the working branch, not yet merged into `main`. Before it came **F18** (practical rear wall) and **F17** (R1 issue of the architect's drawing, `plans/r1/GH-18_R1_drawing.pdf`, made by `tools/sheets.py`), both live. All automated checks pass (`check_dims` PASS for main and R1; `check_services` 279 pass, 4 warnings, 0 fail).
+**State at handover (31 Oct 2026):** everything described here is committed and pushed. The last change is **F19**, removing the inverter (the society's DG backs up 100% of the load), live on `main`. Before it came **F18** (practical rear wall) and **F17** (R1 issue of the architect's drawing, `plans/r1/GH-18_R1_drawing.pdf`, made by `tools/sheets.py`). All automated checks pass (`check_dims` PASS for main and R1; `check_services` 279 pass, 4 warnings, 0 fail).
 
 This document is meant to be pasted into a new Claude (or other agent) session as the opening context. It tries to carry everything the previous sessions learned: the goal, the data model, the code, the design decisions and why they were made, the user's preferences, the traps, and the open items. If anything here disagrees with the code, trust the code and fix this document.
 
@@ -98,7 +98,7 @@ This document is meant to be pasted into a new Claude (or other agent) session a
 8. **F16 materials and quantities** (owner's nine items: tiles, pipes, wires, paint, POP, granite, timber, MDF board in wardrobes, lights): `tools/boq.py` → Excel + PDF, and a *Materials* view in the 3D tour. Merged to `main`; a follow-up fix stopped the Materials view recolouring the car.
 9. **F17 R1 issue of the architect's drawing:** the owner asked for an updated version of the original R0 sheet "basis how our layout and plan looks like". `tools/sheets.py` → two A3 sheets (§5.6). The FF master-washroom vent window was re-marked **KW-2** at the same time. On `house-design-v1`, awaiting approval.
 10. **F18 rear wall:** the owner found the all-glass GL-5 impractical and asked for ideas, plus a check that a 6-ft man can move freely. After a brainstorm (options: four-panel lift-and-slide, part solid / part glass, bi-fold, French doors) the owner chose practical and secure, uPVC, mesh, grilles, current layout. Built: uPVC sliding door GL-5a + window GL-5b on a sill wall, grilles, pergola raised 150 (§7.3). On `house-design-v1`, awaiting approval.
-11. **F19 no inverter:** the owner said the society has power backup, so the inverter goes. Proposed first (architecture + electrical), then built: the under-stair bay becomes a network shelf + cupboard; the inverter, battery, SM-4 feed and inverter board go; CCTV, door phone, rack and desk UPS socket move to always-on circuit AO on DB-1. Open: the society's backup load limit.
+11. **F19 no inverter:** the owner said the society has power backup, so the inverter goes. Proposed first (architecture + electrical), then built: the under-stair bay becomes a network shelf + cupboard; the inverter, battery, SM-4 feed and inverter board go; CCTV, door phone, rack and desk UPS socket move to always-on circuit AO on DB-1. The owner then confirmed the society backs up 100% of the load, so nothing is split off backup.
 
 ---
 
@@ -694,7 +694,6 @@ The four warnings in the services report:
 Hold points and open questions:
 - **Master washroom over the kitchen:** sunken floor, waterproofing, flood test (architect, structural, plumber).
 - **F18 rear wall:** deck-to-lawn 1'-0" (0.30 m) drop has no step in the model (architect); door on the south wall (Vastu consultant); lintel and the raised pergola ledger (structural).
-- **F19 no inverter:** the society's DG backup load limit per house is not known yet (owner / RWA / electrician); it decides whether ACs and geysers are on backup.
 - **Living-area floors:** the owner still has to choose A (Italian marble) or B (large-format tiles); both are in the materials schedule.
 - **Master headboard on the W wall** against red-line 13 (S wall). The electrical sheet assumes W.
 - **SF rooms not in the S / SW** (red-line T); the SF is a proposal.
