@@ -16,7 +16,7 @@
   ],
   [
    "3. Wires",
-   "Power and lighting cable 3631 m, Cat-6 76 m, conduit 1286 m"
+   "Power and lighting cable 3668 m, Cat-6 75 m, conduit 1298 m"
   ],
   [
    "4. Paint",
@@ -36,7 +36,7 @@
   ],
   [
    "8. MDF",
-   "Wardrobes 72 sheets 18 mm + 24 sheets 8 mm; other storage 73 + 30; BWP ply (wet) 15 sheets; 366 soft-close hinges"
+   "Wardrobes 72 sheets 18 mm + 24 sheets 8 mm; other storage 75 + 31; BWP ply (wet) 15 sheets; 369 soft-close hinges"
   ],
   [
    "9. Lights",
@@ -783,9 +783,9 @@
   "upvc_mesh_m2": 6.02,
   "upvc_grille_m2": 7.14,
   "handrail_m": 12.97,
-  "mdf_other_sheets18": 73,
-  "mdf_other_sheets8": 30,
-  "mdf_other_hinges": 186,
+  "mdf_other_sheets18": 75,
+  "mdf_other_sheets8": 31,
+  "mdf_other_hinges": 189,
   "mdf_wardrobe_sheets18": 72,
   "mdf_wardrobe_sheets8": 24,
   "mdf_wardrobe_hinges": 140,
@@ -813,10 +813,10 @@
   "pipe_m:waste/50": 2.65,
   "pipe_m:waste/75": 20.74,
   "copper_m": 45.18,
-  "wire_m:Cat-6 U/UTP (data, from the rack)": 76.04,
-  "conduit_m": 1286.45,
+  "wire_m:Cat-6 U/UTP (data, from the rack)": 74.88,
+  "conduit_m": 1297.52,
   "wire_m:FRLS Cu 1.5 sq mm": 1655.48,
-  "wire_m:FRLS Cu 2.5 sq mm": 1083.91,
+  "wire_m:FRLS Cu 2.5 sq mm": 1120.57,
   "wire_m:FRLS Cu 4 sq mm": 544.13,
   "wire_m:Per maker / vendor (lift, pumps, spare): use 4 sq mm until confirmed": 347.73
  }

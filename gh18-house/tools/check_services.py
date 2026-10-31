@@ -167,7 +167,7 @@ SHEET = [   # Electrical Rev A point schedule (Sheet 2, A) -> the R1 rooms; mini
     ('GF Drawing / Dining', ['GF-DRW', 'GF-DIN'], dict(lights=5, fan=1, s6=2, ac=1, tv=1, sd=1)),
     ('GF Kitchen', ['GF-KIT'], dict(lights=3, s6=1, ch=1, s16=3, ef=1, hd=1)),
     ('GF Toilet', ['GF-TLT'], dict(lights=2, s6=1, gy=1, ef=1)),
-    ('GF Lobby / Stair / Panel rm', ['GF-LOB', 'GF-JAN'], dict(lights=2, sd=1, rack=1, inv=1)),
+    ('GF Lobby / Stair / Panel rm', ['GF-LOB', 'GF-JAN'], dict(lights=2, sd=1, rack=1)),   # Rev A's inverter dropped: society DG backup (R1-F19)
     ('GF Guest room', ['GF-GST'], dict(lights=2, fan=1, s6=3, ac=1, tv=1)),
     ('GF Foyer', ['GF-FOY'], dict(lights=2, vdp=1)),
     ('GF Study -> R1 guest lounge / study', ['GF-MND'], dict(lights=2, fan=1, s6=2, ups=1, ac=1, data=1)),
@@ -394,9 +394,9 @@ def electrical(h, rule, out):
                  '%s %s' % (loads[0]['kind'] if loads else '-', c['mcb']))
     wet_l = [c for c in circuits if c['cls'] == 'lighting' and any(byid[i]['serves'] in wetrooms for i in c['points'])]
     rule('lighting circuits with wet-room points on an RCD', 'PASS' if all(c['rcd'] for c in wet_l) else 'FAIL', ', '.join(c['id'] for c in wet_l))
-    loose = [p['id'] for p in pts if p['kind'] not in ('db', 'mtr', 'inv', 'data') and not p.get('circuit')]
+    loose = [p['id'] for p in pts if p['kind'] not in ('db', 'mtr', 'data') and not p.get('circuit')]
     rule('every point on a circuit', 'FAIL' if loose else 'PASS', ', '.join(loose) or '%d points' % len(pts))
-    dbfloor = {'DB-1': ('GF',), 'DB-2': ('FF',), 'DB-3': ('SF',), 'INV': ('GF', 'FF', 'SF')}
+    dbfloor = {'DB-1': ('GF',), 'DB-2': ('FF',), 'DB-3': ('SF',), 'RACK': ('GF', 'FF', 'SF')}
     wrong = [c['id'] for c in circuits if c['id'] != 'LIFT' and any(byid[i]['floor'] not in dbfloor[c['db']] for i in c['points'])]
     rule('circuits fed from their own floor DB', 'FAIL' if wrong else 'PASS', ', '.join(wrong) or 'DB-1 GF + outside, DB-2 FF, DB-3 SF + roof')
 

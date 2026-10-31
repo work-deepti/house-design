@@ -7,13 +7,13 @@
 - `main` is the repository's default branch and the live branch. GitHub Pages and Netlify both deploy from it.
 - `house-design-v1` is the working branch. Changes are made there and merged into `main` to go live.
 - The first Claude session worked on an auto-named branch, `claude/zen-shannon-ilvm07`, which was then the default. It was renamed to `house-design-v1` and `main` was created from it. The owner has since deleted the old branch (and with it an unneeded Imgbot pull request).
-- **What is where (31 Oct 2026):** `main` has everything up to F16 (materials schedule + Materials view, with the car-colour fix). `house-design-v1` is ahead: **F17**, the R1 issue of the architect's drawing, and **F18**, the practical rear wall (uPVC sliding door + window instead of the all-glass GL-5). Both wait for the owner's approval before they are merged into `main`.
+- **What is where (31 Oct 2026):** `main` has everything up to **F18** (F17 R1 drawing sheets, F18 practical rear wall), merged with the owner's approval. **F19** (no inverter: the society's DG backs up the supply) is on the working branch (`house-design-v1-3cmazu`, a cloud-session branch off `main`) and waits for approval before it is merged into `main`.
 **Live sites:**
 - GitHub Pages: https://work-deepti.github.io/house-design/ (R1 at https://work-deepti.github.io/house-design/v1/). Live since 31 Oct 2026. Pages was switched on for the new repo (Source: GitHub Actions); the first deploy had to be started with the workflow's *Run workflow* button, because the earlier push to `main` came before Actions were enabled. Pushes to `main` that touch `gh18-house/**` now deploy on their own.
 - The old site, https://aditya-pandey.github.io/interior-design/, still serves the old repo's `main` and no longer receives updates.
 - Netlify: was linked to the old repository's `main`. It must be re-linked to `work-deepti/house-design` (production branch `main`) to follow the new repo. Netlify sometimes lags behind GitHub Pages.
 
-**State at handover (31 Oct 2026):** everything described here is committed and pushed. The last change is **F17**, the R1 issue of the architect's drawing (`plans/r1/GH-18_R1_drawing.pdf`, made by `tools/sheets.py`), on `house-design-v1`, not yet merged into `main`. Before it came **F16**, the materials and quantities schedule with its 3D view, which is live. **F18** (the practical rear wall) followed on the same branch. All automated checks pass (`check_dims` PASS for main and R1; `check_services` 278 pass, 4 warnings, 0 fail), and GitHub Pages deployed successfully from `main`.
+**State at handover (31 Oct 2026):** everything described here is committed and pushed. The last change is **F19**, removing the inverter (society DG backup), on the working branch, not yet merged into `main`. Before it came **F18** (practical rear wall) and **F17** (R1 issue of the architect's drawing, `plans/r1/GH-18_R1_drawing.pdf`, made by `tools/sheets.py`), both live. All automated checks pass (`check_dims` PASS for main and R1; `check_services` 279 pass, 4 warnings, 0 fail).
 
 This document is meant to be pasted into a new Claude (or other agent) session as the opening context. It tries to carry everything the previous sessions learned: the goal, the data model, the code, the design decisions and why they were made, the user's preferences, the traps, and the open items. If anything here disagrees with the code, trust the code and fix this document.
 
@@ -98,6 +98,7 @@ This document is meant to be pasted into a new Claude (or other agent) session a
 8. **F16 materials and quantities** (owner's nine items: tiles, pipes, wires, paint, POP, granite, timber, MDF board in wardrobes, lights): `tools/boq.py` → Excel + PDF, and a *Materials* view in the 3D tour. Merged to `main`; a follow-up fix stopped the Materials view recolouring the car.
 9. **F17 R1 issue of the architect's drawing:** the owner asked for an updated version of the original R0 sheet "basis how our layout and plan looks like". `tools/sheets.py` → two A3 sheets (§5.6). The FF master-washroom vent window was re-marked **KW-2** at the same time. On `house-design-v1`, awaiting approval.
 10. **F18 rear wall:** the owner found the all-glass GL-5 impractical and asked for ideas, plus a check that a 6-ft man can move freely. After a brainstorm (options: four-panel lift-and-slide, part solid / part glass, bi-fold, French doors) the owner chose practical and secure, uPVC, mesh, grilles, current layout. Built: uPVC sliding door GL-5a + window GL-5b on a sill wall, grilles, pergola raised 150 (§7.3). On `house-design-v1`, awaiting approval.
+11. **F19 no inverter:** the owner said the society has power backup, so the inverter goes. Proposed first (architecture + electrical), then built: the under-stair bay becomes a network shelf + cupboard; the inverter, battery, SM-4 feed and inverter board go; CCTV, door phone, rack and desk UPS socket move to always-on circuit AO on DB-1. Open: the society's backup load limit.
 
 ---
 
@@ -290,14 +291,14 @@ The R1 checks pass at handover:
   - big loads: `ac`, `gy` (geyser), `ef` (exhaust fan), `ev`, `iso` (lift isolator), `pump`, `spare`
   - low voltage: `cctv`, `vdp`, `vdpo`, `rack`
   - detectors: `sd`, `hd`
-  - boards: `db`, `mtr`, `inv`
-- **circuits:** `{id, cls: lighting|sockets|power|geyser|ac|ups|data, db, points[], mcb, cable, rcd, backup?, note?}`.
+  - boards: `db`, `mtr` (no inverter since F19; the `rack` point carries tag RACK)
+- **circuits:** `{id, cls: lighting|sockets|power|geyser|ac|data, db, points[], mcb, cable, rcd, note?}`.
   - They are grouped automatically per DB: lighting ≤ 10 load points (switchboards don't count), sockets ≤ 8, and one dedicated circuit per 16 A outlet, AC, geyser, EV, pump and the lift.
-  - DB-1 serves GF and outside, DB-2 FF, DB-3 SF and roof; LIFT is on DB-1. UPS and DATA run from the inverter / rack.
+  - DB-1 serves GF and outside, DB-2 FF, DB-3 SF and roof; LIFT is on DB-1. AO (always-on: CCTV, door phone, rack, desk UPS socket) is on DB-1; DATA runs from the rack. No inverter: the society's DG backs up the whole supply (F19).
 - **routes:** `{circuit, cls, trunk[[x,y,z]], drops[[[..],[..]]]}`.
   - Loop-in conduit runs nearest-neighbour from the DB, Manhattan legs in the slab above (GF circuits at 3600, FF at 6900, SF at 10200), with a vertical drop to each point.
   - Outdoor circuits run buried at −300.
-- **submains:** SM-1 MTR→DB-1, SM-2 DB-1→DB-2, SM-3 DB-1→DB-3, SM-4 DB-1→INV, each hand-routed.
+- **submains:** SM-1 MTR→DB-1, SM-2 DB-1→DB-2, SM-3 DB-1→DB-3, each hand-routed (SM-4 to the inverter was removed in F19).
 - **refrigerant:** `{ac, odu (furniture id), pts, length, note}`, hand-routed per AC.
 
 ---
@@ -328,7 +329,7 @@ The R1 checks pass at handover:
   | `b4_kitchen_wash` | B4 | removes the D-02 wash yard; GL-4 back to R0; wash nook GF-K10/K07/K13 inside the kitchen; KW-1 window + exhaust into the OTS |
   | `b5_guest_lounge` | B5 | GF-MND → Guest Lounge / Study (desk on the E wall, sofa, TV, settee, coffee table, rug) |
   | `b6_mandir` | B6 revised | open mandir GF-F25 on the lounge E wall at (3525, 8350), rot 270; pouf F26, rug F27; crockery F19 moves to (3525, 7000) |
-  | `b7_under_stair` | B7 | storage units, inverter / network rack, door swing; DB cabinet K12 beside the fridge tower K04 on the kitchen E wall |
+  | `b7_under_stair` | B7 | storage units, network shelf J03 + cupboard J05 (F19: no inverter), door swing; DB cabinet K12 beside the fridge tower K04 on the kitchen E wall |
   | `c8_pantry` | C8 | FF lobby pantry counter FF-L01 + wall cupboards FF-L05 |
   | `c9_kids_toilet_back` | C9 | reverts D-03: kids toilet KTL back beside the stair at its R0 size |
   | `c10_master_suite` | C10 | washroom and dresser swapped; tub FF-T01, WC FF-T02 by the OTS, vent window FF-MW1 (mark KW-2; KW-1 is the GF wash-nook window); doors D2a / D3a re-hung |
@@ -615,7 +616,7 @@ Plus the consultant drawings: wiring, plumbing and electrical.
   - the earlier D-02 outdoor wash yard is removed (owner item 7)
 - **Guest Lounge / Study (GF-MND):** desk on the east wall (user faces east), 2-seater sofa facing a TV on the west wall, settee on the south wall. The SS-3 boxed duct is in its SW corner.
 - **Guest room (GF-GST):** wardrobe on the south wall, bed headboard on the east wall, no mandir. Its AC sits over GL-1; the outdoor unit is on the front lawn (sheet A6).
-- **Under-stair (GF-JAN):** storage cut to the soffit, plus a ventilated inverter / battery / network rack.
+- **Under-stair (GF-JAN):** storage cut to the soffit, plus a network shelf and a cupboard under the landing (no inverter since F19).
 - **FF master suite:**
   - bedroom: king bed, headboard on the west wall
   - dresser in the old washroom zone: mirror on the east wall, DB-2 on its west wall
@@ -660,7 +661,7 @@ Plus the consultant drawings: wiring, plumbing and electrical.
   - DB-1 (main) at (250, 9451), on the kitchen east wall, SE.
   - DB-2 at (2973, 5950), on the dresser's west wall. It is still in the SE zone, and it could not stay over DB-1 because the C10 washroom is there now.
   - DB-3 at (250, 13300), in the SF servant room for the SF and terrace. **Warn:** E zone.
-  - Inverter + rack under the stair; meter + main switch on the front boundary wall at (5000, 22290), read from the street.
+  - Network rack under the stair (no inverter, F19); meter + main switch on the front boundary wall at (5000, 22290), read from the street.
 - **ODUs:** both side walls are party walls (with GH-17 and GH-19), so no ODU, exhaust or refrigerant penetration may be on them. That forced every ODU to the terraces or lawns, as listed in 7.3.
 - **Changes from the sheet** (all recorded in ASSUMPTIONS E13 and CHANGE_REGISTER §4):
   - Bedroom-3 toilet switches are in the bedroom niche, because its door opens from bedroom 3, not the lobby.
@@ -693,6 +694,7 @@ The four warnings in the services report:
 Hold points and open questions:
 - **Master washroom over the kitchen:** sunken floor, waterproofing, flood test (architect, structural, plumber).
 - **F18 rear wall:** deck-to-lawn 1'-0" (0.30 m) drop has no step in the model (architect); door on the south wall (Vastu consultant); lintel and the raised pergola ledger (structural).
+- **F19 no inverter:** the society's DG backup load limit per house is not known yet (owner / RWA / electrician); it decides whether ACs and geysers are on backup.
 - **Living-area floors:** the owner still has to choose A (Italian marble) or B (large-format tiles); both are in the materials schedule.
 - **Master headboard on the W wall** against red-line 13 (S wall). The electrical sheet assumes W.
 - **SF rooms not in the S / SW** (red-line T); the SF is a proposal.
@@ -907,7 +909,7 @@ Type: R = retain, M = modify, H = hold point.
 | GF drawing / dining | 4 + pendant | 1 | 2 | — | 1 (2 TR) | — | — | TV + data | TV & AC on the W wall; 2-way switches at both ends; smoke detector |
 | GF kitchen | 2 + under-cabinet | — | 1 + chimney | 3 | — | — | 1 | — | Hob on the E wall; EF on the rear wall; MW, DW, fridge on 16 A; heat detector |
 | GF toilet | 2 | — | 1 | — | — | 1 | 1 | — | EF on the OTS wall; socket ≥ 600 mm from the basin (RCD); switchboard outside |
-| GF lobby / stair / panel room | 2 | — | — | — | — | — | — | rack | 2-way stair switching; inverter + battery + network rack; smoke detector |
+| GF lobby / stair / panel room | 2 | — | — | — | — | — | — | rack | 2-way stair switching; network rack (inverter dropped, F19); smoke detector |
 | GF guest room | 2 | 1 | 3 | — | 1 (1.5 TR) | — | — | TV | AC on the N wall, ODU on the front lawn; TV on the W wall; 2-way both sides |
 | GF foyer | 2 | — | — | — | — | — | — | — | VDP screen; outdoor VDP at the gate |
 | GF study | 2 | 1 | 2 + UPS | — | 1 (1.5 TR) | — | — | data | Desk on the E wall; sockets, data and UPS at the desk |
@@ -1014,7 +1016,7 @@ Type: R = retain, M = modify, H = hold point.
 - tulsi GF-O09 (645, 1650), rot 270
 - OHT SF-R01 (6300, 11600); solar SF-R02 (3000, 11500), both on the roof
 - car GF-O07 (7615, 21945)
-- DB-1 (250, 9451); DB-2 (2973, 5950); DB-3 (250, 13300); INV (8525, 12885); MTR (5000, 22290)
+- DB-1 (250, 9451); DB-2 (2973, 5950); DB-3 (250, 13300); RACK (8775, 12885); MTR (5000, 22290)
 - SS-1 (450, 11100); SS-3 (8950, 15420); UGT (900, 21100); RWH (4500, 21400)
 
 ---

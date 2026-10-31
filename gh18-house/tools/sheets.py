@@ -51,7 +51,7 @@ REMARKS = {   # what R1 does in the room, beyond its finishes (ASSUMPTIONS.md se
     "GF-DIN": "Dining beside the lobby; hand-wash basin niche (D-01, B3)",
     "GF-KIT": "Closed U-kitchen + wash nook; counter top black granite 20 mm (D-01, B4)",
     "GF-MND": "Desk, sofa, settee, TV (B5)",
-    "GF-JAN": "Cupboards to stair soffit; inverter / network rack (B7)",
+    "GF-JAN": "Cupboards to stair soffit; network shelf (B7, F19)",
     "GF-GST": "Wardrobe on S wall",
     "GF-DECK": "Deck + pergola; tulsi in lawn NE corner (B15)",
     "FF-MTL": "Tub + over-tub screen; WC on OTS stack; sunken floor (hold) (C10)",
@@ -76,9 +76,10 @@ REVISION_NOTES = [
     ("D-01", "GF Kitchen / Dining", "Closed kitchen on the R0 peninsula line with sliding door KD-1; dining moved beside the lobby."),
     ("B4", "GF Kitchen", "No construction outside: GL-4 back at its R0 position; wash nook (double sink) inside, vent KW-1 into the OTS."),
     ("B5", "GF Study", "Becomes Guest Lounge / Study: desk on the east wall, sofa, settee, TV."),
-    ("B7", "GF Panel & Janitor", "Becomes under-stair storage with inverter / network rack; DB-1 moves to the kitchen east wall (SE)."),
+    ("B7", "GF Panel & Janitor", "Becomes under-stair storage with a network shelf (no inverter: society DG backup, F19); DB-1 moves to the kitchen east wall (SE)."),
     ("B15", "GF Back lawn", "Deck and pergola outside the lounge; tulsi vrindavan in the lawn's NE corner on the boundary wall."),
     ("F18", "GF Family Lounge", "All-glass GL-5 replaced: uPVC sliding door GL-5a (3'-5\" clear) + window GL-5b on a 2'-11\" sill; mesh, grilles; pergola +6\"."),
+    ("F19", "Electrical", "No inverter or battery: society DG backup. CCTV, door phone, rack and desk socket on always-on circuit AO (DB-1)."),
     ("C10", "FF Master suite", "Washroom and dresser swapped (bedroom → dresser → washroom); bath tub with over-tub screen; vent KW-2."),
     ("D-04, C9", "FF Bedrooms", "Front-left room is Bedroom 3, front-right is the Kids Room; kids toilet back at its R0 place."),
     ("C8", "FF Lobby", "Cupboard by the lift becomes a pantry counter with wall cupboards, 10\" clear of the lift door."),
@@ -97,6 +98,7 @@ HOLD_POINTS = [
     ("Tulsi in the plot's SE zone; guest-room AC unit in the NE; DB-3 in the E zone", "Vastu consultant"),
     ("Master headboard on the W wall (red-line asks S); SF rooms not in the S / SW", "Vastu consultant"),
     ("Sewer invert levels and the municipal connection", "Plumber, RWA / MCG"),
+    ("Society DG backup: load limit per house (ACs / geysers off backup?)", "Owner, RWA, electrician"),
 ]
 
 

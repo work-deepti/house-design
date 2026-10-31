@@ -136,16 +136,16 @@ export const ECAT = {
   ef: { color: 0x8d6e63, name: 'Exhaust fans', kinds: ['ef'] },
   lv: { color: 0x2f5fd0, name: 'Data, CCTV', more: 'door phone', kinds: ['data', 'cctv', 'vdp', 'vdpo', 'rack'] },
   det: { color: 0xe91e63, name: 'Detectors', more: 'smoke, heat', kinds: ['sd', 'hd'] },
-  db: { color: 0x1b1b1b, name: 'DBs', more: 'meter, inverter; black lines: sub-mains', kinds: ['db', 'mtr', 'inv'] },
+  db: { color: 0x1b1b1b, name: 'DBs', more: 'meter; black lines: sub-mains', kinds: ['db', 'mtr'] },
 };
 const CAT_OF = Object.fromEntries(Object.entries(ECAT).flatMap(([c, v]) => v.kinds.map((k) => [k, c])));
-const CLS = { lighting: 'lights', sockets: 'sockets', power: 'power', ac: 'ac', geyser: 'gy', ups: 'ups', data: 'lv' };
+const CLS = { lighting: 'lights', sockets: 'sockets', power: 'power', ac: 'ac', geyser: 'gy', data: 'lv' };
 // symbol sizes in mm: width along the wall, height, depth off the wall
 const SYM = {
   sb: [180, 120, 35], sb2w: [90, 90, 30], s6: [85, 85, 30], s6c: [85, 85, 30], usb: [85, 60, 30], ip65: [100, 100, 60], ups: [85, 85, 30],
   ch: [85, 85, 30], tv: [160, 90, 30], s16: [110, 110, 40], ev: [300, 420, 140], iso: [160, 220, 90], spare: [250, 300, 120],
   ac: [900, 290, 220], gy: [380, 450, 380], ef: [260, 260, 60], data: [85, 85, 30], cctv: [120, 120, 220], vdp: [180, 240, 30],
-  vdpo: [120, 200, 40], rack: [550, 600, 450], db: [400, 600, 120], mtr: [500, 650, 200], inv: [450, 350, 300],
+  vdpo: [120, 200, 40], rack: [550, 600, 450], db: [400, 600, 120], mtr: [500, 650, 200],
   ucl: [600, 30, 60], ml: [600, 40, 60], wl: [140, 200, 90], pump: [350, 300, 300],
 };
 
@@ -198,28 +198,25 @@ export function buildElectrical(el, names) {
   }
   for (const r of el.routes) {
     const key = 'c_' + CLS[r.cls];
-    const fl = floorOf[r.circuit] && floorOf[r.circuit].size === 1 ? [...floorOf[r.circuit]][0] : null;    // UPS / data span floors
+    const fl = floorOf[r.circuit] && floorOf[r.circuit].size === 1 ? [...floorOf[r.circuit]][0] : null;    // data spans floors
     polyline(add, key, r.trunk, 0.014, fl, EBANDS);
     for (const d of r.drops) polyline(add, key, d, 0.011, fl, EBANDS);
   }
   for (const s of el.submains) polyline(add, 'sub', s.pts, 0.028, null, EBANDS);
   for (const r of el.refrigerant) polyline(add, 'c_ac', r.pts, 0.024, null, EBANDS);
-  const tagged = { db: 1, mtr: 1, inv: 1 };
+  const tagged = { db: 1, mtr: 1, rack: 1 };
   for (const p of el.points) {
     if (!tagged[p.kind]) continue;
     labels.push({ floor: p.floor, pos: [p.at[0] / 1000, p.at[2] / 1000 + 0.55, p.at[1] / 1000], id: p.tag,
-      text: p.kind === 'mtr' ? 'meter + main switch' : p.kind === 'inv' ? 'inverter + rack' : { 'DB-1': 'main DB, GF + outside', 'DB-2': 'FF', 'DB-3': 'SF + terrace' }[p.tag] });
+      text: p.kind === 'mtr' ? 'meter + main switch' : p.kind === 'rack' ? 'network rack' : { 'DB-1': 'main DB, GF + outside', 'DB-2': 'FF', 'DB-3': 'SF + terrace' }[p.tag] });
   }
   const acRoom = Object.fromEntries(el.points.filter((p) => p.kind === 'ac').map((p) => [p.id, p.room]));
   for (const r of el.refrigerant) {
     const e = r.pts[r.pts.length - 1];
     labels.push({ floor: band(e[2], EBANDS), pos: [e[0] / 1000, e[2] / 1000 + 0.5, e[1] / 1000], id: 'ODU', text: names[acRoom[r.ac]] || '' });
   }
-  const look = (k) => (k === 'sub' ? { color: 0x1b1b1b } : k.startsWith('c_') ? { color: (k === 'c_ups' ? 0x7e57c2 : ECAT[k.slice(2)].color) } : ECAT[k]);
+  const look = (k) => (k === 'sub' ? { color: 0x1b1b1b } : k.startsWith('c_') ? { color: ECAT[k.slice(2)].color } : ECAT[k]);
   const groups = finish(look);
-  const legend = [
-    ...Object.values(ECAT).map((v) => ({ ...v, shape: 'box' })),
-    { color: 0x7e57c2, name: 'Inverter-backed', more: 'CCTV, door phone, desk UPS', shape: 'line' },
-  ];
+  const legend = Object.values(ECAT).map((v) => ({ ...v, shape: 'box' }));
   return { groups, labels, legend };
 }

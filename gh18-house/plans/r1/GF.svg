@@ -155,7 +155,11 @@
 <polyline points="7680,14564 6880,14564" fill="none" stroke="#8a7a5c" stroke-width="6" />
 <polyline points="7680,15124 6880,14524" fill="none" stroke="#8a7a5c" stroke-width="5" />
 <polyline points="7680,14524 6880,15124" fill="none" stroke="#8a7a5c" stroke-width="5" />
-<polygon points="7975,12865 9075,12865 9075,13315 7975,13315" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="8475,12865 9075,12865 9075,13315 8475,13315" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="7975,12865 8475,12865 8475,13315 7975,13315" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polyline points="7975,13275 8475,13275" fill="none" stroke="#8a7a5c" stroke-width="6" />
+<polyline points="7975,12865 8475,13315" fill="none" stroke="#8a7a5c" stroke-width="5" />
+<polyline points="7975,13315 8475,12865" fill="none" stroke="#8a7a5c" stroke-width="5" />
 <polygon points="9075,15124 7975,15124 7975,14524 9075,14524" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polyline points="9075,14564 7975,14564" fill="none" stroke="#8a7a5c" stroke-width="6" />
 <polyline points="9075,15124 7975,14524" fill="none" stroke="#8a7a5c" stroke-width="5" />

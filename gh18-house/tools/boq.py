@@ -46,7 +46,7 @@ PAINT = {   # per m2: putty kg (2 coats), primer L (1 coat), emulsion L (2 coats
     'interior': (0.8, 0.10, 0.155), 'ceiling': (0.0, 0.10, 0.155), 'exterior': (0.0, 0.12, 0.20),
 }
 CABLE_SUBMAIN = {'SM-1': '4C x 16 sq mm Cu armoured (indicative)', 'SM-2': '4C x 10 sq mm Cu armoured (indicative)',
-                 'SM-3': '4C x 6 sq mm Cu armoured (indicative)', 'SM-4': '2C x 6 sq mm Cu (inverter feed)'}
+                 'SM-3': '4C x 6 sq mm Cu armoured (indicative)'}
 MDF_TYPES = {'wardrobe': 'Wardrobe', 'storage_tall': 'Tall storage', 'tall_unit': 'Kitchen tall unit', 'crockery_unit': 'Crockery unit',
              'storage_bench': 'Storage bench', 'wall_cabinet': 'Wall cabinet', 'counter': 'Kitchen / pantry base unit', 'tv_unit': 'TV unit',
              'shoe_console': 'Shoe console', 'dresser': 'Dresser', 'dressing_table': 'Dressing table', 'study_desk': 'Study desk', 'desk': 'Desk'}
@@ -547,6 +547,8 @@ def take_off(h):
         acc_pts[p['kind']] = acc_pts.get(p['kind'], 0) + 1
     dbs = {}
     for c in el.get('circuits', []):
+        if c['cls'] == 'data':          # Cat-6 from the rack, not a board way
+            continue
         dbs[c['db']] = dbs.get(c['db'], 0) + 1
     rows['wires'].append(['Accessories: 6 A sockets %d, 16 A %d, USB %d, TV %d, data %d, IP65 %d, switchboards %d, bedside / 2-way %d' % (
         acc_pts.get('s6', 0) + acc_pts.get('s6c', 0) + acc_pts.get('ups', 0) + acc_pts.get('ch', 0), acc_pts.get('s16', 0), acc_pts.get('usb', 0),

@@ -166,10 +166,12 @@ def b15_tulsi(h):
 
 def b7_under_stair(h):
     """B7: storage under the stair. The DB/panel leaves the centre of the house (Brahmasthan, red-line 4) for an
-    enclosed cabinet on the kitchen east wall (SE zone, electrical Rev A A3); the inverter, battery and network rack
-    get a ventilated bay under the landing (A5). Store door now opens out so it clears the cupboards."""
+    enclosed cabinet on the kitchen east wall (SE zone, electrical Rev A A3); the network rack gets an open-backed
+    bay under the landing (A5). Store door now opens out so it clears the cupboards.
+    F19 (owner, Oct 2026): no inverter or battery - the society's DG backs up the whole supply - so the old
+    1100 inverter / battery / rack bay splits into a 600 network shelf (router, CCTV recorder) and a 500 cupboard."""
     gf = floor(h, 'GF')
-    rename(find(gf['rooms'], 'GF-JAN'), 'Under-stair Storage', 'Electrical Panel & Janitor', 'R1-B7: cupboards cut to the stair soffit; inverter/network bay',
+    rename(find(gf['rooms'], 'GF-JAN'), 'Under-stair Storage', 'Electrical Panel & Janitor', 'R1-B7: cupboards cut to the stair soffit; network shelf (F19: no inverter)',
            label_at=[8525, 14000])
     drop(gf['furniture'], 'GF-J01', 'GF-J02', 'GF-J03', 'GF-K04')
     opening(find(gf['walls'], 'GF-W19'), 'GF-D3b').update(swing='-x', note='R1-B7 under-stair store; opens out to the lobby')
@@ -177,7 +179,8 @@ def b7_under_stair(h):
         # under the second flight: heights follow the soffit (flight F2 rises from +1650 at x 7899 to +3300 at x 5899)
         F('GF-J01', 'GF-JAN', 'storage_tall', (6480, 14824), (800, 600, 2250), 180, note='full-height cupboard'),
         F('GF-J02', 'GF-JAN', 'storage_tall', (7280, 14824), (800, 600, 1600), 180, note='cupboard under the lower soffit'),
-        F('GF-J03', 'GF-JAN', 'shelf', (8525, 13090), (1100, 450, 1400), 0, note='inverter + battery + network rack (ventilated)'),
+        F('GF-J03', 'GF-JAN', 'shelf', (8775, 13090), (600, 450, 1400), 0, note='network shelf: router + CCTV recorder; slotted door (R1-F19, no inverter)'),
+        F('GF-J05', 'GF-JAN', 'storage_tall', (8225, 13090), (500, 450, 1400), 0, note='cupboard where the inverter + battery were (R1-F19)'),
         F('GF-J04', 'GF-JAN', 'storage_tall', (8525, 14824), (1100, 600, 1400), 180, note='low cupboard under the landing'),
         # kitchen: fridge/oven tower narrowed to make room for the DB cabinet
         F('GF-K04', 'GF-KIT', 'tall_unit', (530, 10051), (800, 600, 2250), 270, note='fridge + oven tower'),
@@ -513,8 +516,7 @@ def e13_electrical(h):
     J = 'GF-JAN'
     P('light', J, 7000, 14600, z=2100)
     P('sb', J, 6100, 14150)
-    P('inv', J, 8525, 12885, note='inverter + battery on the ventilated rack (A5, R1-B7)', tag='INV')
-    P('rack', J, 8525, 12885, note='network rack + router (A5)')
+    P('rack', J, 8775, 12885, note='network rack: router + CCTV recorder (A5); no inverter, society DG backup (R1-F19)', tag='RACK')
     Y = 'GF-FOY'
     P('light', Y, 5100, 18000); P('light', Y, 4800, 19300)
     P('vdp', Y, 5880, 17900, note='video door phone screen (A8)')
@@ -532,7 +534,7 @@ def e13_electrical(h):
     P('ac', S, 8500, 15294, note='1.5 TR, south wall above the settee; refrigerant up the SS-3 duct', tr=1.5)
     P('tv', S, 9131, 17300, note='TV for the guest lounge (R1-B5)')
     P('s6', S, 6100, 18600, z=900, note='desk (A7)'); P('s6', S, 6100, 19100, z=900, note='desk (A7)')
-    P('ups', S, 6100, 18850, note='UPS socket at the desk (A7)')
+    P('ups', S, 6100, 18850, note='desk socket for a plug-in UPS (A7; R1-F19 no inverter, on the always-on circuit)')
     P('data', S, 6100, 18350, z=900, note='Cat-6 at the desk (A7)')
     P('sb', S, 6100, 16600, note='by the door')
     P('sd', S, 7600, 16900, note='smoke detector (R1 addition)')
@@ -659,12 +661,12 @@ def e13_electrical(h):
     # ---------------- DBs, circuits
     DB = {p['tag']: p for p in pts if p['kind'] == 'db'}
     MTR = next(p for p in pts if p['kind'] == 'mtr')
-    INV = next(p for p in pts if p['kind'] == 'inv')
+    RACK = next(p for p in pts if p['kind'] == 'rack')
     db_of = lambda p: DB['DB-1'] if p['floor'] == 'GF' else DB['DB-2'] if p['floor'] == 'FF' else DB['DB-3']  # noqa: E731
     outdoor = lambda p: p['room'] not in rooms or rooms[p['room']].get('kind') == 'outdoor'  # noqa: E731
     LIGHT = ('light', 'pd', 'fan', 'sd', 'hd', 'ml', 'ucl', 'wl', 'gl', 'ef', 'sb', 'sb2w')
     SOCK = ('s6', 's6c', 'usb', 'tv', 'ch', 'ip65')
-    UPS = ('ups', 'cctv', 'vdp', 'vdpo', 'rack')
+    ALWAYS_ON = ('ups', 'cctv', 'vdp', 'vdpo', 'rack')   # never switched; plug-in UPS at rack + desk ride through the DG changeover (F19)
     circuits = []
 
     def circuit(cid, cls, db, members, **kw):
@@ -689,15 +691,15 @@ def e13_electrical(h):
 
     for tag in ('DB-1', 'DB-2', 'DB-3'):
         db = DB[tag]
-        mine = [p for p in pts if db_of(p) is db and p['kind'] not in ('db', 'mtr', 'inv', 'data')]
+        mine = [p for p in pts if db_of(p) is db and p['kind'] not in ('db', 'mtr', 'data') + ALWAYS_ON]
         inside = [p for p in mine if not outdoor(p)]
         out = [p for p in mine if outdoor(p)]
         for grp in chunk([p for p in inside if p['kind'] in LIGHT], 10):
-            circuit(next_id('L'), 'lighting', db, grp, mcb='10A', cable='1.5 sq mm', rcd=any(rooms[p['serves']]['name'].lower().find(w) >= 0 for p in grp for w in ('toilet', 'washroom')), backup=True)
+            circuit(next_id('L'), 'lighting', db, grp, mcb='10A', cable='1.5 sq mm', rcd=any(rooms[p['serves']]['name'].lower().find(w) >= 0 for p in grp for w in ('toilet', 'washroom')))
         for grp in chunk([p for p in inside if p['kind'] in SOCK], 8):
             circuit(next_id('S'), 'sockets', db, grp, mcb='16A', cable='2.5 sq mm', rcd=True)
         for grp in chunk([p for p in out if p['kind'] in LIGHT], 10):
-            circuit(next_id('L'), 'lighting', db, grp, mcb='10A', cable='1.5 sq mm', rcd=True, backup=False, note='outdoor')
+            circuit(next_id('L'), 'lighting', db, grp, mcb='10A', cable='1.5 sq mm', rcd=True, note='outdoor')
         if [p for p in out if p['kind'] in SOCK]:
             circuit(next_id('S'), 'sockets', db, [p for p in out if p['kind'] in SOCK], mcb='16A', cable='2.5 sq mm', rcd=True, note='outdoor')
         for p in mine:
@@ -714,8 +716,9 @@ def e13_electrical(h):
                 circuit('LIFT', 'power', DB['DB-1'], [p], mcb='as vendor (3-phase)', cable='as vendor', rcd=False)
             elif k in ('pump', 'spare'):
                 circuit(next_id('PUMP') if k == 'pump' else 'SPARE', 'power', db, [p], mcb='as maker', cable='as maker', rcd=True)
-    circuit('UPS', 'ups', INV, [p for p in pts if p['kind'] in UPS], mcb='16A', cable='2.5 sq mm', rcd=True, note='inverter backup: also the lighting circuits marked backup')
-    circuit('DATA', 'data', INV, [p for p in pts if p['kind'] in ('data', 'tv')], mcb='-', cable='Cat-6', rcd=False, note='from the network rack')
+    circuit('AO', 'sockets', DB['DB-1'], [p for p in pts if p['kind'] in ALWAYS_ON], mcb='16A', cable='2.5 sq mm', rcd=True,
+            note='always-on: CCTV, door phone, network rack, desk UPS socket (R1-F19: no inverter; society DG backup)')
+    circuit('DATA', 'data', RACK, [p for p in pts if p['kind'] in ('data', 'tv')], mcb='-', cable='Cat-6', rcd=False, note='from the network rack')
     for p in pts:      # TV points are on a socket circuit and on the data run: keep the socket one as the power circuit
         if p['kind'] == 'tv':
             p['circuit'] = next(c['id'] for c in circuits if p['id'] in c['points'] and c['cls'] == 'sockets')
@@ -725,7 +728,7 @@ def e13_electrical(h):
     SLAB = {'GF': lv['FF']['ffl'] - 150, 'FF': lv['SF']['ffl'] - 150, 'SF': lv['ROOF']['ffl'] - 150}
     routes = []
     for c in circuits:
-        src = DB[c['db']] if c['db'] in DB else INV
+        src = DB[c['db']] if c['db'] in DB else RACK
         members = [byid[i] for i in c['points']]
         segs = []
         cur = src
@@ -756,8 +759,6 @@ def e13_electrical(h):
         dict(id='SM-3', frm='DB-1', to='DB-3', note='in the GF ceiling slab, then a riser in the east-wall chase (guest room / bedroom 3 / servant room)',
              pts=[DB['DB-1']['at'], [250, 9451, SLAB['GF']], [1100, 9451, SLAB['GF']], [1100, 13300, SLAB['GF']], [330, 13300, SLAB['GF']],
                   [330, 13300, DB['DB-3']['at'][2]], DB['DB-3']['at']]),
-        dict(id='SM-4', frm='DB-1', to='INV', note='inverter charger feed + UPS changeover',
-             pts=[DB['DB-1']['at'], [250, 9451, SLAB['GF']], [8525, 9451, SLAB['GF']], [8525, 12885, SLAB['GF']], INV['at']]),
     ]
     acs = {p['room']: p for p in pts if p['kind'] == 'ac'}
     G0 = lambda r: lv[r[:2]]['ffl']  # noqa: E731

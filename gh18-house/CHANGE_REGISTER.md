@@ -43,6 +43,7 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | — | Materials (follow-up): tiles, pipes, wires, paint, POP, granite, timber, MDF board in wardrobes, lights | F16 | A quantity schedule for every item, measured from the model by `tools/boq.py`: Excel (`plans/r1/GH-18_R1_materials.xlsx`, one sheet per item plus rooms) and PDF. Living-area floors are given both ways: Italian marble or large-format tiles, for the owner to decide. MDF for wardrobes as asked; BWP ply only for wet units (vanities, sink base, utility, terrace). Kitchen and pantry counter tops become 20 mm black granite in the model. A *Materials & quantities* view in the 3D tour colours every surface by material and shows each room's quantities. | Done; floors: **owner to choose** A (marble) or B (tiles) |
 | — | Updated version of the architect's drawing (follow-up) | F17 | `plans/r1/GH-18_R1_drawing.pdf`: UPS/GH18/PV/001 re-issued as R1 from the model. Sheet 1: GF + FF plans, door-window and finishing schedules, R0's title block. Sheet 2: proposed SF, revision notes, hold points, room areas. | Done; DRN. / CHD. for the architect to sign |
 | — | Rear glass wall not practical (follow-up): practical and secure, uPVC, mesh, grilles, current layout | F18 | GL-5 replaced by a uPVC sliding door GL-5a (3'-5" / 1.05 m clear, east sash, toward the tulsi) and a window GL-5b on a 2'-11" (0.90 m) sill wall. Mosquito mesh on the opening sashes; MS grilles (inside sliding on the door, fixed outside on the window); laminated glass in the fixed lites. Only the floor lamp moves. Pergola raised 6" (150 mm) to clear the door head. A 6-ft person passes every route (tightest 2'-5" / 0.73 m by the mandir pouf). | Done; deck-to-lawn 1'-0" drop has no step (existing, to the architect) |
+| — | Remove the inverter: the society has power backup (follow-up) | F19 | Inverter, battery, feed SM-4 and the inverter board removed. Under-stair bay → network shelf 1'-11½" (0.60 m) + cupboard 1'-7½" (0.50 m). CCTV, door phone, rack and desk UPS socket on always-on circuit AO from DB-1. | Done |
 
 ## 2. Vastu red-line register (owner instruction to the architect, overlaid on R0)
 
@@ -121,6 +122,7 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | uPVC lintel over GL-5a / GL-5b and the raised pergola ledger fixing (F18) | Structural | Old GL-5 head kept at 2400; new 900 sill wall |
 | Tank stand on the SF roof, OTS opening, lift pit and overrun, balconies | Structural, lift vendor | |
 | Sewer invert levels and the municipal connection | Plumber, RWA / MCG | |
+| Society DG backup: load limit per house; ACs / geysers on or off backup (F19) | Owner, RWA, electrician | Dual-source meter at the gate; plug-in UPS at the rack and desk for the changeover gap |
 | Front curved balcony (red-line 16, P9) | Architect | Not in the model; the kids-room glazing forms the curve |
 | GF toilet vanity at the south end (red-line 3) | Architect | R0 position kept |
 | Cleanouts, valves, balcony spouts, condensate drains | Plumber | Not modelled |
