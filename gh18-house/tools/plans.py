@@ -292,6 +292,10 @@ def furniture_symbol(svg, it):
     if typ in ("wall_cabinet", "overhead_storage", "hood", "mirror_round"):
         svg.poly("furn", c, fill="none", stroke=FURN, sw=8, extra='stroke-dasharray="50 35"')
         return
+    if typ == "water_softener":
+        svg.poly("furn", c, **S)
+        svg.text("furn", cx, cy + 30, "SOFTENER", size=70, fill="#46708a")
+        return
     if typ in ("car_reference", "car_model"):
         svg.poly("furn", c, fill="none", stroke="#777", sw=12, extra='stroke-dasharray="90 60"')
         svg.text("furn", cx, cy + d / 2 - 250, "ref. car 3.8 m", size=100, fill="#777")

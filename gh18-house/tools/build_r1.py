@@ -310,10 +310,14 @@ def d11_utility_terrace(h):
     # on the SF roof (z = height above the SF floor; on_roof puts them with the roof in the viewer)
     roof = h['levels']['ROOF']['ffl'] - h['levels']['SF']['ffl']
     sf['furniture'] += [
-        F('SF-R01', 'SF-LOB', 'water_tank', (6300, 11600), (1400, 1400, 1900), 0, z=roof, on_roof=True,
-          note='overhead tank 2000 L on a 300 stand, south-west part of the roof beside the lift overrun'),
+        F('SF-R01', 'SF-LOB', 'water_tank', (6500, 11600), (1400, 1400, 1900), 0, z=roof, on_roof=True,
+          note='overhead tank 1 of 2, 2000 L softened water, on a 300 stand beside the lift overrun (R1-F20)'),
+        F('SF-R03', 'SF-LOB', 'water_tank', (6950, 13600), (1400, 1400, 1900), 0, z=roof, on_roof=True,
+          note='overhead tank 2 of 2, 2000 L softened water, over the stair north of tank 1 (W zone); balanced with tank 1 (R1-F20)'),
         F('SF-R02', 'SF-LOB', 'solar_heater', (3000, 11500), (2100, 1600, 1500), 180, z=roof, on_roof=True,
-          note='solar water heater facing south; hot water to the master washroom + kitchen'),
+          note='solar water heater facing south, fed from the soft-water tanks; hot water to the master washroom + kitchen'),
+        F('SF-U05', 'SF-TRB', 'water_softener', (650, 10469), (400, 400, 1200), 180,
+          note='water softener + brine tank on the riser; backwash to SS-1; salt refill from the terrace (R1-F20)'),
     ]
 
 
@@ -344,7 +348,8 @@ def e12_plumbing(h):
         dict(id='IC-4', type='inspection', at=[8700, 20300], size=[600, 600], depth=700, area='parking', note='heavy-duty cover; SS-3'),
         dict(id='IC-5', type='inspection', at=[7600, 21900], size=[600, 600], depth=900, area='parking', note='heavy-duty cover; the only connection to the municipal sewer'),
         dict(id='RWH', type='rwh_pit', at=[4500, 21400], size=[1200, 1200], depth=2000, area='entrance court', note='rainwater harvesting + recharge; overflow to the storm drain'),
-        dict(id='UGT', type='tank', at=[900, 21100], size=[1500, 1200], depth=1500, area='front lawn (NE)', note='5000 L underground tank, sealed manhole; pump PP 0.5-1 HP'),
+        dict(id='VB-1', type='valve_box', at=[2500, 22000], size=[600, 450], depth=450, area='front lawn, by the gate',
+             note='meter + check valve + bypass loop with isolating valves: space for a future inline booster pump (R1-F20; no underground tank)'),
     ]
     runs = []
 
@@ -386,6 +391,7 @@ def e12_plumbing(h):
     drain('SF-S1', 'soil', 110, [at('SF-S05', 6850), [1000, 11150, 6800], s1(6750)], 'SF servant washroom WC -> SS-1')
     drain('SF-W1', 'waste', 75, [at('SF-S06', 6880), at('SF-S07', 6860), [900, 11500, 6820], s1(6800)], 'SF servant basin + shower -> SS-1')
     drain('SF-W2', 'waste', 75, [at('SF-U02', 6900), at('SF-U01', 6880), [700, 10500, 6840], s1(6800)], 'SF utility sink + washer -> SS-1')
+    drain('SF-W3', 'waste', 50, [[650, 10469, 6920], [600, 10700], s1(6880)], 'SF water softener backwash / regeneration -> SS-1 (via an air gap)')
     # ---- sewer: IC-2 -> under GF toilet and lobby/foyer (sleeved, CO-1/CO-2) -> IC-3 -> IC-5 -> municipal; SS-3 -> IC-4 -> IC-5
     z = drain('SW-1', 'sewer', 150, [[150, 11700, -450], [1500, 12600], [4600, 13900], [4800, 14200], [4800, 18000], [4800, 18600], [5300, 20300]],
               'IC-2 -> CO-1 -> CO-2 -> IC-3 (sleeved; nothing under the guest room)')
@@ -393,10 +399,18 @@ def e12_plumbing(h):
     z4 = drain('SW-3', 'sewer', 110, [s3(-300), [8950, 19000], [8700, 20300]], 'SS-3 -> IC-4 (sleeved under the guest lounge)')
     z4 = drain('SW-4', 'sewer', 150, [[8700, 20300, z4 - 20], [7600, 21900]], 'IC-4 -> IC-5')
     drain('SW-5', 'sewer', 150, [[7600, 21900, min(z, z4) - 20], [7600, 23600]], 'IC-5 -> municipal sewer (confirm connection with RWA / MCG)', outfall=True)
-    # ---- water: inlet -> UGT -> pump -> riser R-1 (E-wall chase + OTS) -> OHT on the SF roof; down-takes DT-1 (OTS) and DT-2 (SS-3 duct)
-    run('W-IN', 'cold', 25, [[2500, 23600, -400], [2500, 22300, -400], [1400, 21700, -300]], 'municipal inlet with meter + check valve -> UGT (does not cross the sewer)')
-    run('R-1', 'pumped', 32, [[900, 21100, -200], [330, 20000, -200], [330, 19300, 700], [330, 12800, 700], [100, 12500, 700],
-                              [100, 12500, roof + 100], [OHT[0] - 700, OHT[1], roof + 100], [OHT[0] - 650, OHT[1], roof + 1500]], 'pumped riser to the OHT, in a boxed chase on the inner face of the east wall (not in the party wall, not across the guest room)')
+    # ---- water (R1-F20): society supply -> VB-1 (meter, bypass for a future booster) -> riser R-1 (E-wall chase + OTS) -> softener
+    #      on the SF back terrace -> R-2 -> two balanced 2000 L tanks on the SF roof; down-takes DT-1 (OTS) and DT-2 (SS-3 duct)
+    T2 = fur['SF-R03']['pos']
+    run('W-IN', 'cold', 25, [[2500, 23600, -400], [2500, 22200, -400]], 'society supply -> VB-1 (meter, check valve, bypass loop); does not cross the sewer')
+    run('R-1', 'cold', 32, [[2500, 21800, -300], [900, 21100, -200], [330, 20000, -200], [330, 19300, 700], [330, 12800, 700], [100, 12500, 700],
+                            [100, 12500, 8050], [100, 10800, 8050], [650, 10800, 8050], [650, 10469, 8050]],
+        'riser on society pressure, in a boxed chase on the inner face of the east wall, up the OTS to the softener (not in the party wall, not across the guest room)')
+    run('R-2', 'cold', 32, [[650, 10469, 8350], [650, 10800, 8350], [100, 10800, 8350], [100, 12600, 8350], [100, 12600, roof + 100],
+                            [T2[0] - 700, 12600, roof + 100], [T2[0] - 700, T2[1], roof + 100], [T2[0] - 650, T2[1], roof + 1500]],
+        'softened water from the softener up the OTS to tank 2 on the roof')
+    run('EQ-1', 'cold', 32, [[T2[0] - 200, T2[1] - 700, roof + 400], [T2[0] - 200, OHT[1] + 700, roof + 400]], 'balancing pipe: the two tanks fill and draw together')
+    run('SH-F', 'cold', 25, [[OHT[0] - 700, OHT[1] + 300, roof + 400], [4050, OHT[1] + 300, roof + 400], [4050, OHT[1] + 300, roof + 1200]], 'soft cold feed to the solar water heater')
     run('DT-1', 'cold', 32, [[OHT[0], OHT[1] - 600, roof + 400], [OHT[0], 11000, roof + 100], [300, 11000, roof + 100], [300, 11000, 900]],
         'down-take in the OTS: GF, FF and SF wet areas west of the stair')
     for rid, pts, what in [
@@ -551,7 +565,7 @@ def e13_electrical(h):
     P('cctv', 'GF-COURT', 5700, 22000, note='gate + street CCTV')
     P('vdpo', 'GF-COURT', 5900, 22050, note='outdoor VDP unit at the gate (A8)')
     P('mtr', 'GF-COURT', 5000, 22290, note='meter + main switch on the front boundary wall, read from the street', tag='MTR')
-    P('pump', 'GF-COURT', 1800, 21100, note='UGT pump PP 0.5-1 HP (plumbing E12)', kw=0.75)
+    P('spare', 'GF-COURT', 2500, 21700, note='booster-pump provision by the meter bypass VB-1: weatherproof isolator + spare conduit, pump not fitted (R1-F20)')
     P('ev', 'GF-PARK', 8600, 19916, note='EV charger 32 A under the FF overhang')
 
     # ---------------- FF (DB-2)
@@ -636,6 +650,7 @@ def e13_electrical(h):
     P('s16', U, 1200, 10649, z=1100, note='washer-dryer, 0.68 m from the utility sink (R1-D11)')
     P('s6c', U, 3231, 10649, note='ironing counter (R1-D11)')
     P('ip65', U, 5600, 10649, note='terrace weatherproof socket')
+    P('ip65', U, 650, 10649, z=1400, note='water softener controller (R1-F20)')
     P('wl', U, 2600, 10649, z=2300, note='utility light'); P('wl', U, 7000, 10649, z=2300, note='terrace light')
     P('spare', U, 8800, 10649, note='solar PV inverter provision + spare conduit to the main panel')
     P('pump', 'ROOF', 5300, 11600, z=300, note='pressure pump on the feed to the SF washroom (services check: 1.45 m head)', kw=0.37)
@@ -715,7 +730,7 @@ def e13_electrical(h):
             elif k == 'iso':
                 circuit('LIFT', 'power', DB['DB-1'], [p], mcb='as vendor (3-phase)', cable='as vendor', rcd=False)
             elif k in ('pump', 'spare'):
-                circuit(next_id('PUMP') if k == 'pump' else 'SPARE', 'power', db, [p], mcb='as maker', cable='as maker', rcd=True)
+                circuit(next_id('PUMP') if k == 'pump' else next_id('SPARE'), 'power', db, [p], mcb='as maker', cable='as maker', rcd=True)
     circuit('AO', 'sockets', DB['DB-1'], [p for p in pts if p['kind'] in ALWAYS_ON], mcb='16A', cable='2.5 sq mm', rcd=True,
             note='always-on: CCTV, door phone, network rack, desk UPS socket (R1-F19: no inverter; society DG backup)')
     circuit('DATA', 'data', RACK, [p for p in pts if p['kind'] in ('data', 'tv')], mcb='-', cable='Cat-6', rcd=False, note='from the network rack')

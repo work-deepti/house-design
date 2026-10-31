@@ -7,11 +7,11 @@ PASS  GF-T01 wc_wall_hung drained                          GF-S1
 PASS  GF-T03 vanity drained                                GF-W1
 PASS  GF-T03 vanity supplied                               DT-1, DT-1a
 PASS  GF-T04 shower_head drained                           GF-W1
-PASS  GF-T04 shower_head supplied                          DT-1, DT-1a, DT-1b
+PASS  GF-T04 shower_head supplied                          R-1, DT-1, DT-1a, DT-1b
 PASS  GF-F24 vanity drained                                GF-W2
 PASS  GF-F24 vanity supplied                               DT-1, DT-1a, DT-1b
 PASS  GF-K07 sink drained                                  GF-W3
-PASS  GF-K07 sink supplied                                 DT-1, DT-1a, DT-1b
+PASS  GF-K07 sink supplied                                 R-1, DT-1, DT-1a, DT-1b
 PASS  FF-T21 wc_wall_hung drained                          FF-S2
 PASS  FF-T22 vanity drained                                FF-W2
 PASS  FF-T22 vanity supplied                               DT-1c, DT-1d
@@ -30,13 +30,13 @@ PASS  FF-T04 vanity drained                                FF-W1b
 PASS  FF-T04 vanity supplied                               DT-1c, DT-1d
 PASS  SF-S05 wc_wall_hung drained                          SF-S1
 PASS  SF-S06 basin drained                                 SF-W1
-PASS  SF-S06 basin supplied                                DT-1e, DT-1f
+PASS  SF-S06 basin supplied                                R-1, R-2, DT-1e, DT-1f
 PASS  SF-S07 shower_head drained                           SF-W1
-PASS  SF-S07 shower_head supplied                          DT-1e, DT-1f
+PASS  SF-S07 shower_head supplied                          R-1, R-2, DT-1e, DT-1f
 PASS  SF-U01 washer_dryer drained                          SF-W2
-PASS  SF-U01 washer_dryer supplied                         DT-1e, DT-1f
+PASS  SF-U01 washer_dryer supplied                         R-1, R-2, DT-1e, DT-1f
 PASS  SF-U02 utility_counter drained                       SF-W2
-PASS  SF-U02 utility_counter supplied                      DT-1e, DT-1f
+PASS  SF-U02 utility_counter supplied                      R-1, R-2, DT-1e, DT-1f
 PASS  GF-S1 ends at a stack / chamber / drain              IC-2
 PASS  GF-W1 ends at a stack / chamber / drain              IC-2
 PASS  GF-W2 ends at a stack / chamber / drain              GF-W1
@@ -52,6 +52,7 @@ PASS  FF-W3 ends at a stack / chamber / drain              SS-3
 PASS  SF-S1 ends at a stack / chamber / drain              SS-1
 PASS  SF-W1 ends at a stack / chamber / drain              SS-1
 PASS  SF-W2 ends at a stack / chamber / drain              SS-1
+PASS  SF-W3 ends at a stack / chamber / drain              SS-1
 PASS  SW-1 ends at a stack / chamber / drain               IC-3
 PASS  SW-2 ends at a stack / chamber / drain               IC-5
 PASS  SW-3 ends at a stack / chamber / drain               IC-4
@@ -75,6 +76,7 @@ PASS  FF-W3 fall                                           1:45 (min 1:60)
 PASS  SF-S1 fall                                           1:35 (min 1:40)
 PASS  SF-W1 fall                                           1:45 (min 1:60)
 PASS  SF-W2 fall                                           1:44 (min 1:60)
+PASS  SF-W3 fall                                           1:43 (min 1:60)
 PASS  SW-1 fall                                            1:45 (min 1:60)
 PASS  SW-2 fall                                            1:45 (min 1:60)
 PASS  SW-3 fall                                            1:36 (min 1:40)
@@ -91,11 +93,9 @@ PASS  IC-3 not inside a room                               entrance court
 PASS  IC-4 not inside a room                               parking
 PASS  IC-5 not inside a room                               parking
 PASS  RWH not inside a room                                entrance court
-PASS  UGT not inside a room                                front lawn (NE)
+PASS  VB-1 not inside a room                               front lawn, by the gate
 PASS  nothing under the guest room                         
 PASS  nothing in the east / west party walls               
-PASS  UGT >= 2 m from any sewer line or chamber            3.4 m
-PASS  UGT >= 2 m from the RWH pit                          2.2 m
 PASS  GF showers: head below the OHT                       8.05 m
 PASS  FF showers: head below the OHT                       4.75 m
 WARN  SF showers: head below the OHT                       1.45 m - fine at low flow; a small pressure pump for the SF washroom
@@ -114,7 +114,7 @@ PASS  sheet schedule: GF Lobby / Stair / Panel rm          R1 adds lights +1
 PASS  sheet schedule: GF Guest room                        as the sheet
 PASS  sheet schedule: GF Foyer                             as the sheet
 PASS  sheet schedule: GF Study -> R1 guest lounge / study  as the sheet
-PASS  sheet schedule: External / Parking                   R1 adds lights +1, pump +1
+PASS  sheet schedule: External / Parking                   R1 adds lights +1
 PASS  sheet schedule: FF Master bedroom                    as the sheet
 PASS  sheet schedule: FF Master toilet -> R1 master washroom R1 adds lights +1
 PASS  sheet schedule: FF Dresser                           as the sheet
@@ -124,7 +124,7 @@ PASS  sheet schedule: FF Bedroom 2 -> R1 bedroom 3         as the sheet
 PASS  sheet schedule: FF Toilet (WNW) -> R1 kids toilet    as the sheet
 PASS  sheet schedule: FF Bedroom 3 -> R1 kids room         as the sheet
 PASS  sheet schedule: FF Balconies                         as the sheet
-PASS  sheet schedule: Terrace                              R1 adds s6 +1
+PASS  sheet schedule: Terrace                              R1 adds s6 +2
 PASS  GF-KIT lit and switched                              5 light(s), 1 switchboard(s)
 PASS  GF-KIT switchboard at a door                         0.7 m from the door centre
 PASS  GF-DIN lit and switched                              4 light(s), 1 switchboard(s)
@@ -179,7 +179,7 @@ PASS  SF-SWR exhaust to the outside                        on shaft wall SF-OTS4
 PASS  SF-SWR geyser high, out of the splash zone           1.90 m up, 1.5 m from the shower / tub
 PASS  GF sockets >= 0.6 m from water                       14 sockets
 PASS  FF sockets >= 0.6 m from water                       17 sockets
-PASS  SF sockets >= 0.6 m from water                       5 sockets
+PASS  SF sockets >= 0.6 m from water                       6 sockets
 PASS  GF-G02 bedside (GF-GST)                              s6, sb2w
 PASS  GF-G03 bedside (GF-GST)                              s6, sb2w
 PASS  FF-M02 bedside (FF-MST)                              ac, s6, sb2w, usb
@@ -221,7 +221,7 @@ PASS  DB-2 in the SE zone (sheet)                          SE
 PASS  DB-2 >= 0.6 m from water / drain pipes               3.6 m
 PASS  DB-3 not in the Brahmasthan or a wet room            E zone, in SF-SRV
 WARN  DB-3 in the SE zone (sheet)                          E - DB-3 for the SF + terrace, east wall (no indoor SE space on the SF)
-PASS  DB-3 >= 0.6 m from water / drain pipes               0.8 m
+PASS  DB-3 >= 0.6 m from water / drain pipes               0.7 m
 PASS  GF-KIT heat detector, no smoke detector              hd
 PASS  GF-DRW smoke detector                                yes
 PASS  GF-LOB smoke detector                                yes
@@ -250,7 +250,7 @@ PASS  G1 dedicated, RCD                                    gy 20A
 PASS  AC2 dedicated                                        ac 20A
 PASS  AC3 dedicated                                        ac 20A
 PASS  PUMP1 dedicated, RCD                                 pump as maker
-PASS  PUMP2 dedicated, RCD                                 pump as maker
+PASS  SPARE1 dedicated                                     spare as maker
 PASS  EV dedicated, RCD                                    ev 40A (maker)
 PASS  L7 lighting <= 10 points                             10
 PASS  L8 lighting <= 10 points                             10
@@ -269,18 +269,18 @@ PASS  G4 dedicated, RCD                                    gy 20A
 PASS  L11 lighting <= 10 points                            9
 PASS  S8 sockets <= 8 points, RCD                          2, RCD True
 PASS  L12 lighting <= 10 points                            2
-PASS  S9 sockets <= 8 points, RCD                          2, RCD True
+PASS  S9 sockets <= 8 points, RCD                          3, RCD True
 PASS  LIFT dedicated                                       iso as vendor (3-phase)
 PASS  G5 dedicated, RCD                                    gy 20A
 PASS  P4 dedicated, RCD                                    s16 20A
-PASS  SPARE dedicated                                      spare as maker
-PASS  PUMP3 dedicated, RCD                                 pump as maker
+PASS  SPARE2 dedicated                                     spare as maker
+PASS  PUMP2 dedicated, RCD                                 pump as maker
 PASS  AO sockets <= 8 points, RCD                          6, RCD True
 PASS  lighting circuits with wet-room points on an RCD     L2, L7, L8, L9, L11
-PASS  every point on a circuit                             188 points
+PASS  every point on a circuit                             189 points
 PASS  circuits fed from their own floor DB                 DB-1 GF + outside, DB-2 FF, DB-3 SF + roof
 PASS  no exhaust or outdoor units on the E / W party walls 
-PASS  connected load and supply                            45.9 kW connected (sheet ~41), ~25 kW max demand at 0.55 -> 3-phase, as the sheet
+PASS  connected load and supply                            45.3 kW connected (sheet ~41), ~25 kW max demand at 0.55 -> 3-phase, as the sheet
 
 ELECTRICAL: PASS  (172 pass, 2 warn, 0 fail)
 
@@ -295,9 +295,9 @@ PASS  GF-O09 tulsi in the NE corner of Back Lawn           north-east
 PASS  GF-O09 tulsi: devotee faces east or north            faces east
 WARN  GF-O09 tulsi zone of the plot (N / NE / E preferred) SE zone - owner placed it in the back garden; Vastu consultant to confirm
 PASS  GF-O09 tulsi open to the sky                         nothing above
-PASS  UGT underground tank in the NE                       red-line 6 / plumbing P4
 PASS  GF-K08 cook faces east (red-line 7)                  east
 PASS  SF-R01 overhead tank in the S / SW / W               W zone (red-line T)
+PASS  SF-R03 overhead tank in the S / SW / W               W zone (red-line T)
 
 VASTU PLACEMENTS: PASS  (10 pass, 1 warn, 0 fail)
 
@@ -331,7 +331,7 @@ SF-LOB Lobby                   2     .     .     .     .     .     .     .     .
 SF-SRV Servant Room            1     1     2     .     .     .     .     .     .     .     1     .     2     .
 SF-SWR Servant Washroom        1     .     .     .     .     .     1     1     .     .     .     .     .     .
 SF-WSH Store                   1     .     .     .     .     .     .     .     .     .     .     .     1     .
-SF-TRB Back Terrace + Util     2     .     2     .     1     .     .     .     .     .     .     .     .     .
+SF-TRB Back Terrace + Util     2     .     3     .     1     .     .     .     .     .     .     .     .     .
 ROOF SF roof                   .     .     .     .     .     .     .     .     .     .     .     .     .     .
 
 CIRCUITS
@@ -353,7 +353,7 @@ G1     DB-1  geyser       1  20A                  4 sq mm          yes    2.00  
 AC2    DB-1  ac           1  20A                  4 sq mm          -      1.50  Guest Room
 AC3    DB-1  ac           1  20A                  4 sq mm          -      1.50  Guest Lounge / Study
 PUMP1  DB-1  power        1  as maker             as maker         yes    0.75  Back Lawn
-PUMP2  DB-1  power        1  as maker             as maker         yes    0.75  Entrance Court
+SPARE1 DB-1  power        1  as maker             as maker         yes    0.00  Entrance Court
 EV     DB-1  power        1  40A (maker)          6 sq mm (maker)  yes    7.40  Parking
 L7     DB-2  lighting    15  10A                  1.5 sq mm        yes    0.28  Dresser, Master Bedroom, Master Washroom
 L8     DB-2  lighting    12  10A                  1.5 sq mm        yes    0.27  Bedroom 3, Bedroom 3 Toilet, Lobby, Master Washroom
@@ -372,12 +372,12 @@ G4     DB-2  geyser       1  20A                  4 sq mm          yes    2.00  
 L11    DB-3  lighting    13  10A                  1.5 sq mm        yes    0.25  Lobby, Servant Room, Servant Washroom, Store
 S8     DB-3  sockets      2  16A                  2.5 sq mm        yes    0.20  Servant Room
 L12    DB-3  lighting     2  10A                  1.5 sq mm        yes    0.04  Back Terrace + Utility (covered)
-S9     DB-3  sockets      2  16A                  2.5 sq mm        yes    0.20  Back Terrace + Utility (covered)
+S9     DB-3  sockets      3  16A                  2.5 sq mm        yes    0.30  Back Terrace + Utility (covered)
 LIFT   DB-1  power        1  as vendor (3-phase)  as vendor        -      4.00  Lobby
 G5     DB-3  geyser       1  20A                  4 sq mm          yes    2.00  Servant Washroom
 P4     DB-3  power        1  20A                  4 sq mm          yes    1.50  Back Terrace + Utility (covered)
-SPARE  DB-3  power        1  as maker             as maker         yes    0.00  Back Terrace + Utility (covered)
-PUMP3  DB-3  power        1  as maker             as maker         yes    0.37  SF roof
+SPARE2 DB-3  power        1  as maker             as maker         yes    0.00  Back Terrace + Utility (covered)
+PUMP2  DB-3  power        1  as maker             as maker         yes    0.37  SF roof
 AO     DB-1  sockets      6  16A                  2.5 sq mm        yes    0.19  Deck + Pergola, Entrance Court, Entrance Foyer, Guest Lounge / Study, 
 DATA   RACK  data         8  -                    Cat-6            -      0.00  Bedroom 3, Family Lounge, Guest Lounge / Study, Guest Room, Kids Room,
 

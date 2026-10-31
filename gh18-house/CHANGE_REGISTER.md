@@ -44,6 +44,7 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | — | Updated version of the architect's drawing (follow-up) | F17 | `plans/r1/GH-18_R1_drawing.pdf`: UPS/GH18/PV/001 re-issued as R1 from the model. Sheet 1: GF + FF plans, door-window and finishing schedules, R0's title block. Sheet 2: proposed SF, revision notes, hold points, room areas. | Done; DRN. / CHD. for the architect to sign |
 | — | Rear glass wall not practical (follow-up): practical and secure, uPVC, mesh, grilles, current layout | F18 | GL-5 replaced by a uPVC sliding door GL-5a (3'-5" / 1.05 m clear, east sash, toward the tulsi) and a window GL-5b on a 2'-11" (0.90 m) sill wall. Mosquito mesh on the opening sashes; MS grilles (inside sliding on the door, fixed outside on the window); laminated glass in the fixed lites. Only the floor lamp moves. Pergola raised 6" (150 mm) to clear the door head. A 6-ft person passes every route (tightest 2'-5" / 0.73 m by the mandir pouf). | Done; deck-to-lawn 1'-0" drop has no step (existing, to the architect) |
 | — | Remove the inverter: the society has power backup (follow-up) | F19 | Inverter, battery, feed SM-4 and the inverter board removed. Under-stair bay → network shelf 1'-11½" (0.60 m) + cupboard 1'-7½" (0.50 m). Society DG backs up 100% of the load (owner). CCTV, door phone, rack and desk UPS socket on always-on circuit AO from DB-1. | Done |
+| — | No underground tank (society supply); 2 water storage tanks with a water softener and heater (follow-up) | F20 | UGT and its pump removed; meter + bypass box VB-1 at the gate (booster-pump provision). Softener on the SF back terrace on the riser. Two 2000 L soft-water tanks on the roof, W zone, balanced. Solar heater (soft-fed) + a geyser per bathroom kept. | Done |
 
 ## 2. Vastu red-line register (owner instruction to the architect, overlaid on R0)
 
@@ -54,7 +55,7 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | 3 | GF toilet, E / ESE | WC at the south (ESE) end, wash at the north end; soil stack aligned with the FF toilet; falls to a rear drain with chambers | WC at the south end. Its soil drains to IC-2 at the foot of stack SS-1 in the OTS, which also serves the FF toilet above. The drain runs to the front through chambers, not the rear (P3, P6). The vanity is still at the south end, as in R0. | Done, differs: vanity position for the architect |
 | 4 | GF electrical panel, centre | Move the DB / panel out of the Brahmasthan, preferably to the SE (kitchen side) | DB-1 is in a 400 mm cabinet on the kitchen east wall, SE zone. The check confirms it is outside the centre ninth. | Done |
 | 5 | GF rear lawn, S / SW | Tall trees / heavy planters on the S and SW boundary; no water body, bore well or soak pit | No pit, chamber, tank or pipe in the rear lawn (P1, P6). The tulsi stands in its NE corner (B15): a small planter, not a water body. Tree planting is not modelled. | Done; trees to landscape |
-| 6 | GF front lawn, NE | RWH pit / water feature in the NE front lawn, 1.5 m clear of footings, overflow to the storm drain | The NE corner holds the 5000 L underground tank (water in the NE). The RWH pit is in the entrance court (north), 2.2 m from the tank as the plumbing sheet requires. Its overflow goes to the storm drain. | Done, differs: RWH north, not NE |
+| 6 | GF front lawn, NE | RWH pit / water feature in the NE front lawn, 1.5 m clear of footings, overflow to the storm drain | The NE corner held the 5000 L underground tank until F20 removed it (society supply). The RWH pit is in the entrance court (north). Its overflow goes to the storm drain. | Done, differs: RWH north, not NE |
 | 7 | GF kitchen, SE | Retain; hob on the SE wall (cook faces E); sink on the N side; grease trap before the drain | Hob on the east wall, so the cook faces east (checked). The sink is in the north wash nook (B4). Grease trap GT-1 is in the OTS. | Done |
 | 8 | GF study, NW / NNW | Desk facing N or E; light colours; no heavy storage | Guest Lounge / Study: the desk faces east, and there is no tall storage. | Done |
 | 9 | GF lift, W | Retain; vendor pit, shaft and overrun; check clashes with footings and drains | Lift kept. No drain runs under the lift. | Hold: lift vendor |
@@ -67,7 +68,7 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | 16 | FF front curved balcony, N / NW | Keep open; light planters only; cantilever and railing checks | In the model the front curve is the kids-room GL-9 glazing; there is no open balcony there. Nothing added. | Hold: architect to confirm the R0 front balcony |
 | 17 | FF stair / lift, W | Retain; headroom and lift overrun at the terrace | Kept. The overrun is beside the SF roof tank. | Done; hold: lift vendor |
 | 18 | FF rear balcony, SW | Retain; waterproofing, 1:100 slope, overflow spout | Kept, with weatherproof sockets and lights. Its outlet and spout are not modelled. | Done; spout to plumber |
-| T | Terrace | Overhead tank on the SW / W on an RCC stand; open terrace on the N / NE; new rooms only in the S / SW; check pressure at the FF showers | The tank is on the SF roof, on the W side beside the lift overrun (checked). The front terrace (N / NE) is kept open; two AC outdoor units stand against the stair wall in its NW. Pressure is checked: fine for the FF; the SF washroom gets a small pump. The proposed SF rooms are in the centre and east, not the S / SW. | Differs: SF room zoning, for the Vastu consultant; hold: tank stand |
+| T | Terrace | Overhead tank on the SW / W on an RCC stand; open terrace on the N / NE; new rooms only in the S / SW; check pressure at the FF showers | Two 2000 L tanks (F20) are on the SF roof, both in the W zone beside the lift overrun and over the stair (checked). The front terrace (N / NE) is kept open; two AC outdoor units stand against the stair wall in its NW. Pressure is checked: fine for the FF; the SF washroom gets a small pump. The proposed SF rooms are in the centre and east, not the S / SW. | Differs: SF room zoning, for the Vastu consultant; hold: roof slab + stands for two tanks |
 
 ## 3. Plumbing Layout Rev A clouds
 
@@ -76,14 +77,14 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | P1 | Rear lawn: SS-2, IC-1 and the grease trap moved inside the plot; RCP-1 removed | With the R1 layout none of these is needed. SS-2 is dropped because the master WC is on SS-1. The kitchen waste now drains north to GT-1 in the OTS. Nothing is in the rear lawn. | Done, differs (simpler) |
 | P2 | Kitchen sink + dishwasher waste to a grease trap | Wash nook → GT-1 → IC-2, all in the OTS. | Done |
 | P3 | Sewer under the GF toilet, lobby and foyer, sleeved, with sealed cleanouts CO-1 / CO-2; nothing under the guest room; R-1 in the E-wall chase | As Rev A. The check confirms nothing is under the guest room. R-1 runs in the east-wall chase above floor level. | Done |
-| P4 | UGT in the NE front lawn, 2 m from the sewer and RWH; IC-3 to the front court; inlet does not cross the sewer | UGT 3.4 m from the sewer and 2.2 m from the RWH pit. IC-3 is in the entrance court. The inlet does not cross the sewer. | Done |
+| P4 | UGT in the NE front lawn, 2 m from the sewer and RWH; IC-3 to the front court; inlet does not cross the sewer | UGT removed in F20 (society supply). IC-3 is in the entrance court. The inlet to the meter / bypass box VB-1 does not cross the sewer. | Superseded (F20) |
 | P5 | No sewage to the storm drain; only IC-5 to the municipal sewer; heavy-duty covers in the parking | As Rev A. | Done; hold: RWA / MCG connection |
 | P6 | Rear lawn: no pit or water body; terrace rain to the front | Four 100 mm RWPs on the front face run to the RWH pit. | Done |
 | P7 | FF master toilet: geyser inside, cleanout on the WC run, access panel at the bath, DT-1 branch in a chase with a valve | Geyser inside on the east wall, 2 m from the shower. The cleanout, bath access panel and valve are not modelled. | Done; details to plumber |
 | P8 | FF WNW toilet: SS-3 in a boxed internal duct | SS-3 is in a boxed duct, which also carries the guest-lounge AC refrigerant pipe. | Done |
 | P9 / P10 | Front balcony RWP to RWH; rear balcony spout to the lawn | No front balcony in the model (see red-line 16). The rear balcony spout is not modelled. | Not modelled: plumber |
 | Sheet 2 | Terrace plan: OHT, DT-1 / DT-2, vents, RWPs, solar | The OHT and solar heater are on the SF roof (D11). DT-1, DT-2 and the vents are modelled. | Done, differs (SF built) |
-| Sheet 3 | UGT about 5–6 days' storage | 5000 L UGT. | Done |
+| Sheet 3 | UGT about 5–6 days' storage | No UGT (F20, society supply); 2 × 2000 L on the roof. | Superseded (F20) |
 
 ## 4. Electrical Layout Rev A clouds
 
@@ -120,7 +121,8 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | Deck to lawn: 1'-0" (0.30 m) drop with no step in the model (F18 6-ft test) | Architect | Two 6" risers or a ramped edge along the deck |
 | Rear door GL-5a on the south wall (F18) | Vastu consultant | East part of the south wall, nearest the tulsi |
 | uPVC lintel over GL-5a / GL-5b and the raised pergola ledger fixing (F18) | Structural | Old GL-5 head kept at 2400; new 900 sill wall |
-| Tank stand on the SF roof, OTS opening, lift pit and overrun, balconies | Structural, lift vendor | |
+| Two 2000 L tanks on the SF roof (about 4.4 t full): slab, beams and stands; OTS opening, lift pit and overrun, balconies | Structural, lift vendor | Tank 2 sits over the stair (F20) |
+| Society supply pressure at the roof tanks (F20) | Plumber, RWA | If short, fit an inline booster at VB-1 (bypass, isolator and conduit provided) |
 | Sewer invert levels and the municipal connection | Plumber, RWA / MCG | |
 | Front curved balcony (red-line 16, P9) | Architect | Not in the model; the kids-room glazing forms the curve |
 | GF toilet vanity at the south end (red-line 3) | Architect | R0 position kept |

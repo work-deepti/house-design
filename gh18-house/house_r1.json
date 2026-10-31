@@ -3857,12 +3857,23 @@
           "id": "SF-R01",
           "room": "SF-LOB",
           "type": "water_tank",
-          "pos": [6300, 11600],
+          "pos": [6500, 11600],
           "size": [1400, 1400, 1900],
           "rot": 0,
           "z": 3300,
           "on_roof": true,
-          "note": "overhead tank 2000 L on a 300 stand, south-west part of the roof beside the lift overrun"
+          "note": "overhead tank 1 of 2, 2000 L softened water, on a 300 stand beside the lift overrun (R1-F20)"
+        },
+        {
+          "id": "SF-R03",
+          "room": "SF-LOB",
+          "type": "water_tank",
+          "pos": [6950, 13600],
+          "size": [1400, 1400, 1900],
+          "rot": 0,
+          "z": 3300,
+          "on_roof": true,
+          "note": "overhead tank 2 of 2, 2000 L softened water, over the stair north of tank 1 (W zone); balanced with tank 1 (R1-F20)"
         },
         {
           "id": "SF-R02",
@@ -3873,7 +3884,16 @@
           "rot": 180,
           "z": 3300,
           "on_roof": true,
-          "note": "solar water heater facing south; hot water to the master washroom + kitchen"
+          "note": "solar water heater facing south, fed from the soft-water tanks; hot water to the master washroom + kitchen"
+        },
+        {
+          "id": "SF-U05",
+          "room": "SF-TRB",
+          "type": "water_softener",
+          "pos": [650, 10469],
+          "size": [400, 400, 1200],
+          "rot": 180,
+          "note": "water softener + brine tank on the riser; backwash to SS-1; salt refill from the terrace (R1-F20)"
         },
         {
           "id": "SF-AC5",
@@ -4005,13 +4025,13 @@
           "note": "rainwater harvesting + recharge; overflow to the storm drain"
         },
         {
-          "id": "UGT",
-          "type": "tank",
-          "at": [900, 21100],
-          "size": [1500, 1200],
-          "depth": 1500,
-          "area": "front lawn (NE)",
-          "note": "5000 L underground tank, sealed manhole; pump PP 0.5-1 HP"
+          "id": "VB-1",
+          "type": "valve_box",
+          "at": [2500, 22000],
+          "size": [600, 450],
+          "depth": 450,
+          "area": "front lawn, by the gate",
+          "note": "meter + check valve + bypass loop with isolating valves: space for a future inline booster pump (R1-F20; no underground tank)"
         }
       ],
       "runs": [
@@ -4121,6 +4141,13 @@
           "serves": "SF utility sink + washer -> SS-1"
         },
         {
+          "id": "SF-W3",
+          "kind": "waste",
+          "dia": 50,
+          "pts": [[650, 10469, 6920], [600, 10700, 6914], [450, 11100, 6904]],
+          "serves": "SF water softener backwash / regeneration -> SS-1 (via an air gap)"
+        },
+        {
           "id": "SW-1",
           "kind": "sewer",
           "dia": 150,
@@ -4160,21 +4187,42 @@
           "id": "W-IN",
           "kind": "cold",
           "dia": 25,
-          "pts": [[2500, 23600, -400], [2500, 22300, -400], [1400, 21700, -300]],
-          "serves": "municipal inlet with meter + check valve -> UGT (does not cross the sewer)"
+          "pts": [[2500, 23600, -400], [2500, 22200, -400]],
+          "serves": "society supply -> VB-1 (meter, check valve, bypass loop); does not cross the sewer"
         },
         {
           "id": "R-1",
-          "kind": "pumped",
+          "kind": "cold",
           "dia": 32,
-          "pts": [[900, 21100, -200], [330, 20000, -200], [330, 19300, 700], [330, 12800, 700], [100, 12500, 700], [100, 12500, 10450], [5600, 11600, 10450], [5650, 11600, 11850]],
-          "serves": "pumped riser to the OHT, in a boxed chase on the inner face of the east wall (not in the party wall, not across the guest room)"
+          "pts": [[2500, 21800, -300], [900, 21100, -200], [330, 20000, -200], [330, 19300, 700], [330, 12800, 700], [100, 12500, 700], [100, 12500, 8050], [100, 10800, 8050], [650, 10800, 8050], [650, 10469, 8050]],
+          "serves": "riser on society pressure, in a boxed chase on the inner face of the east wall, up the OTS to the softener (not in the party wall, not across the guest room)"
+        },
+        {
+          "id": "R-2",
+          "kind": "cold",
+          "dia": 32,
+          "pts": [[650, 10469, 8350], [650, 10800, 8350], [100, 10800, 8350], [100, 12600, 8350], [100, 12600, 10450], [6250, 12600, 10450], [6250, 13600, 10450], [6300, 13600, 11850]],
+          "serves": "softened water from the softener up the OTS to tank 2 on the roof"
+        },
+        {
+          "id": "EQ-1",
+          "kind": "cold",
+          "dia": 32,
+          "pts": [[6750, 12900, 10750], [6750, 12300, 10750]],
+          "serves": "balancing pipe: the two tanks fill and draw together"
+        },
+        {
+          "id": "SH-F",
+          "kind": "cold",
+          "dia": 25,
+          "pts": [[5800, 11900, 10750], [4050, 11900, 10750], [4050, 11900, 11550]],
+          "serves": "soft cold feed to the solar water heater"
         },
         {
           "id": "DT-1",
           "kind": "cold",
           "dia": 32,
-          "pts": [[6300, 11000, 10750], [6300, 11000, 10450], [300, 11000, 10450], [300, 11000, 900]],
+          "pts": [[6500, 11000, 10750], [6500, 11000, 10450], [300, 11000, 10450], [300, 11000, 900]],
           "serves": "down-take in the OTS: GF, FF and SF wet areas west of the stair"
         },
         {
@@ -4223,7 +4271,7 @@
           "id": "DT-2",
           "kind": "cold",
           "dia": 25,
-          "pts": [[6900, 11600, 10750], [6900, 15300, 10450], [8950, 15300, 10450], [8950, 15300, 4600], [7562, 15400, 4600], [6580, 15400, 4600]],
+          "pts": [[7100, 11600, 10750], [7100, 15300, 10450], [8950, 15300, 10450], [8950, 15300, 4600], [7562, 15400, 4600], [6580, 15400, 4600]],
           "serves": "down-take in the SS-3 duct: FF kids toilet"
         },
         {
@@ -5316,15 +5364,14 @@
         },
         {
           "id": "GF-E88",
-          "kind": "pump",
+          "kind": "spare",
           "floor": "GF",
           "room": "GF-COURT",
           "serves": "GF-COURT",
-          "at": [1800, 21100, 800],
+          "at": [2500, 21700, 1800],
           "base": 300,
-          "note": "UGT pump PP 0.5-1 HP (plumbing E12)",
-          "kw": 0.75,
-          "circuit": "PUMP2"
+          "note": "booster-pump provision by the meter bypass VB-1: weatherproof isolator + spare conduit, pump not fitted (R1-F20)",
+          "circuit": "SPARE1"
         },
         {
           "id": "GF-E89",
@@ -6451,6 +6498,18 @@
         },
         {
           "id": "SF-E22",
+          "kind": "ip65",
+          "floor": "SF",
+          "room": "SF-TRB",
+          "serves": "SF-TRB",
+          "at": [650, 10649, 8450],
+          "base": 7050,
+          "note": "water softener controller (R1-F20)",
+          "face": [0.0, 1.0],
+          "circuit": "S9"
+        },
+        {
+          "id": "SF-E23",
           "kind": "wl",
           "floor": "SF",
           "room": "SF-TRB",
@@ -6462,7 +6521,7 @@
           "circuit": "L12"
         },
         {
-          "id": "SF-E23",
+          "id": "SF-E24",
           "kind": "wl",
           "floor": "SF",
           "room": "SF-TRB",
@@ -6474,7 +6533,7 @@
           "circuit": "L12"
         },
         {
-          "id": "SF-E24",
+          "id": "SF-E25",
           "kind": "spare",
           "floor": "SF",
           "room": "SF-TRB",
@@ -6483,10 +6542,10 @@
           "base": 7050,
           "note": "solar PV inverter provision + spare conduit to the main panel",
           "face": [0.0, -1.0],
-          "circuit": "SPARE"
+          "circuit": "SPARE2"
         },
         {
-          "id": "SF-E25",
+          "id": "SF-E26",
           "kind": "pump",
           "floor": "SF",
           "room": "ROOF",
@@ -6495,7 +6554,7 @@
           "base": 10350,
           "note": "pressure pump on the feed to the SF washroom (services check: 1.45 m head)",
           "kw": 0.37,
-          "circuit": "PUMP3"
+          "circuit": "PUMP2"
         }
       ],
       "circuits": [
@@ -6656,7 +6715,7 @@
           "rcd": true
         },
         {
-          "id": "PUMP2",
+          "id": "SPARE1",
           "cls": "power",
           "db": "DB-1",
           "points": ["GF-E88"],
@@ -6824,7 +6883,7 @@
           "id": "L12",
           "cls": "lighting",
           "db": "DB-3",
-          "points": ["SF-E22", "SF-E23"],
+          "points": ["SF-E23", "SF-E24"],
           "mcb": "10A",
           "cable": "1.5 sq mm",
           "rcd": true,
@@ -6834,7 +6893,7 @@
           "id": "S9",
           "cls": "sockets",
           "db": "DB-3",
-          "points": ["SF-E20", "SF-E21"],
+          "points": ["SF-E20", "SF-E21", "SF-E22"],
           "mcb": "16A",
           "cable": "2.5 sq mm",
           "rcd": true,
@@ -6868,19 +6927,19 @@
           "rcd": true
         },
         {
-          "id": "SPARE",
+          "id": "SPARE2",
           "cls": "power",
           "db": "DB-3",
-          "points": ["SF-E24"],
+          "points": ["SF-E25"],
           "mcb": "as maker",
           "cable": "as maker",
           "rcd": true
         },
         {
-          "id": "PUMP3",
+          "id": "PUMP2",
           "cls": "power",
           "db": "DB-3",
-          "points": ["SF-E25"],
+          "points": ["SF-E26"],
           "mcb": "as maker",
           "cable": "as maker",
           "rcd": true
@@ -7105,11 +7164,11 @@
           ]
         },
         {
-          "circuit": "PUMP2",
+          "circuit": "SPARE1",
           "cls": "power",
-          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [1800, 9451, 3600], [1800, 9451, -300], [1800, 21100, -300]],
+          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [2500, 9451, 3600], [2500, 9451, -300], [2500, 21700, -300]],
           "drops": [
-            [[1800, 21100, -300], [1800, 21100, 800]]
+            [[2500, 21700, -300], [2500, 21700, 1800]]
           ]
         },
         {
@@ -7331,8 +7390,9 @@
         {
           "circuit": "S9",
           "cls": "sockets",
-          "trunk": [[250, 13300, 8550], [250, 13300, 10200], [3231, 13300, 10200], [3231, 10649, 10200], [5600, 10649, 10200]],
+          "trunk": [[250, 13300, 8550], [250, 13300, 10200], [650, 13300, 10200], [650, 10649, 10200], [3231, 10649, 10200], [5600, 10649, 10200]],
           "drops": [
+            [[650, 10649, 10200], [650, 10649, 8450]],
             [[3231, 10649, 10200], [3231, 10649, 8150]],
             [[5600, 10649, 10200], [5600, 10649, 7650]]
           ]
@@ -7362,7 +7422,7 @@
           ]
         },
         {
-          "circuit": "SPARE",
+          "circuit": "SPARE2",
           "cls": "power",
           "trunk": [[250, 13300, 8550], [250, 13300, 10200], [8800, 13300, 10200], [8800, 10649, 10200]],
           "drops": [
@@ -7370,7 +7430,7 @@
           ]
         },
         {
-          "circuit": "PUMP3",
+          "circuit": "PUMP2",
           "cls": "power",
           "trunk": [[250, 13300, 8550], [250, 13300, 10200], [5300, 13300, 10200], [5300, 11600, 10200]],
           "drops": [

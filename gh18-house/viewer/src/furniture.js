@@ -570,6 +570,12 @@ B.water_tank = (p, w, d, h) => {            // moulded tank on a 300 mm stand
   cyl(p, 'black_metal', r * 0.98, r * 0.3, 0.12, 0, h - 0.12, 0, 40);
   cyl(p, 'black_metal', 0.22, 0.22, 0.05, 0, h - 0.02, 0, 24);
 };
+B.water_softener = (p, w, d, h) => {       // resin column + brine tank side by side, control head on the column
+  const r = Math.min(w / 4, d / 2) - 0.01;
+  cyl(p, 'lacquer_white', r * 0.8, r * 0.8, h - 0.12, -w / 4, 0, 0, 24);
+  box(p, 'black_metal', r * 1.6, 0.12, r * 1.6, -w / 4, h - 0.12, 0, 0.01);
+  cyl(p, 'appliance', r, r, h * 0.7, w / 4, 0, 0, 24);
+};
 B.solar_heater = (p, w, d, h) => {          // two flat-plate collectors tilted to the front (+Z), storage tank behind
   const tilt = 0.5, cw = w / 2 - 0.05, cl = d - 0.35;
   for (const s of [-1, 1]) {

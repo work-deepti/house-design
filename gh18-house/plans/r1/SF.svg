@@ -32,8 +32,10 @@
 <polygon points="8950,6850 9050,6850 9050,6950 8950,6950" fill="#1d1d1d" stroke="none" stroke-width="0" />
 <text x="4700" y="9950" font-size="120" fill="#4f7385" text-anchor="middle" font-weight="bold" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >POLYCARBONATE CANOPY OVER (temporary, light steel frame)</text>
 <polygon points="0,5515 5349,5515 5702,5467 6049,5386 6387,5273 6713,5128 7023,4953 7306,4816 7599,4703 7901,4616 8209,4553 8521,4516 8835,4505 9149,4520 9381,4521 9381,21504 9386,21504 9061,21515 8736,21516 8411,21505 8086,21483 7763,21450 7441,21406 7120,21351 6802,21285 6855,21288 6552,21196 6251,21096 5953,20987 5658,20870 5367,20744 5079,20610 4796,20468 4516,20318 4241,20160 3971,19994 3705,19820 3445,19639 3190,19451 2928,19489 2928,19257 0,19257 0,12964 -735,12964 -735,10451 0,10451" fill="none" stroke="#aaa" stroke-width="8" stroke-dasharray="40 40"/>
-<polygon points="5600,10900 7000,10900 7000,12300 5600,12300" fill="none" stroke="#6b8fa0" stroke-width="14" stroke-dasharray="90 60"/>
-<text x="6300" y="11640" font-size="95" fill="#46708a" text-anchor="middle" font-weight="bold" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >ON ROOF: WATER TANK</text>
+<polygon points="5800,10900 7200,10900 7200,12300 5800,12300" fill="none" stroke="#6b8fa0" stroke-width="14" stroke-dasharray="90 60"/>
+<text x="6500" y="11640" font-size="95" fill="#46708a" text-anchor="middle" font-weight="bold" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >ON ROOF: WATER TANK</text>
+<polygon points="6250,12900 7650,12900 7650,14300 6250,14300" fill="none" stroke="#6b8fa0" stroke-width="14" stroke-dasharray="90 60"/>
+<text x="6950" y="13640" font-size="95" fill="#46708a" text-anchor="middle" font-weight="bold" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >ON ROOF: WATER TANK</text>
 <polygon points="4050,12300 1950,12300 1950,10700 4050,10700" fill="none" stroke="#6b8fa0" stroke-width="14" stroke-dasharray="90 60"/>
 <text x="3000" y="11540" font-size="95" fill="#46708a" text-anchor="middle" font-weight="bold" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >ON ROOF: SOLAR HEATER</text>
 </g>
@@ -88,6 +90,8 @@
 <polygon points="280,5665 1030,5665 1030,5965 280,5965" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="7400,6805 8150,6805 8150,7105 7400,7105" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="8165,6805 8915,6805 8915,7105 8165,7105" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="850,10669 450,10669 450,10269 850,10269" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<text x="650" y="10499" font-size="70" fill="#46708a" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >SOFTENER</text>
 <polygon points="7925,15305 8675,15305 8675,15605 7925,15605" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="7025,15305 7775,15305 7775,15605 7025,15605" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 </g>

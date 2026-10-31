@@ -7,13 +7,13 @@
 - `main` is the repository's default branch and the live branch. GitHub Pages and Netlify both deploy from it.
 - `house-design-v1` is the working branch. Changes are made there and merged into `main` to go live.
 - The first Claude session worked on an auto-named branch, `claude/zen-shannon-ilvm07`, which was then the default. It was renamed to `house-design-v1` and `main` was created from it. The owner has since deleted the old branch (and with it an unneeded Imgbot pull request).
-- **What is where (31 Oct 2026):** `main` has everything up to **F19** (F17 R1 drawing sheets, F18 practical rear wall, F19 no inverter), merged with the owner's approval; `house-design-v1` was synced to it. Later changes are made on the working branch (`house-design-v1` or a cloud-session branch such as `house-design-v1-3cmazu`) and merged into `main` only when the owner approves.
+- **What is where (31 Oct 2026):** `main` has everything up to **F19** (F17 R1 drawing sheets, F18 practical rear wall, F19 no inverter + 100% society backup), merged with the owner's approval; `house-design-v1` matches it. **F20** (no underground tank; two soft-water roof tanks, softener, solar + geysers) is on the working branch `house-design-v1-3cmazu` and waits for approval.
 **Live sites:**
 - GitHub Pages: https://work-deepti.github.io/house-design/ (R1 at https://work-deepti.github.io/house-design/v1/). Live since 31 Oct 2026. Pages was switched on for the new repo (Source: GitHub Actions); the first deploy had to be started with the workflow's *Run workflow* button, because the earlier push to `main` came before Actions were enabled. Pushes to `main` that touch `gh18-house/**` now deploy on their own.
 - The old site, https://aditya-pandey.github.io/interior-design/, still serves the old repo's `main` and no longer receives updates.
 - Netlify: was linked to the old repository's `main`. It must be re-linked to `work-deepti/house-design` (production branch `main`) to follow the new repo. Netlify sometimes lags behind GitHub Pages.
 
-**State at handover (31 Oct 2026):** everything described here is committed and pushed. The last change is **F19**, removing the inverter (the society's DG backs up 100% of the load), live on `main`. Before it came **F18** (practical rear wall) and **F17** (R1 issue of the architect's drawing, `plans/r1/GH-18_R1_drawing.pdf`, made by `tools/sheets.py`). All automated checks pass (`check_dims` PASS for main and R1; `check_services` 279 pass, 4 warnings, 0 fail).
+**State at handover (31 Oct 2026):** everything described here is committed and pushed. The last change is **F20** (water: no UGT, softener, two 2000 L soft-water roof tanks), on `house-design-v1-3cmazu`, not yet merged into `main`. Before it came **F19** (no inverter; the society's DG backs up 100% of the load), **F18** (practical rear wall) and **F17** (R1 drawing sheets), all live. All automated checks pass (`check_dims` PASS for main and R1; `check_services` all PASS with 4 warnings, 0 fail).
 
 This document is meant to be pasted into a new Claude (or other agent) session as the opening context. It tries to carry everything the previous sessions learned: the goal, the data model, the code, the design decisions and why they were made, the user's preferences, the traps, and the open items. If anything here disagrees with the code, trust the code and fix this document.
 
@@ -99,6 +99,7 @@ This document is meant to be pasted into a new Claude (or other agent) session a
 9. **F17 R1 issue of the architect's drawing:** the owner asked for an updated version of the original R0 sheet "basis how our layout and plan looks like". `tools/sheets.py` → two A3 sheets (§5.6). The FF master-washroom vent window was re-marked **KW-2** at the same time. On `house-design-v1`, awaiting approval.
 10. **F18 rear wall:** the owner found the all-glass GL-5 impractical and asked for ideas, plus a check that a 6-ft man can move freely. After a brainstorm (options: four-panel lift-and-slide, part solid / part glass, bi-fold, French doors) the owner chose practical and secure, uPVC, mesh, grilles, current layout. Built: uPVC sliding door GL-5a + window GL-5b on a sill wall, grilles, pergola raised 150 (§7.3). On `house-design-v1`, awaiting approval.
 11. **F19 no inverter:** the owner said the society has power backup, so the inverter goes. Proposed first (architecture + electrical), then built: the under-stair bay becomes a network shelf + cupboard; the inverter, battery, SM-4 feed and inverter board go; CCTV, door phone, rack and desk UPS socket move to always-on circuit AO on DB-1. The owner then confirmed the society backs up 100% of the load, so nothing is split off backup.
+12. **F20 water:** the owner said there is no underground tank (the society's set-up delivers the water) and asked for two storage tanks with a softener and heater. Proposed with options first; the owner chose both tanks soft, 2 × 2000 L, a bypass at the meter for a future booster, and heater option (a): keep the solar heater + geysers on soft water. Tank 2 first landed in the house centre (Brahmasthan) and was moved over the stair (W zone).
 
 ---
 
@@ -271,9 +272,9 @@ The R1 checks pass at handover:
   | IC-4 | (8700, 20300) | parking | heavy-duty cover |
   | IC-5 | (7600, 21900) | parking | heavy-duty cover; the only municipal connection |
   | RWH | (4500, 21400) | entrance court | 1200 dia pit |
-  | UGT | (900, 21100) | NE front lawn | 1500 × 1200, 5000 L |
+  | VB-1 | (2500, 22000) | front lawn by the gate | meter + bypass box, space for a future booster pump (F20; the UGT is gone) |
 
-- **Runs:** `{id, kind: soil|waste|sewer|cold|hot|pumped|rain, dia, pts[[x,y,z]], serves, outfall?}`.
+- **Runs:** `{id, kind: soil|waste|sewer|cold|hot|rain, dia, pts[[x,y,z]], serves, outfall?}`.
   - Gravity runs are made by `drain()` in `build_r1.py`. It takes the start invert and computes every later z from the plan length × fall, rounding down per segment.
   - Falls are the minimums × 1.1: soil 1:40, waste 1:50, 150 sewer 1:50, 110 sewer 1:40, rain 1:100. The z you type after the first point is ignored.
 - **Fixtures** come from the furniture, e.g. `wc_wall_hung`, `vanity`, `basin`, `sink`, `shower_head`, `bathtub`, `washer_dryer`, `utility_counter` with `sink`.
@@ -401,7 +402,7 @@ It runs three sections and writes `plans/r1/services_report.txt`.
   - chambers are not inside rooms (sealed cleanouts excepted)
   - nothing runs under the guest room
   - nothing is in the party walls (x 0–230 and 9151–9381, outside the OTS)
-  - the UGT is ≥ 2 m from the sewer and the RWH
+  - (UGT clearances: skipped since F20 removed the UGT)
   - OHT head over the showers (warn under 2.5 m)
   - vents ≥ 1 m above the roof or terrace
 - **ELECTRICAL:**
@@ -421,7 +422,7 @@ It runs three sections and writes `plans/r1/services_report.txt`.
 - **VASTU PLACEMENTS:**
   - mandir: the devotee faces E or N; it sits in the NE quarter of its room; no toilet behind, beside or above it
   - tulsi: in the NE corner of its garden; the devotee faces E or N; plot zone N / NE / E preferred (warn otherwise); open to the sky
-  - UGT in the NE; OHT in the S / SW / W; the cook faces east
+  - each roof tank in the S / SW / W (both in W since F20); the cook faces east
 - **Zones:** Vastu zones use a 3 × 3 grid over the house footprint for the DB, ODU and OHT checks, and over the plot for the UGT and tulsi checks.
 
 ---
@@ -647,9 +648,9 @@ Plus the consultant drawings: wiring, plumbing and electrical.
   - The kitchen wash nook drains to grease trap GT-1 in the OTS, so the rear lawn has no chamber or pit (red-line 5, P1, P6).
 - **Sewer route** (as in Rev A): IC-2 (OTS) → sleeved under the GF toilet, lobby and foyer with sealed cleanouts CO-1 / CO-2 → IC-3 (entrance court) → IC-5 (parking). SS-3 joins through IC-4. Only IC-5 connects to the municipal sewer.
 - **Water:**
-  - UGT in the NE front lawn, 3.4 m from the sewer and 2.2 m from the RWH pit.
-  - The meter inlet does not cross the sewer.
-  - Pumped riser R-1 runs in the east-wall chase above FFL (so it is not "under" the guest room), then up the OTS to the OHT on the SF roof.
+  - No UGT (F20): the society supply comes to meter + bypass box VB-1 at the gate (a booster can be fitted there later); the inlet does not cross the sewer.
+  - Riser R-1 runs in the east-wall chase above FFL (so it is not "under" the guest room), up the OTS to the water softener on the SF back terrace; R-2 takes soft water on up to the two 2000 L roof tanks (SF-R01, SF-R03, balanced by EQ-1).
+  - The solar heater is fed soft from the tanks (SH-F); every bathroom keeps its geyser.
   - DT-1 comes down the OTS; DT-2 goes to the SS-3 duct.
   - Solar hot water goes to the master washroom and the kitchen.
 - **Rain:** four 100 mm RWPs on the front face to the RWH pit; its overflow goes to the 300 mm storm drain, which takes no sewage.
@@ -694,6 +695,7 @@ The four warnings in the services report:
 Hold points and open questions:
 - **Master washroom over the kitchen:** sunken floor, waterproofing, flood test (architect, structural, plumber).
 - **F18 rear wall:** deck-to-lawn 1'-0" (0.30 m) drop has no step in the model (architect); door on the south wall (Vastu consultant); lintel and the raised pergola ledger (structural).
+- **F20 water:** the roof slab and stands for two full 2000 L tanks (about 4.4 t; tank 2 over the stair) - structural; society pressure at the roof tanks - plumber / RWA (else fit the booster at VB-1).
 - **Living-area floors:** the owner still has to choose A (Italian marble) or B (large-format tiles); both are in the materials schedule.
 - **Master headboard on the W wall** against red-line 13 (S wall). The electrical sheet assumes W.
 - **SF rooms not in the S / SW** (red-line T); the SF is a proposal.
@@ -807,7 +809,7 @@ Hold points and open questions:
   - UGT / OHT: underground / overhead water tank
   - RWH: rainwater harvesting pit; RWP: rainwater pipe
   - IC: inspection chamber; CO: sealed cleanout; GT: grease trap
-  - SS: soil stack; DT: down-take (cold supply from the OHT); R-1: pumped riser
+  - SS: soil stack; DT: down-take (cold supply from the OHT); R-1 / R-2: riser to the softener / softener to the tanks; VB-1: meter + bypass box; EQ-1: tank balancing pipe
 - **Electrical:**
   - DB: distribution board; MCB: miniature circuit breaker; RCD: 30 mA residual-current device
   - ODU: AC outdoor unit; TR: AC tonnage; EF: exhaust fan; VDP: video door phone
@@ -883,6 +885,7 @@ Type: R = retain, M = modify, H = hold point.
 - **UGT:** 5000 L in the NE front lawn, at least 2 m from any sewer line or chamber and from the RWH pit.
 - **Inlet:** from the gate with a meter and check valve, straight to the UGT.
 - **Pumping:** PP 0.5–1 HP; R-1 (32 mm) in the E-wall chase and the OTS to the OHT.
+- *R1 note (F20): the owner dropped the UGT and pump (society supply); see §7 / ASSUMPTIONS F20.*
 - **Valves:** each toilet has an isolation valve.
 - **Hot water:** a geyser per toilet, inside the toilet, high, out of the splash zone; optional solar heater on the S of the terrace.
 
@@ -1016,7 +1019,7 @@ Type: R = retain, M = modify, H = hold point.
 - OHT SF-R01 (6300, 11600); solar SF-R02 (3000, 11500), both on the roof
 - car GF-O07 (7615, 21945)
 - DB-1 (250, 9451); DB-2 (2973, 5950); DB-3 (250, 13300); RACK (8775, 12885); MTR (5000, 22290)
-- SS-1 (450, 11100); SS-3 (8950, 15420); UGT (900, 21100); RWH (4500, 21400)
+- SS-1 (450, 11100); SS-3 (8950, 15420); VB-1 (2500, 22000); RWH (4500, 21400); roof tanks SF-R01 (6500, 11600), SF-R03 (6950, 13600); softener SF-U05 (650, 10469)
 
 ---
 

@@ -23,6 +23,7 @@ const CHAMBERS = {
   cleanout: { color: 0x9e8f80, name: 'Sealed cleanout' },
   rwh_pit: { color: 0x00a39a, name: 'Rainwater pit', more: 'harvesting + recharge' },
   tank: { color: 0x2f8de4, name: 'Underground tank', more: '5000 L' },
+  valve_box: { color: 0x2f8de4, name: 'Meter + bypass box', more: 'space for a future booster pump' },
 };
 const BANDS = [['GF', 3350], ['FF', 6650], ['SF', 9950], ['ROOF', Infinity]];
 // electrical: a floor's conduits run in the slab above it, so its band ends at the next FFL

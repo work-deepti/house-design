@@ -12,11 +12,11 @@
   ],
   [
    "2. Pipes",
-   "Drainage 76 m, water 92 m, rainwater 41 m (+ AC copper 45 m)"
+   "Drainage 76 m, water 102 m, rainwater 41 m (+ AC copper 45 m)"
   ],
   [
    "3. Wires",
-   "Power and lighting cable 3668 m, Cat-6 75 m, conduit 1298 m"
+   "Power and lighting cable 3681 m, Cat-6 75 m, conduit 1302 m"
   ],
   [
    "4. Paint",
@@ -802,22 +802,21 @@
   "light:sd": 10,
   "light:hd": 1,
   "ucl_m": 9.19,
-  "pipe_m:cold/25": 32.87,
-  "pipe_m:cold/32": 15.85,
+  "pipe_m:cold/25": 34.07,
+  "pipe_m:cold/32": 50.92,
   "pipe_m:hot/25": 17.45,
-  "pipe_m:pumped/32": 25.98,
   "pipe_m:rain/100": 40.61,
   "pipe_m:sewer/110": 4.91,
   "pipe_m:sewer/150": 17.96,
   "pipe_m:soil/110": 29.46,
-  "pipe_m:waste/50": 2.65,
+  "pipe_m:waste/50": 3.32,
   "pipe_m:waste/75": 20.74,
   "copper_m": 45.18,
   "wire_m:Cat-6 U/UTP (data, from the rack)": 74.88,
-  "conduit_m": 1297.52,
+  "conduit_m": 1301.97,
   "wire_m:FRLS Cu 1.5 sq mm": 1655.48,
-  "wire_m:FRLS Cu 2.5 sq mm": 1120.57,
+  "wire_m:FRLS Cu 2.5 sq mm": 1126.35,
   "wire_m:FRLS Cu 4 sq mm": 544.13,
-  "wire_m:Per maker / vendor (lift, pumps, spare): use 4 sq mm until confirmed": 347.73
+  "wire_m:Per maker / vendor (lift, pumps, spare): use 4 sq mm until confirmed": 355.32
  }
 }
