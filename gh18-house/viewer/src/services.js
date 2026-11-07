@@ -16,6 +16,7 @@ export const KINDS = {
   cold: { color: 0x1e7fe0, name: 'Cold water' },
   hot: { color: 0xe0352b, name: 'Hot water' },
   pumped: { color: 0x8e3cc4, name: 'Pumped riser', more: 'UGT → OHT' },
+  gas: { color: 0xe2b227, name: 'Gas (PNG)', more: 'exposed, meter outside' },
 };
 const CHAMBERS = {
   inspection: { color: 0x6d5a4b, name: 'Inspection chamber' },
@@ -31,7 +32,7 @@ const EBANDS = [['GF', 3750], ['FF', 7050], ['SF', 10350], ['ROOF', Infinity]];
 const band = (z, bands = BANDS) => bands.find(([, top]) => z < top)[0];
 const v3 = (p) => new THREE.Vector3(p[0] / 1000, p[2] / 1000, p[1] / 1000);
 // drawn a little fatter than real for the small supply lines, so they read at house scale
-const radius = (kind, dia) => Math.max(dia, ['cold', 'hot', 'pumped'].includes(kind) ? 50 : 70) / 2000;
+const radius = (kind, dia) => Math.max(dia, ['cold', 'hot', 'pumped', 'gas'].includes(kind) ? 50 : 70) / 2000;
 
 function tube(a, b, r) {
   const len = a.distanceTo(b);

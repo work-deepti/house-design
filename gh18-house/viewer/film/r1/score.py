@@ -1,30 +1,46 @@
-"""Original score for the GH-18 R1 walkthrough film, synthesised from scratch (numpy only, no samples).
+"""Neutral background score for the GH-18 R1 house tour, synthesised from scratch (numpy only, no samples).
 
-Warm, unhurried "property film" writing: felt piano, string pads, a soft heartbeat pulse, bells on the terraces.
-80 BPM, 4/4, D major; one bar = 3 s = 72 frames, matching film/r1/shots.mjs (2 bars of title before the first shot).
-  bars  0-1   title: pad swell, single piano notes
-  bars  2-8   arrival (aerial, facade, approach): piano arpeggios enter
-  bars  9-29  ground floor: bass and a soft pulse; the pulse drops out for the mandir (bars 18-19, bells);
-              strings lift the deck and garden (bars 24-28)
-  bars 30-41  first floor: swell into the chapter, fuller arpeggio
-  bars 42-47  second floor terraces: strings and bells
-  bars 48-49  afternoon-to-evening breakdown
-  bars 50-54  finale: low bloom, resolve on D, long tail
+Calm and unobtrusive under the voice-over: felt piano, warm string pads, soft bells; no beat. D major at 70 BPM, a slow
+four-chord cycle (two bars per chord); a gentle swell on each floor change and a resolve on D for the end card. The
+length follows film/r1/shots.mjs (title + shots + end card), so it always matches the edit.
 Usage: python3 film/r1/score.py out.wav
 """
+import json
+import os
+import subprocess
 import sys
 import wave
 
 import numpy as np
 
+HERE = os.path.dirname(os.path.abspath(__file__))
 SR = 48000
-BPM = 80
+BPM = 70
 BEAT = 60 / BPM
 BAR = 4 * BEAT
-BARS = 55
-TAIL = 3.0
-N = int((BARS * BAR + TAIL) * SR)
 rng = np.random.default_rng(11)
+
+
+def tour():
+    js = "import * as m from './film/r1/shots.mjs'; console.log(JSON.stringify({shots: m.SHOTS, intro: m.INTRO_SEC, outro: m.OUTRO_SEC}))"
+    out = subprocess.run(['node', '--input-type=module', '-e', js], cwd=os.path.dirname(os.path.dirname(HERE)), capture_output=True, text=True, check=True)
+    return json.loads(out.stdout)
+
+
+T = tour()
+TOTAL = T['intro'] + sum(s['sec'] for s in T['shots']) + T['outro']
+TAIL = 3.0
+N = int((TOTAL + TAIL) * SR)
+BARS = int(np.ceil(TOTAL / BAR))
+# floor changes (seconds) for the swells
+CHANGES, t, prev = [], T['intro'], None
+for s in T['shots']:
+    lv = s.get('lvl')
+    if lv and prev and lv != prev:
+        CHANGES.append(t)
+    prev = lv or prev
+    t += s['sec']
+END_CARD = TOTAL - T['outro']
 
 
 def hz(note):
@@ -198,130 +214,78 @@ def soft_kick():
     return np.sin(2 * np.pi * np.cumsum(f) / SR) * np.exp(-t * 7) * np.minimum(t / 0.003, 1)
 
 
+
+def piano(f, dur=3.0, vel=0.6):
+    n = int(dur * SR)
+    t = np.arange(n) / SR
+    B = 0.00035
+    sig = np.zeros(n)
+    for h in range(1, 10):
+        fh = f * h * np.sqrt(1 + B * h * h)
+        if fh > 8000:
+            break
+        sig += (1 / h ** 1.3) * (0.5 + 0.5 * vel) ** (h - 1) * np.sin(2 * np.pi * fh * t + h) * np.exp(-t * (0.5 + 0.4 * h + f / 900))
+    e = np.minimum(t / 0.006, 1) * np.clip((dur - t) / 0.3, 0, 1)
+    return sig * e * vel * 0.6
+
+
 CHORDS = [  # (pad voicing, bass root, arpeggio)
-    (['D3', 'A3', 'E4', 'F#4'], 'D2', ['D4', 'A4', 'E5', 'F#5', 'A5', 'F#5', 'E5', 'A4']),     # Dmaj9
-    (['B2', 'F#3', 'A3', 'D4'], 'B1', ['B3', 'F#4', 'A4', 'D5', 'F#5', 'D5', 'A4', 'F#4']),    # Bm7
-    (['G2', 'D3', 'F#3', 'B3'], 'G1', ['G3', 'D4', 'F#4', 'B4', 'D5', 'B4', 'F#4', 'D4']),     # Gmaj7
-    (['A2', 'E3', 'G3', 'D4'], 'A1', ['A3', 'E4', 'G4', 'D5', 'E5', 'D5', 'G4', 'E4']),        # Asus4 (7)
+    (['D3', 'A3', 'E4', 'F#4'], 'D2', ['D4', 'A4', 'F#5', 'E5']),
+    (['B2', 'F#3', 'A3', 'D4'], 'B1', ['B3', 'F#4', 'D5', 'A4']),
+    (['G2', 'D3', 'F#3', 'B3'], 'G1', ['G3', 'D4', 'B4', 'F#4']),
+    (['A2', 'E3', 'G3', 'D4'], 'A1', ['A3', 'E4', 'D5', 'G4']),
 ]
-FINAL = (['D3', 'A3', 'E4', 'F#4', 'A4'], 'D2', ['D5', 'A5', 'E6'])
 
 pad_bus = np.zeros((N, 2))
 pno_bus = np.zeros((N, 2))
 fx_bus = np.zeros((N, 2))
-drums = np.zeros((N, 2))
 low = np.zeros((N, 2))
 
 
 def add(bus, sig, start, gain=1.0, pan=0.0):
     i = int(start * SR)
-    if i >= N:
+    if i >= N or i < 0:
         return
     sig = sig[: N - i]
     if sig.ndim == 1:
-        gl, gr = gain * np.sqrt(0.5 * (1 - pan)), gain * np.sqrt(0.5 * (1 + pan))
-        bus[i:i + len(sig), 0] += sig * gl
-        bus[i:i + len(sig), 1] += sig * gr
+        bus[i:i + len(sig), 0] += sig * gain * np.sqrt(0.5 * (1 - pan))
+        bus[i:i + len(sig), 1] += sig * gain * np.sqrt(0.5 * (1 + pan))
     else:
         bus[i:i + len(sig)] += sig * gain
 
 
-def t_of(bar, beat=0.0):
-    return bar * BAR + beat * BEAT
-
-
-def section(b):
-    if b < 2: return 'title'
-    if b < 9: return 'arrive'
-    if 18 <= b <= 19: return 'mandir'
-    if b < 30: return 'gf'
-    if b < 42: return 'ff'
-    if b < 48: return 'sf'
-    if b < 50: return 'evening'
-    return 'finale'
-
-
 for b in range(BARS):
-    sec = section(b)
-    if sec == 'finale':
-        if b == 50:
-            voicing, root, _ = FINAL
-            add(pad_bus, pad([hz(x) for x in voicing], 4 * BAR, bright=1.1, attack=0.4, release=5.0), t_of(b), 0.95)
-            add(pad_bus, pad([hz(x) * 2 for x in voicing[1:]], 4 * BAR, bright=1.4, attack=1.2, release=5.0), t_of(b), 0.35)
-            tt = np.arange(int(9 * SR)) / SR
-            add(low, np.sin(2 * np.pi * hz(root) * tt) * np.exp(-tt * 0.45) * np.minimum(tt / 0.02, 1), t_of(b), 0.55)
-            add(fx_bus, impact(5.0) * 0.45, t_of(b), 1.0)
-            for k, nt in enumerate(FINAL[2]):
-                add(pno_bus, piano(hz(nt), 6.0, 0.7), t_of(b, k * 0.5), 0.55, (-0.3, 0.1, 0.35)[k])
-        if b == 52:
-            add(pno_bus, piano(hz('D4'), 7.0, 0.55), t_of(b, 2), 0.5, -0.1)
-            add(pno_bus, piano(hz('A4'), 7.0, 0.5), t_of(b, 2.5), 0.4, 0.2)
-        continue
-    voicing, root, arp = CHORDS[b % 4]
-    if sec == 'mandir':
-        voicing, root, arp = CHORDS[2]
-    pad_gain = {'title': 0.75, 'arrive': 0.8, 'gf': 0.7, 'mandir': 0.85, 'ff': 0.75, 'sf': 0.8, 'evening': 1.0}[sec]
-    add(pad_bus, pad([hz(x) for x in voicing], BAR, bright=0.8, attack=1.0 if b else 2.4, release=2.5), t_of(b), pad_gain)
-    if sec in ('sf', 'evening') or 24 <= b <= 28:        # strings an octave up
-        add(pad_bus, pad([hz(x) * 2 for x in voicing[1:]], BAR, bright=1.3, attack=1.3, release=2.5), t_of(b), 0.32)
-    # piano
-    if sec == 'title':
-        add(pno_bus, piano(hz(arp[0]), 4.0, 0.55), t_of(b, 0), 0.6, -0.2)
-        add(pno_bus, piano(hz(arp[3]), 4.0, 0.45), t_of(b, 2), 0.45, 0.25)
-    elif sec == 'mandir':
-        for k in (0, 2):
-            add(pno_bus, piano(hz(arp[k * 2]), 3.5, 0.45), t_of(b, k), 0.5, 0.1)
-    elif sec == 'evening':
+    t0 = b * BAR
+    if t0 >= END_CARD:
+        break
+    voicing, root, arp = CHORDS[(b // 2) % 4]
+    if b % 2 == 0:
+        add(pad_bus, pad([hz(x) for x in voicing], 2 * BAR, bright=0.7, attack=1.6 if b else 3.0, release=3.0), t0, 0.8)
+        add(low, bass(hz(root), 2 * BAR) * 0.5, t0, 0.45)
+    if b >= 1:                                       # sparse piano: four notes a bar, soft
         for k in range(4):
-            add(pno_bus, piano(hz(arp[k * 2]), 3.5, 0.5), t_of(b, k), 0.45, (k - 1.5) * 0.2)
-    else:
-        step = 1.0 if sec == 'arrive' and b < 5 else 0.5
-        vel = {'arrive': 0.6, 'gf': 0.62, 'ff': 0.68, 'sf': 0.72}[sec]
-        for k in range(int(4 / step)):
-            nt = arp[(k * int(step * 2)) % 8]
-            acc = 1.0 if k % (2 if step == 1 else 4) == 0 else 0.82
-            add(pno_bus, piano(hz(nt), 2.2, vel * acc), t_of(b, k * step) + rng.normal() * 0.006, 0.42, ((k % 4) - 1.5) * 0.18)
-    # bass
-    if b >= 9 and sec not in ('mandir',):
-        add(low, bass(hz(root), BAR * 0.95) * 0.9, t_of(b), 0.5)
-    # pulse: heartbeat kick on 1 and 3, shaker on the off-beats
-    pulse = (13 <= b <= 17) or (20 <= b <= 29) or (31 <= b <= 47)
-    if pulse:
-        for beat in (0, 2):
-            add(drums, soft_kick(), t_of(b, beat), 0.55)
-        for k in range(8):
-            if k % 2:
-                add(drums, shaker(), t_of(b, k * 0.5) + rng.normal() * 0.004, 0.5 if k % 4 == 3 else 0.32, 0.35)
-    # bells: mandir (temple-like), terraces and evening sparkle
-    if sec == 'mandir':
-        add(fx_bus, bell(hz('D5'), 5.0), t_of(b, 0), 0.35, -0.2)
-        add(fx_bus, bell(hz('A5'), 5.0), t_of(b, 2), 0.22, 0.25)
-    if sec in ('sf', 'evening'):
-        for k, nt in enumerate((arp[3], arp[4])):
-            add(fx_bus, bell(hz(nt) * 2, 3.5), t_of(b, 1 + 2 * k), 0.1, (-0.4, 0.4)[k])
+            add(pno_bus, piano(hz(arp[k]), 3.2, 0.5 + 0.1 * (k == 0)), t0 + k * BEAT + rng.normal() * 0.008, 0.45, (k - 1.5) * 0.25)
+    if b % 4 == 3:                                   # a soft bell every fourth bar
+        add(fx_bus, bell(hz(arp[2]) * 2, 4.0), t0 + 2 * BEAT, 0.07, 0.3)
+for c in CHANGES:                                    # gentle swell into each floor
+    add(fx_bus, np.convolve(reverse_swell(2.5), np.ones(8) / 8, 'same') * 0.22, c - 2.5, 1.0)
+# end card: resolve on D
+tt = np.arange(int(8 * SR)) / SR
+add(pad_bus, pad([hz(x) for x in ['D3', 'A3', 'E4', 'F#4', 'A4']], T['outro'] + 1, bright=0.8, attack=0.6, release=4.0), END_CARD, 0.9)
+add(low, np.sin(2 * np.pi * hz('D2') * tt) * np.exp(-tt * 0.5) * np.minimum(tt / 0.03, 1), END_CARD, 0.4)
+for k, nt in enumerate(['D5', 'A5', 'F#5']):
+    add(pno_bus, piano(hz(nt), 5.0, 0.55), END_CARD + k * 0.45, 0.5, (-0.3, 0.3, 0.0)[k])
 
-# swells into the chapters
-for b, length in ((2, 2.4), (9, 2.4), (24, 3.0), (30, 3.0), (42, 3.0), (50, 3.0)):
-    add(fx_bus, np.convolve(reverse_swell(length), np.ones(8) / 8, 'same') * 0.3, t_of(b) - length, 1.0)
-
-pad_l = reverb(pad_bus[:, 0], 4.0, 5, 0.5)
-pad_r = reverb(pad_bus[:, 1], 4.0, 6, 0.5)
-pn_l = reverb(pno_bus[:, 0], 3.2, 9, 0.38)
-pn_r = reverb(pno_bus[:, 1], 3.2, 10, 0.38)
-fx_l = reverb(fx_bus[:, 0], 4.5, 3, 0.5)
-fx_r = reverb(fx_bus[:, 1], 4.5, 4, 0.5)
-dr_l = reverb(drums[:, 0], 1.2, 7, 0.15)
-dr_r = reverb(drums[:, 1], 1.2, 8, 0.15)
-mix_l = pad_l * 0.9 + pn_l + fx_l + dr_l * 0.8 + low[:, 0]
-mix_r = pad_r * 0.9 + pn_r + fx_r + dr_r * 0.8 + low[:, 1]
-
+pad_l, pad_r = reverb(pad_bus[:, 0], 4.5, 5, 0.55), reverb(pad_bus[:, 1], 4.5, 6, 0.55)
+pn_l, pn_r = reverb(pno_bus[:, 0], 3.5, 9, 0.42), reverb(pno_bus[:, 1], 3.5, 10, 0.42)
+fx_l, fx_r = reverb(fx_bus[:, 0], 5.0, 3, 0.55), reverb(fx_bus[:, 1], 5.0, 4, 0.55)
+mix = np.stack([pad_l * 0.9 + pn_l + fx_l + low[:, 0], pad_r * 0.9 + pn_r + fx_r + low[:, 1]], 1)
 t = np.arange(N) / SR
-fade = np.minimum(1, t / 2.0) * np.clip((BARS * BAR + TAIL - t) / 5.0, 0, 1)
-mix = np.stack([mix_l, mix_r], 1) * fade[:, None]
+mix *= (np.minimum(1, t / 2.5) * np.clip((TOTAL + TAIL - t) / 5.0, 0, 1))[:, None]
 mix = np.tanh(mix * 1.05)
 mix /= np.max(np.abs(mix)) / 0.89
 
-out = sys.argv[1] if len(sys.argv) > 1 else 'score_r1.wav'
+out = sys.argv[1] if len(sys.argv) > 1 else os.path.join(HERE, 'score_r1.wav')
 with wave.open(out, 'wb') as w:
     w.setnchannels(2)
     w.setsampwidth(2)

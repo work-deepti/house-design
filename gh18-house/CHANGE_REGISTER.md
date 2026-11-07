@@ -46,6 +46,8 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | — | Remove the inverter: the society has power backup (follow-up) | F19 | Inverter, battery, feed SM-4 and the inverter board removed. Under-stair bay → network shelf 1'-11½" (0.60 m) + cupboard 1'-7½" (0.50 m). Society DG backs up 100% of the load (owner). CCTV, door phone, rack and desk UPS socket on always-on circuit AO from DB-1. | Done |
 | — | No underground tank (society supply); 2 water storage tanks with a water softener and heater (follow-up) | F20 | UGT and its pump removed; meter + bypass box VB-1 at the gate (booster-pump provision). Softener on the SF back terrace on the riser. Two 2000 L soft-water tanks on the roof, W zone, balanced. Solar heater (soft-fed) + a geyser per bathroom kept. | Done |
 | — | Master bedroom balcony: half wall and half glass with a door instead of the full-glass door (follow-up) | F21 | GL-7 replaced by a uPVC sliding door GL-7a (3'-5" / 1.05 m clear, east end) and a window GL-7b on a 2'-11" (0.90 m) half wall along the bed. Mesh; MS grilles. Balcony seating moved to the deep west end. | Done |
+| — | Kitchen: detailed functional design in three zones (follow-up) | F22 | Fridge, tall pantry, OTG + microwave tower, mixer station with sockets, PNG hob + chimney + exposed gas line and valve, sink + drainboard + dish rack + RO + 3-bin pull-out, deep drawers, overheads, task + general lighting. Walls, door, window and hob position unchanged. | Done |
+| — | Under-stair storage with a concealed door from the lounge side (follow-up) | F23 | The family lounge does not touch the stair, so the door is on the guest lounge / study wall (owner's choice): concealed flush door in walnut panelling at the high end; lobby door closed; shelves, cleaning rail, pull-out drawers; network rack reachable; guest lounge door rehung to clear it. | Done |
 
 ## 2. Vastu red-line register (owner instruction to the architect, overlaid on R0)
 
@@ -125,6 +127,8 @@ R1 is a separate version of the model. Its data is in `house_r1.json`, its plans
 | Two 2000 L tanks on the SF roof (about 4.4 t full): slab, beams and stands; OTS opening, lift pit and overrun, balconies | Structural, lift vendor | Tank 2 sits over the stair (F20) |
 | Society supply pressure at the roof tanks (F20) | Plumber, RWA | If short, fit an inline booster at VB-1 (bypass, isolator and conduit provided) |
 | Sewer invert levels and the municipal connection | Plumber, RWA / MCG | |
+| PNG route from the society main to the meter on the rear wall (F22) | Gas company, RWA | Meter + main valve outside at the SE corner; exposed line inside |
+| Lintel over the new store door in the 150 partition under flight F2 (F23) | Structural | Door at the high end; nothing structural cut |
 | Front curved balcony (red-line 16, P9) | Architect | Not in the model; the kids-room glazing forms the curve |
 | GF toilet vanity at the south end (red-line 3) | Architect | R0 position kept |
 | Cleanouts, valves, balcony spouts, condensate drains | Plumber | Not modelled |

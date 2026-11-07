@@ -1,8 +1,8 @@
-// Render the R1 film's frames from the live three.js model of Revision R1 (/v1/, headless Chromium, SwiftShader).
+// Render the R1 house-tour frames from the live three.js model of Revision R1 (/v1/, headless Chromium, SwiftShader).
 // Usage (from gh18-house/viewer, after `npm run build`):
-//   node film/r1/render.mjs [gpu] [4k] [only=a,b] [still] [w=1920 h=804] [part=0/2] [port=4181]
+//   node film/r1/render.mjs [gpu] [4k] [only=a,b] [still] [at=0.1,0.9] [w=1920 h=1080] [part=0/2] [port=4181]
 //   gpu   : a visible Chromium window on the real GPU (fast on a Mac, Apple silicon / Metal); default: headless SwiftShader (CPU)
-//   4k    : 3840 x 1608 frames (2.39:1 inside 3840 x 2160); post.py --4k makes the UHD film from them
+//   4k    : 3840 x 2160 (16:9 UHD) frames as JPEG q95; post.py --4k makes the UHD film from them
 //   still : render the frame at u=0.5 of each shot (or at=0.1,0.9 for several) into film/r1/stills/
 //   part=k/n : render every n-th frame starting at k, so n processes can share the work (resumable: existing frames are skipped)
 import { spawn } from 'node:child_process';
@@ -15,7 +15,7 @@ const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', '..');
 const args = Object.fromEntries(process.argv.slice(2).map((a) => a.split('=')).map(([k, v]) => [k, v ?? true]));
 const only = args.only ? String(args.only).split(',') : null;
-const W = +(args.w || (args['4k'] ? 3840 : 1920)), H = +(args.h || (args['4k'] ? 1608 : 804));
+const W = +(args.w || (args['4k'] ? 3840 : 1920)), H = +(args.h || (args['4k'] ? 2160 : 1080));
 const PORT = +(args.port || 4181);
 const [PK, PN] = args.part ? String(args.part).split('/').map(Number) : [0, 1];
 const AT = args.at ? String(args.at).split(',').map(Number) : [0.5];

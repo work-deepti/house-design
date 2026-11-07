@@ -173,6 +173,9 @@
       },
       "KW-2": {
         "desc": "R1-C10 master washroom vent window into the OTS, 500 x 600, sill 1500, with exhaust fan."
+      },
+      "D3c": {
+        "desc": "R1-F23 concealed flush door to the under-stair store, 800 x 2100, push-latch, handleless, faced in the walnut wall panelling; opens inward."
       }
     }
   },
@@ -670,18 +673,6 @@
           "status": "new",
           "openings": [
             {
-              "id": "GF-D3b",
-              "mark": "D3",
-              "type": "door",
-              "offset": 353,
-              "width": 800,
-              "height": 2400,
-              "sill": 0,
-              "hinge": "b",
-              "swing": "-x",
-              "note": "R1-B7 under-stair store; opens out to the lobby"
-            },
-            {
               "id": "GF-D2b",
               "mark": "D2",
               "type": "door",
@@ -689,9 +680,9 @@
               "width": 1000,
               "height": 2400,
               "sill": 0,
-              "hinge": "a",
+              "hinge": "b",
               "swing": "+x",
-              "note": "mandir + store (was study)"
+              "note": "guest lounge / study door; R1-F23 rehung on its north jamb so it parks clear of the store door"
             }
           ],
           "note": "janitor/mandir west wall (5900-6080)"
@@ -745,7 +736,23 @@
           "t": 150,
           "kind": "internal",
           "status": "new",
-          "note": "janitor / mandir wall. PDF shows a 300 joinery strip 15124-15426; modelled as 150 wall 15124-15274."
+          "note": "janitor / mandir wall. PDF shows a 300 joinery strip 15124-15426; modelled as 150 wall 15124-15274.",
+          "openings": [
+            {
+              "id": "GF-D3c",
+              "mark": "D3c",
+              "type": "door",
+              "offset": 60,
+              "width": 800,
+              "height": 2100,
+              "sill": 0,
+              "hinge": "a",
+              "swing": "-y",
+              "note": "R1-F23 concealed flush handleless push-latch door in the walnut panelling; opens into the store",
+              "flush": true,
+              "closed": true
+            }
+          ]
         },
         {
           "id": "GF-W24",
@@ -917,7 +924,7 @@
           },
           "pdf_finish": "Kitchen: Italian Stone / Italian Stone / POP Painted",
           "brief_change": true,
-          "note": "R1-B4 closed U-kitchen; north strip = wash nook (double sink) venting into the OTS"
+          "note": "R1-F22 working kitchen in three zones: storage + fridge (N), prep + washing (S, W, N nook), cooking (E)"
         },
         {
           "id": "GF-DIN",
@@ -1055,7 +1062,7 @@
             "type": "stair soffit",
             "height": null
           },
-          "note": "R1-B7: cupboards cut to the stair soffit; network shelf (F19: no inverter)",
+          "note": "R1-F23 household store under the stair, entered from the guest lounge / study through a concealed door; lobby door closed",
           "was": "Electrical Panel & Janitor",
           "brief_change": true
         },
@@ -1218,17 +1225,8 @@
           "pos": [1240, 5965],
           "size": [2020, 600, 900],
           "rot": 0,
-          "note": "rear run: prep counter (R1-B4: sink moved to the north wash nook)",
-          "top": "granite_black"
-        },
-        {
-          "id": "GF-K02",
-          "room": "GF-KIT",
-          "type": "counter",
-          "pos": [2850, 7800],
-          "size": [2600, 600, 900],
-          "rot": 90,
-          "note": "right run on the new kitchen wall",
+          "note": "R1-F22 zone 2: main prep counter under GL-4, 2.0 m uninterrupted; cutlery-organiser + utensil drawers",
+          "drawers": true,
           "top": "granite_black"
         },
         {
@@ -1238,44 +1236,9 @@
           "pos": [530, 7757],
           "size": [2986, 600, 900],
           "rot": 270,
-          "note": "left run 4185 incl. tall units",
+          "note": "R1-F22 zone 3: hob run; deep pan drawers under the hob, spice/cutlery drawer beside it, 1.5 m prep to the fridge",
+          "drawers": true,
           "top": "granite_black"
-        },
-        {
-          "id": "GF-K05",
-          "room": "GF-KIT",
-          "type": "wall_cabinet",
-          "pos": [405, 7757],
-          "size": [2986, 350, 750],
-          "rot": 270,
-          "z": 1500
-        },
-        {
-          "id": "GF-K06",
-          "room": "GF-KIT",
-          "type": "hood",
-          "pos": [480, 7300],
-          "size": [900, 500, 600],
-          "rot": 270,
-          "z": 1600
-        },
-        {
-          "id": "GF-K08",
-          "room": "GF-KIT",
-          "type": "hob",
-          "pos": [530, 7300],
-          "size": [750, 520, 50],
-          "rot": 270,
-          "z": 900
-        },
-        {
-          "id": "GF-K09",
-          "room": "GF-KIT",
-          "type": "wall_cabinet",
-          "pos": [2975, 7800],
-          "size": [2600, 350, 750],
-          "rot": 90,
-          "z": 1500
         },
         {
           "id": "GF-F20",
@@ -1543,7 +1506,7 @@
           "pos": [2090, 11065],
           "size": [2100, 600, 900],
           "rot": 180,
-          "note": "R1-B4 wash nook: double-bowl sink + drainer",
+          "note": "R1-F22 wash nook: double-bowl sink, drainboard, under-sink storage, bin pull-out",
           "top": "granite_black"
         },
         {
@@ -1555,16 +1518,6 @@
           "rot": 180,
           "z": 700,
           "note": "double bowl; DW point beside it"
-        },
-        {
-          "id": "GF-K13",
-          "room": "GF-KIT",
-          "type": "wall_cabinet",
-          "pos": [2090, 11190],
-          "size": [2100, 350, 700],
-          "rot": 180,
-          "z": 1500,
-          "note": "dish rack / drainer cabinet"
         },
         {
           "id": "GF-M01",
@@ -1605,10 +1558,10 @@
           "id": "GF-M05",
           "room": "GF-MND",
           "type": "settee",
-          "pos": [8200, 15650],
+          "pos": [8200, 15680],
           "size": [1800, 750, 450],
           "rot": 0,
-          "note": "sethi / diwan with bolsters"
+          "note": "sethi / diwan with bolsters, against the new panelling (R1-F23)"
         },
         {
           "id": "GF-M06",
@@ -1661,24 +1614,6 @@
           "note": "prayer rug"
         },
         {
-          "id": "GF-J01",
-          "room": "GF-JAN",
-          "type": "storage_tall",
-          "pos": [6480, 14824],
-          "size": [800, 600, 2250],
-          "rot": 180,
-          "note": "full-height cupboard"
-        },
-        {
-          "id": "GF-J02",
-          "room": "GF-JAN",
-          "type": "storage_tall",
-          "pos": [7280, 14824],
-          "size": [800, 600, 1600],
-          "rot": 180,
-          "note": "cupboard under the lower soffit"
-        },
-        {
           "id": "GF-J03",
           "room": "GF-JAN",
           "type": "shelf",
@@ -1697,31 +1632,13 @@
           "note": "cupboard where the inverter + battery were (R1-F19)"
         },
         {
-          "id": "GF-J04",
-          "room": "GF-JAN",
-          "type": "storage_tall",
-          "pos": [8525, 14824],
-          "size": [1100, 600, 1400],
-          "rot": 180,
-          "note": "low cupboard under the landing"
-        },
-        {
-          "id": "GF-K04",
-          "room": "GF-KIT",
-          "type": "tall_unit",
-          "pos": [530, 10051],
-          "size": [800, 600, 2250],
-          "rot": 270,
-          "note": "fridge + oven tower"
-        },
-        {
           "id": "GF-K12",
           "room": "GF-KIT",
           "type": "storage_tall",
           "pos": [530, 9451],
           "size": [400, 600, 2250],
           "rot": 270,
-          "note": "DB-1, enclosed cabinet (electrical Rev A A3, red-line 4)"
+          "note": "DB-1 (main), enclosed cabinet beside the fridge; front kept clear for access (R1-F22)"
         },
         {
           "id": "GF-O09",
@@ -1756,6 +1673,339 @@
           "size": [2100, 40, 1450],
           "rot": 270,
           "note": "cladding on the east boundary wall, brass Om"
+        },
+        {
+          "id": "GF-K04",
+          "room": "GF-KIT",
+          "type": "fridge_unit",
+          "pos": [580, 10051],
+          "size": [800, 700, 2250],
+          "rot": 270,
+          "note": "R1-F22 full-size double-door fridge (about 700 x 1800) in a ventilated tall unit; 16 A socket inside"
+        },
+        {
+          "id": "GF-K14",
+          "room": "GF-KIT",
+          "type": "appliance_tower",
+          "pos": [2850, 8000],
+          "size": [600, 600, 2250],
+          "rot": 90,
+          "note": "R1-F22 appliance tower: OTG at 900, microwave at eye level (1400-1780), 16 A sockets inside, vented"
+        },
+        {
+          "id": "GF-K15",
+          "room": "GF-KIT",
+          "type": "storage_tall",
+          "pos": [2850, 8750],
+          "size": [900, 600, 2250],
+          "rot": 90,
+          "note": "R1-F22 tall pantry: groceries and dry storage, pull-out baskets"
+        },
+        {
+          "id": "GF-K02",
+          "room": "GF-KIT",
+          "type": "counter",
+          "pos": [2850, 7000],
+          "size": [1400, 600, 900],
+          "rot": 90,
+          "top": "granite_black",
+          "drawers": true,
+          "note": "R1-F22 mixer-grinder station, 1.4 m; sockets at 1.1 m"
+        },
+        {
+          "id": "GF-K09",
+          "room": "GF-KIT",
+          "type": "wall_cabinet",
+          "pos": [2975, 7000],
+          "size": [1400, 350, 750],
+          "rot": 90,
+          "z": 1500,
+          "note": "R1-F22 overheads above the mixer station"
+        },
+        {
+          "id": "GF-K17",
+          "room": "GF-KIT",
+          "type": "mixer_grinder",
+          "pos": [2930, 6750],
+          "size": [220, 220, 420],
+          "rot": 90,
+          "z": 900,
+          "note": "R1-F22 mixer-grinder in its station, plugged in"
+        },
+        {
+          "id": "GF-K18",
+          "room": "GF-KIT",
+          "type": "drainboard",
+          "pos": [2420, 11065],
+          "size": [500, 450, 12],
+          "rot": 180,
+          "z": 900,
+          "note": "R1-F22 drainboard beside the sink"
+        },
+        {
+          "id": "GF-K22",
+          "room": "GF-KIT",
+          "type": "drawer_open",
+          "pos": [1030, 7300],
+          "size": [700, 450, 300],
+          "rot": 270,
+          "z": 120,
+          "contents": "pots",
+          "note": "R1-F22 deep pan drawer under the hob, shown pulled out (pressure cookers, kadhai, tawa)"
+        },
+        {
+          "id": "GF-K23",
+          "room": "GF-KIT",
+          "type": "drawer_open",
+          "pos": [1600, 6465],
+          "size": [600, 400, 110],
+          "rot": 0,
+          "z": 745,
+          "contents": "cutlery",
+          "note": "R1-F22 cutlery-organiser drawer in the prep counter, shown pulled out"
+        },
+        {
+          "id": "GF-K19",
+          "room": "GF-KIT",
+          "type": "bin_pullout",
+          "pos": [2895, 10790],
+          "size": [450, 500, 650],
+          "rot": 180,
+          "note": "R1-F22 3-bin segregated pull-out (wet / dry / recyclable), shown pulled out"
+        },
+        {
+          "id": "GF-K13",
+          "room": "GF-KIT",
+          "type": "dish_rack",
+          "pos": [1770, 11190],
+          "size": [1460, 350, 700],
+          "rot": 180,
+          "z": 1500,
+          "note": "R1-F22 open dish-drying rack over the sink (drips into the sink)"
+        },
+        {
+          "id": "GF-K20",
+          "room": "GF-KIT",
+          "type": "wall_cabinet",
+          "pos": [2820, 11190],
+          "size": [640, 350, 700],
+          "rot": 180,
+          "z": 1500,
+          "note": "R1-F22 overhead beside the dish rack"
+        },
+        {
+          "id": "GF-K21",
+          "room": "GF-KIT",
+          "type": "water_purifier",
+          "pos": [2900, 11250],
+          "size": [300, 230, 420],
+          "rot": 180,
+          "z": 1030,
+          "note": "R1-F22 wall-mounted RO purifier with its own tap; feed from DT-1b, reject to the sink waste"
+        },
+        {
+          "id": "GF-K05",
+          "room": "GF-KIT",
+          "type": "wall_cabinet",
+          "pos": [405, 6557],
+          "size": [586, 350, 750],
+          "rot": 270,
+          "z": 1500,
+          "note": "R1-F22 overhead, left of the chimney"
+        },
+        {
+          "id": "GF-K05b",
+          "room": "GF-KIT",
+          "type": "wall_cabinet",
+          "pos": [405, 8500],
+          "size": [1500, 350, 750],
+          "rot": 270,
+          "z": 1500,
+          "note": "R1-F22 overheads, right of the chimney"
+        },
+        {
+          "id": "GF-K06",
+          "room": "GF-KIT",
+          "type": "hood",
+          "pos": [480, 7300],
+          "size": [900, 500, 850],
+          "rot": 270,
+          "z": 1600,
+          "note": "R1-F22 900 chimney, lower edge 700 above the hob; stack to the duct"
+        },
+        {
+          "id": "GF-K16",
+          "room": "GF-KIT",
+          "type": "duct",
+          "pos": [430, 6445],
+          "size": [1710, 220, 160],
+          "rot": 270,
+          "z": 2450,
+          "note": "R1-F22 150 mm chimney duct over the wall cabinets to the rear external wall (not through the east party wall)"
+        },
+        {
+          "id": "GF-K08",
+          "room": "GF-KIT",
+          "type": "hob_png",
+          "pos": [530, 7300],
+          "size": [750, 520, 50],
+          "rot": 270,
+          "z": 900,
+          "note": "R1-F22 4-burner PNG hob (society gas)"
+        },
+        {
+          "id": "GF-K31",
+          "room": "GF-KIT",
+          "type": "gas_pipe",
+          "pos": [420, 5555],
+          "size": [290, 25, 25],
+          "rot": 90,
+          "z": 1868,
+          "note": "R1-F22 PNG line through the rear wall in a sleeve"
+        },
+        {
+          "id": "GF-K32",
+          "room": "GF-KIT",
+          "type": "gas_pipe",
+          "pos": [345, 5690],
+          "size": [150, 25, 25],
+          "rot": 0,
+          "z": 1868,
+          "note": "R1-F22 PNG line"
+        },
+        {
+          "id": "GF-K33",
+          "room": "GF-KIT",
+          "type": "gas_pipe",
+          "pos": [270, 5690],
+          "size": [25, 25, 730],
+          "rot": 0,
+          "z": 1150,
+          "vertical": true,
+          "note": "R1-F22 PNG line down the SE corner"
+        },
+        {
+          "id": "GF-K34",
+          "room": "GF-KIT",
+          "type": "gas_pipe",
+          "pos": [270, 6145],
+          "size": [910, 25, 25],
+          "rot": 90,
+          "z": 1138,
+          "note": "R1-F22 PNG line along the east wall, above the backsplash"
+        },
+        {
+          "id": "GF-K35",
+          "room": "GF-KIT",
+          "type": "gas_valve",
+          "pos": [285, 6600],
+          "size": [90, 70, 90],
+          "rot": 270,
+          "z": 1105,
+          "note": "R1-F22 quarter-turn appliance isolation valve, 300 clear of the hob, at hand height"
+        },
+        {
+          "id": "GF-K36",
+          "room": "GF-KIT",
+          "type": "gas_pipe",
+          "pos": [270, 6600],
+          "size": [25, 25, 205],
+          "rot": 0,
+          "z": 900,
+          "vertical": true,
+          "note": "R1-F22 drop to the hob connector inside the base unit"
+        },
+        {
+          "id": "GF-O13",
+          "room": "GF-DECK",
+          "type": "gas_meter",
+          "pos": [420, 5440],
+          "size": [320, 150, 420],
+          "rot": 180,
+          "z": 1400,
+          "note": "R1-F22 PNG meter + main valve on the rear external wall at the SE corner (gas company to confirm the incoming route)"
+        },
+        {
+          "id": "GF-M09",
+          "room": "GF-MND",
+          "type": "wall_panel",
+          "pos": [8045, 15284],
+          "size": [2211, 20, 2700],
+          "rot": 0,
+          "note": "R1-F23 walnut fluted wall panelling, south wall"
+        },
+        {
+          "id": "GF-M10",
+          "room": "GF-MND",
+          "type": "wall_panel",
+          "pos": [6540, 15284],
+          "size": [800, 20, 600],
+          "rot": 0,
+          "z": 2100,
+          "note": "R1-F23 panelling over the concealed door"
+        },
+        {
+          "id": "GF-M11",
+          "room": "GF-MND",
+          "type": "wall_panel",
+          "pos": [6110, 15284],
+          "size": [60, 20, 2700],
+          "rot": 0,
+          "note": "R1-F23 panelling, corner strip"
+        },
+        {
+          "id": "GF-M12",
+          "room": "GF-MND",
+          "type": "reveal_frame",
+          "pos": [6540, 15296],
+          "size": [800, 6, 2100],
+          "rot": 0,
+          "note": "R1-F23 4 mm shadow gap round the concealed door"
+        },
+        {
+          "id": "GF-J01",
+          "room": "GF-JAN",
+          "type": "shelf",
+          "pos": [6400, 14295],
+          "size": [400, 450, 2450],
+          "rot": 0,
+          "note": "R1-F23 tall shelves at the high end: luggage on top, household supplies"
+        },
+        {
+          "id": "GF-J02",
+          "room": "GF-JAN",
+          "type": "shelf",
+          "pos": [6900, 14295],
+          "size": [600, 450, 1950],
+          "rot": 0,
+          "note": "R1-F23 shelves under the falling soffit"
+        },
+        {
+          "id": "GF-J06",
+          "room": "GF-JAN",
+          "type": "shelf",
+          "pos": [7500, 14295],
+          "size": [600, 450, 1450],
+          "rot": 0,
+          "note": "R1-F23 low shelves"
+        },
+        {
+          "id": "GF-J07",
+          "room": "GF-JAN",
+          "type": "tool_rail",
+          "pos": [7400, 15090],
+          "size": [800, 60, 1400],
+          "rot": 180,
+          "note": "R1-F23 cleaning tools: mop, broom, vacuum on a wall rail"
+        },
+        {
+          "id": "GF-J04",
+          "room": "GF-JAN",
+          "type": "drawer_stack",
+          "pos": [8850, 14250],
+          "size": [1700, 600, 1350],
+          "rot": 90,
+          "note": "R1-F23 deep pull-out drawers under the landing, reached along a 650 bay"
         },
         {
           "id": "GF-O08",
@@ -4294,6 +4544,13 @@
           "serves": "down-take in the SS-3 duct: FF kids toilet"
         },
         {
+          "id": "GAS-1",
+          "kind": "gas",
+          "dia": 15,
+          "pts": [[420, 5440, 1820], [420, 5440, 1880], [420, 5690, 1880], [270, 5690, 1880], [270, 5690, 1150], [270, 6600, 1150], [270, 6600, 900], [530, 7300, 900]],
+          "serves": "society PNG -> meter on the rear wall -> exposed line -> appliance valve -> hob (R1-F22)"
+        },
+        {
           "id": "HW-1",
           "kind": "hot",
           "dia": 25,
@@ -4371,9 +4628,9 @@
           "floor": "GF",
           "room": "GF-KIT",
           "serves": "GF-KIT",
-          "at": [1700, 7300, 3200],
+          "at": [1200, 6900, 3200],
           "base": 450,
-          "note": "",
+          "note": "general downlight (R1-F22: four instead of two)",
           "circuit": "L1"
         },
         {
@@ -4382,49 +4639,94 @@
           "floor": "GF",
           "room": "GF-KIT",
           "serves": "GF-KIT",
-          "at": [1700, 9800, 3200],
+          "at": [2300, 6900, 3200],
           "base": 450,
-          "note": "",
+          "note": "general downlight (R1-F22: four instead of two)",
           "circuit": "L1"
         },
         {
           "id": "GF-E03",
+          "kind": "light",
+          "floor": "GF",
+          "room": "GF-KIT",
+          "serves": "GF-KIT",
+          "at": [1200, 9300, 3200],
+          "base": 450,
+          "note": "general downlight (R1-F22: four instead of two)",
+          "circuit": "L1"
+        },
+        {
+          "id": "GF-E04",
+          "kind": "light",
+          "floor": "GF",
+          "room": "GF-KIT",
+          "serves": "GF-KIT",
+          "at": [2300, 9300, 3200],
+          "base": 450,
+          "note": "general downlight (R1-F22: four instead of two)",
+          "circuit": "L1"
+        },
+        {
+          "id": "GF-E05",
+          "kind": "light",
+          "floor": "GF",
+          "room": "GF-KIT",
+          "serves": "GF-KIT",
+          "at": [2000, 11000, 3200],
+          "base": 450,
+          "note": "task light over the sink (R1-F22)",
+          "circuit": "L1"
+        },
+        {
+          "id": "GF-E06",
           "kind": "ucl",
           "floor": "GF",
           "room": "GF-KIT",
           "serves": "GF-KIT",
           "at": [430, 7757, 1900],
           "base": 450,
-          "note": "under the east wall cabinets",
+          "note": "under the east wall cabinets (prep + hob task light)",
           "face": [1.0, 0.0],
           "circuit": "L1"
         },
         {
-          "id": "GF-E04",
+          "id": "GF-E07",
           "kind": "ucl",
           "floor": "GF",
           "room": "GF-KIT",
           "serves": "GF-KIT",
-          "at": [2950, 7800, 1900],
+          "at": [2950, 7000, 1900],
           "base": 450,
-          "note": "under the west wall cabinets",
+          "note": "under the west wall cabinets, mixer station",
           "face": [-1.0, 0.0],
           "circuit": "L1"
         },
         {
-          "id": "GF-E05",
+          "id": "GF-E08",
+          "kind": "ucl",
+          "floor": "GF",
+          "room": "GF-KIT",
+          "serves": "GF-KIT",
+          "at": [1600, 5700, 2450],
+          "base": 450,
+          "note": "over the south prep counter (R1-F22)",
+          "face": [-0.0, 1.0],
+          "circuit": "L1"
+        },
+        {
+          "id": "GF-E09",
           "kind": "ucl",
           "floor": "GF",
           "room": "GF-KIT",
           "serves": "GF-KIT",
           "at": [2090, 11190, 1900],
           "base": 450,
-          "note": "under the wash-nook cabinet (R1-B4)",
+          "note": "under the dish rack (R1-B4, F22)",
           "face": [0.0, -1.0],
           "circuit": "L1"
         },
         {
-          "id": "GF-E06",
+          "id": "GF-E10",
           "kind": "hd",
           "floor": "GF",
           "room": "GF-KIT",
@@ -4435,55 +4737,103 @@
           "circuit": "L1"
         },
         {
-          "id": "GF-E07",
+          "id": "GF-E11",
           "kind": "sb",
           "floor": "GF",
           "room": "GF-KIT",
           "serves": "GF-KIT",
-          "at": [3130, 9200, 1650],
+          "at": [3130, 9250, 1650],
           "base": 450,
           "note": "by the kitchen door",
           "face": [-1.0, 0.0],
           "circuit": "L1"
         },
         {
-          "id": "GF-E08",
+          "id": "GF-E12",
           "kind": "ch",
           "floor": "GF",
           "room": "GF-KIT",
           "serves": "GF-KIT",
           "at": [250, 7300, 2650],
           "base": 450,
-          "note": "chimney over the hob on the east wall (A3), duct along the cabinets to the rear wall",
+          "note": "chimney over the hob on the east wall (A3), duct over the cabinets to the rear wall (R1-F22)",
           "face": [1.0, 0.0],
           "circuit": "S1"
         },
         {
-          "id": "GF-E09",
+          "id": "GF-E13",
           "kind": "s6c",
           "floor": "GF",
           "room": "GF-KIT",
           "serves": "GF-KIT",
           "at": [250, 8700, 1550],
           "base": 450,
-          "note": "counter socket",
+          "note": "counter socket, prep between hob and fridge",
           "face": [1.0, 0.0],
           "circuit": "S1"
         },
         {
-          "id": "GF-E10",
+          "id": "GF-E14",
+          "kind": "s6",
+          "floor": "GF",
+          "room": "GF-KIT",
+          "serves": "GF-KIT",
+          "at": [3130, 6650, 1550],
+          "base": 450,
+          "note": "mixer-grinder station (R1-F22)",
+          "face": [-1.0, 0.0],
+          "circuit": "S1"
+        },
+        {
+          "id": "GF-E15",
+          "kind": "s6",
+          "floor": "GF",
+          "room": "GF-KIT",
+          "serves": "GF-KIT",
+          "at": [3130, 6950, 1550],
+          "base": 450,
+          "note": "mixer-grinder station (R1-F22)",
+          "face": [-1.0, 0.0],
+          "circuit": "S1"
+        },
+        {
+          "id": "GF-E16",
           "kind": "s16",
           "floor": "GF",
           "room": "GF-KIT",
           "serves": "GF-KIT",
           "at": [3130, 7300, 1550],
           "base": 450,
-          "note": "microwave, west counter",
+          "note": "mixer station 16 A: juicer / wet grinder (R1-F22)",
           "face": [-1.0, 0.0],
           "circuit": "P1"
         },
         {
-          "id": "GF-E11",
+          "id": "GF-E17",
+          "kind": "s16",
+          "floor": "GF",
+          "room": "GF-KIT",
+          "serves": "GF-KIT",
+          "at": [3130, 7900, 1600],
+          "base": 450,
+          "note": "OTG, inside the appliance tower (R1-F22)",
+          "face": [-1.0, 0.0],
+          "circuit": "P2"
+        },
+        {
+          "id": "GF-E18",
+          "kind": "s16",
+          "floor": "GF",
+          "room": "GF-KIT",
+          "serves": "GF-KIT",
+          "at": [3130, 8100, 2000],
+          "base": 450,
+          "note": "microwave, inside the appliance tower (R1-F22)",
+          "face": [-1.0, 0.0],
+          "circuit": "P3"
+        },
+        {
+          "id": "GF-E19",
           "kind": "s16",
           "floor": "GF",
           "room": "GF-KIT",
@@ -4492,22 +4842,46 @@
           "base": 450,
           "note": "fridge, in the tall unit",
           "face": [1.0, 0.0],
-          "circuit": "P2"
+          "circuit": "P4"
         },
         {
-          "id": "GF-E12",
+          "id": "GF-E20",
+          "kind": "s6",
+          "floor": "GF",
+          "room": "GF-KIT",
+          "serves": "GF-KIT",
+          "at": [3080, 11345, 1900],
+          "base": 450,
+          "note": "RO purifier, beside it (R1-F22)",
+          "face": [0.0, -1.0],
+          "circuit": "S1"
+        },
+        {
+          "id": "GF-E21",
+          "kind": "s6",
+          "floor": "GF",
+          "room": "GF-KIT",
+          "serves": "GF-KIT",
+          "at": [250, 7750, 1000],
+          "base": 450,
+          "note": "hob auto-ignition, inside the base unit (R1-F22)",
+          "face": [1.0, 0.0],
+          "circuit": "S1"
+        },
+        {
+          "id": "GF-E22",
           "kind": "s16",
           "floor": "GF",
           "room": "GF-KIT",
           "serves": "GF-KIT",
           "at": [2850, 11345, 750],
           "base": 450,
-          "note": "dishwasher under the wash-nook counter, 0.65 m from the sink",
+          "note": "spare 16 A under the wash-nook counter (dishwasher-ready)",
           "face": [0.0, -1.0],
-          "circuit": "P3"
+          "circuit": "P5"
         },
         {
-          "id": "GF-E13",
+          "id": "GF-E23",
           "kind": "ef",
           "floor": "GF",
           "room": "GF-KIT",
@@ -4516,10 +4890,10 @@
           "base": 450,
           "note": "exhaust fan on the rear external wall (A3)",
           "face": [0.0, 1.0],
-          "circuit": "L1"
+          "circuit": "L2"
         },
         {
-          "id": "GF-E14",
+          "id": "GF-E24",
           "kind": "ef",
           "floor": "GF",
           "room": "GF-KIT",
@@ -4528,10 +4902,10 @@
           "base": 450,
           "note": "wash-nook exhaust into the OTS through KW-1 (R1-B4)",
           "face": [1.0, 0.0],
-          "circuit": "L1"
+          "circuit": "L2"
         },
         {
-          "id": "GF-E15",
+          "id": "GF-E25",
           "kind": "db",
           "floor": "GF",
           "room": "GF-KIT",
@@ -4543,7 +4917,7 @@
           "face": [1.0, 0.0]
         },
         {
-          "id": "GF-E16",
+          "id": "GF-E26",
           "kind": "light",
           "floor": "GF",
           "room": "GF-DRW",
@@ -4551,10 +4925,10 @@
           "at": [4800, 6400, 3200],
           "base": 450,
           "note": "",
-          "circuit": "L1"
+          "circuit": "L2"
         },
         {
-          "id": "GF-E17",
+          "id": "GF-E27",
           "kind": "light",
           "floor": "GF",
           "room": "GF-DRW",
@@ -4562,10 +4936,10 @@
           "at": [8200, 6400, 3200],
           "base": 450,
           "note": "",
-          "circuit": "L1"
+          "circuit": "L2"
         },
         {
-          "id": "GF-E18",
+          "id": "GF-E28",
           "kind": "light",
           "floor": "GF",
           "room": "GF-DIN",
@@ -4576,7 +4950,7 @@
           "circuit": "L2"
         },
         {
-          "id": "GF-E19",
+          "id": "GF-E29",
           "kind": "light",
           "floor": "GF",
           "room": "GF-DIN",
@@ -4587,7 +4961,7 @@
           "circuit": "L2"
         },
         {
-          "id": "GF-E20",
+          "id": "GF-E30",
           "kind": "pd",
           "floor": "GF",
           "room": "GF-DIN",
@@ -4598,7 +4972,7 @@
           "circuit": "L2"
         },
         {
-          "id": "GF-E21",
+          "id": "GF-E31",
           "kind": "fan",
           "floor": "GF",
           "room": "GF-DRW",
@@ -4609,7 +4983,7 @@
           "circuit": "L2"
         },
         {
-          "id": "GF-E22",
+          "id": "GF-E32",
           "kind": "sd",
           "floor": "GF",
           "room": "GF-DRW",
@@ -4620,7 +4994,7 @@
           "circuit": "L2"
         },
         {
-          "id": "GF-E23",
+          "id": "GF-E33",
           "kind": "ac",
           "floor": "GF",
           "room": "GF-DRW",
@@ -4633,7 +5007,7 @@
           "circuit": "AC1"
         },
         {
-          "id": "GF-E24",
+          "id": "GF-E34",
           "kind": "tv",
           "floor": "GF",
           "room": "GF-DRW",
@@ -4645,7 +5019,7 @@
           "circuit": "S1"
         },
         {
-          "id": "GF-E25",
+          "id": "GF-E35",
           "kind": "s6",
           "floor": "GF",
           "room": "GF-DRW",
@@ -4657,7 +5031,7 @@
           "circuit": "S1"
         },
         {
-          "id": "GF-E26",
+          "id": "GF-E36",
           "kind": "s6",
           "floor": "GF",
           "room": "GF-DRW",
@@ -4666,10 +5040,10 @@
           "base": 450,
           "note": "",
           "face": [1.0, 0.0],
-          "circuit": "S1"
+          "circuit": "S2"
         },
         {
-          "id": "GF-E27",
+          "id": "GF-E37",
           "kind": "sb2w",
           "floor": "GF",
           "room": "GF-DRW",
@@ -4681,7 +5055,7 @@
           "circuit": "L2"
         },
         {
-          "id": "GF-E28",
+          "id": "GF-E38",
           "kind": "sb2w",
           "floor": "GF",
           "room": "GF-DIN",
@@ -4693,7 +5067,7 @@
           "circuit": "L2"
         },
         {
-          "id": "GF-E29",
+          "id": "GF-E39",
           "kind": "ml",
           "floor": "GF",
           "room": "GF-DIN",
@@ -4705,7 +5079,7 @@
           "circuit": "L2"
         },
         {
-          "id": "GF-E30",
+          "id": "GF-E40",
           "kind": "wl",
           "floor": "GF",
           "room": "GF-DRW",
@@ -4714,10 +5088,10 @@
           "base": 450,
           "note": "mandir arch backlight + cove LEDs (R1-B6)",
           "face": [1.0, 0.0],
-          "circuit": "L2"
+          "circuit": "L3"
         },
         {
-          "id": "GF-E31",
+          "id": "GF-E41",
           "kind": "light",
           "floor": "GF",
           "room": "GF-TLT",
@@ -4725,10 +5099,10 @@
           "at": [3300, 12800, 3050],
           "base": 450,
           "note": "",
-          "circuit": "L2"
+          "circuit": "L3"
         },
         {
-          "id": "GF-E32",
+          "id": "GF-E42",
           "kind": "light",
           "floor": "GF",
           "room": "GF-TLT",
@@ -4736,10 +5110,10 @@
           "at": [1700, 12800, 3050],
           "base": 450,
           "note": "",
-          "circuit": "L2"
+          "circuit": "L3"
         },
         {
-          "id": "GF-E33",
+          "id": "GF-E43",
           "kind": "ef",
           "floor": "GF",
           "room": "GF-TLT",
@@ -4748,10 +5122,10 @@
           "base": 450,
           "note": "on the OTS wall (A4)",
           "face": [0.0, 1.0],
-          "circuit": "L2"
+          "circuit": "L3"
         },
         {
-          "id": "GF-E34",
+          "id": "GF-E44",
           "kind": "gy",
           "floor": "GF",
           "room": "GF-TLT",
@@ -4763,7 +5137,7 @@
           "circuit": "G1"
         },
         {
-          "id": "GF-E35",
+          "id": "GF-E45",
           "kind": "s6",
           "floor": "GF",
           "room": "GF-TLT",
@@ -4772,10 +5146,10 @@
           "base": 450,
           "note": "0.68 m from the vanity, RCD (A4)",
           "face": [-1.0, 0.0],
-          "circuit": "S1"
+          "circuit": "S2"
         },
         {
-          "id": "GF-E36",
+          "id": "GF-E46",
           "kind": "sb",
           "floor": "GF",
           "room": "GF-LOB",
@@ -4784,10 +5158,10 @@
           "base": 450,
           "note": "toilet switches outside the door (A4)",
           "face": [1.0, 0.0],
-          "circuit": "L2"
+          "circuit": "L3"
         },
         {
-          "id": "GF-E37",
+          "id": "GF-E47",
           "kind": "light",
           "floor": "GF",
           "room": "GF-LOB",
@@ -4798,7 +5172,7 @@
           "circuit": "L3"
         },
         {
-          "id": "GF-E38",
+          "id": "GF-E48",
           "kind": "light",
           "floor": "GF",
           "room": "GF-LOB",
@@ -4809,7 +5183,7 @@
           "circuit": "L3"
         },
         {
-          "id": "GF-E39",
+          "id": "GF-E49",
           "kind": "sd",
           "floor": "GF",
           "room": "GF-LOB",
@@ -4820,7 +5194,7 @@
           "circuit": "L3"
         },
         {
-          "id": "GF-E40",
+          "id": "GF-E50",
           "kind": "sb2w",
           "floor": "GF",
           "room": "GF-LOB",
@@ -4832,7 +5206,7 @@
           "circuit": "L3"
         },
         {
-          "id": "GF-E41",
+          "id": "GF-E51",
           "kind": "light",
           "floor": "GF",
           "room": "GF-JAN",
@@ -4843,19 +5217,19 @@
           "circuit": "L3"
         },
         {
-          "id": "GF-E42",
+          "id": "GF-E52",
           "kind": "sb",
           "floor": "GF",
           "room": "GF-JAN",
           "serves": "GF-JAN",
-          "at": [6100, 14150, 1650],
+          "at": [7000, 15110, 1650],
           "base": 450,
-          "note": "",
-          "face": [1.0, 0.0],
+          "note": "inside the concealed door (R1-F23)",
+          "face": [0.0, -1.0],
           "circuit": "L3"
         },
         {
-          "id": "GF-E43",
+          "id": "GF-E53",
           "kind": "rack",
           "floor": "GF",
           "room": "GF-JAN",
@@ -4868,7 +5242,7 @@
           "circuit": "AO"
         },
         {
-          "id": "GF-E44",
+          "id": "GF-E54",
           "kind": "light",
           "floor": "GF",
           "room": "GF-FOY",
@@ -4879,7 +5253,7 @@
           "circuit": "L3"
         },
         {
-          "id": "GF-E45",
+          "id": "GF-E55",
           "kind": "light",
           "floor": "GF",
           "room": "GF-FOY",
@@ -4890,7 +5264,7 @@
           "circuit": "L3"
         },
         {
-          "id": "GF-E46",
+          "id": "GF-E56",
           "kind": "vdp",
           "floor": "GF",
           "room": "GF-FOY",
@@ -4902,7 +5276,7 @@
           "circuit": "AO"
         },
         {
-          "id": "GF-E47",
+          "id": "GF-E57",
           "kind": "sb",
           "floor": "GF",
           "room": "GF-FOY",
@@ -4914,7 +5288,7 @@
           "circuit": "L3"
         },
         {
-          "id": "GF-E48",
+          "id": "GF-E58",
           "kind": "light",
           "floor": "GF",
           "room": "GF-GST",
@@ -4922,10 +5296,10 @@
           "at": [1900, 15300, 3200],
           "base": 450,
           "note": "",
-          "circuit": "L3"
+          "circuit": "L4"
         },
         {
-          "id": "GF-E49",
+          "id": "GF-E59",
           "kind": "light",
           "floor": "GF",
           "room": "GF-GST",
@@ -4933,10 +5307,10 @@
           "at": [1900, 18300, 3200],
           "base": 450,
           "note": "",
-          "circuit": "L3"
+          "circuit": "L4"
         },
         {
-          "id": "GF-E50",
+          "id": "GF-E60",
           "kind": "fan",
           "floor": "GF",
           "room": "GF-GST",
@@ -4944,10 +5318,10 @@
           "at": [1900, 16845, 3200],
           "base": 450,
           "note": "",
-          "circuit": "L3"
+          "circuit": "L4"
         },
         {
-          "id": "GF-E51",
+          "id": "GF-E61",
           "kind": "ac",
           "floor": "GF",
           "room": "GF-GST",
@@ -4960,7 +5334,7 @@
           "circuit": "AC2"
         },
         {
-          "id": "GF-E52",
+          "id": "GF-E62",
           "kind": "tv",
           "floor": "GF",
           "room": "GF-GST",
@@ -4969,10 +5343,10 @@
           "base": 450,
           "note": "west wall facing the bed (A6)",
           "face": [-1.0, 0.0],
-          "circuit": "S1"
+          "circuit": "S2"
         },
         {
-          "id": "GF-E53",
+          "id": "GF-E63",
           "kind": "s6",
           "floor": "GF",
           "room": "GF-GST",
@@ -4981,10 +5355,10 @@
           "base": 450,
           "note": "",
           "face": [-1.0, 0.0],
-          "circuit": "S1"
+          "circuit": "S2"
         },
         {
-          "id": "GF-E54",
+          "id": "GF-E64",
           "kind": "sb",
           "floor": "GF",
           "room": "GF-GST",
@@ -4993,10 +5367,10 @@
           "base": 450,
           "note": "by the door",
           "face": [-1.0, 0.0],
-          "circuit": "L3"
+          "circuit": "L4"
         },
         {
-          "id": "GF-E55",
+          "id": "GF-E65",
           "kind": "sd",
           "floor": "GF",
           "room": "GF-GST",
@@ -5004,10 +5378,10 @@
           "at": [1900, 16000, 3200],
           "base": 450,
           "note": "smoke detector (R1 addition)",
-          "circuit": "L3"
+          "circuit": "L4"
         },
         {
-          "id": "GF-E56",
+          "id": "GF-E66",
           "kind": "sb2w",
           "floor": "GF",
           "room": "GF-GST",
@@ -5016,10 +5390,10 @@
           "base": 450,
           "note": "bedside 2-way + fan regulator",
           "face": [1.0, 0.0],
-          "circuit": "L3"
+          "circuit": "L4"
         },
         {
-          "id": "GF-E57",
+          "id": "GF-E67",
           "kind": "s6",
           "floor": "GF",
           "room": "GF-GST",
@@ -5031,7 +5405,7 @@
           "circuit": "S2"
         },
         {
-          "id": "GF-E58",
+          "id": "GF-E68",
           "kind": "sb2w",
           "floor": "GF",
           "room": "GF-GST",
@@ -5040,10 +5414,10 @@
           "base": 450,
           "note": "bedside 2-way + fan regulator",
           "face": [1.0, 0.0],
-          "circuit": "L3"
+          "circuit": "L4"
         },
         {
-          "id": "GF-E59",
+          "id": "GF-E69",
           "kind": "s6",
           "floor": "GF",
           "room": "GF-GST",
@@ -5055,7 +5429,7 @@
           "circuit": "S2"
         },
         {
-          "id": "GF-E60",
+          "id": "GF-E70",
           "kind": "light",
           "floor": "GF",
           "room": "GF-MND",
@@ -5066,7 +5440,7 @@
           "circuit": "L4"
         },
         {
-          "id": "GF-E61",
+          "id": "GF-E71",
           "kind": "light",
           "floor": "GF",
           "room": "GF-MND",
@@ -5077,7 +5451,7 @@
           "circuit": "L4"
         },
         {
-          "id": "GF-E62",
+          "id": "GF-E72",
           "kind": "fan",
           "floor": "GF",
           "room": "GF-MND",
@@ -5088,7 +5462,7 @@
           "circuit": "L4"
         },
         {
-          "id": "GF-E63",
+          "id": "GF-E73",
           "kind": "ac",
           "floor": "GF",
           "room": "GF-MND",
@@ -5101,7 +5475,7 @@
           "circuit": "AC3"
         },
         {
-          "id": "GF-E64",
+          "id": "GF-E74",
           "kind": "tv",
           "floor": "GF",
           "room": "GF-MND",
@@ -5113,7 +5487,7 @@
           "circuit": "S2"
         },
         {
-          "id": "GF-E65",
+          "id": "GF-E75",
           "kind": "s6",
           "floor": "GF",
           "room": "GF-MND",
@@ -5125,7 +5499,7 @@
           "circuit": "S2"
         },
         {
-          "id": "GF-E66",
+          "id": "GF-E76",
           "kind": "s6",
           "floor": "GF",
           "room": "GF-MND",
@@ -5134,10 +5508,10 @@
           "base": 450,
           "note": "desk (A7)",
           "face": [1.0, 0.0],
-          "circuit": "S2"
+          "circuit": "S3"
         },
         {
-          "id": "GF-E67",
+          "id": "GF-E77",
           "kind": "ups",
           "floor": "GF",
           "room": "GF-MND",
@@ -5149,7 +5523,7 @@
           "circuit": "AO"
         },
         {
-          "id": "GF-E68",
+          "id": "GF-E78",
           "kind": "data",
           "floor": "GF",
           "room": "GF-MND",
@@ -5161,19 +5535,19 @@
           "circuit": "DATA"
         },
         {
-          "id": "GF-E69",
+          "id": "GF-E79",
           "kind": "sb",
           "floor": "GF",
           "room": "GF-MND",
           "serves": "GF-MND",
-          "at": [6100, 16600, 1650],
+          "at": [6100, 15350, 1650],
           "base": 450,
-          "note": "by the door",
+          "note": "by the door, latch side (R1-F23: door rehung)",
           "face": [1.0, 0.0],
           "circuit": "L4"
         },
         {
-          "id": "GF-E70",
+          "id": "GF-E80",
           "kind": "sd",
           "floor": "GF",
           "room": "GF-MND",
@@ -5184,7 +5558,7 @@
           "circuit": "L4"
         },
         {
-          "id": "GF-E71",
+          "id": "GF-E81",
           "kind": "gl",
           "floor": "GF",
           "room": "GF-LAWN-B",
@@ -5195,7 +5569,7 @@
           "circuit": "L5"
         },
         {
-          "id": "GF-E72",
+          "id": "GF-E82",
           "kind": "gl",
           "floor": "GF",
           "room": "GF-LAWN-B",
@@ -5206,7 +5580,7 @@
           "circuit": "L5"
         },
         {
-          "id": "GF-E73",
+          "id": "GF-E83",
           "kind": "gl",
           "floor": "GF",
           "room": "GF-LAWN-B",
@@ -5217,7 +5591,7 @@
           "circuit": "L5"
         },
         {
-          "id": "GF-E74",
+          "id": "GF-E84",
           "kind": "gl",
           "floor": "GF",
           "room": "GF-LAWN-B",
@@ -5228,7 +5602,7 @@
           "circuit": "L5"
         },
         {
-          "id": "GF-E75",
+          "id": "GF-E85",
           "kind": "wl",
           "floor": "GF",
           "room": "GF-LAWN-B",
@@ -5240,7 +5614,7 @@
           "circuit": "L5"
         },
         {
-          "id": "GF-E76",
+          "id": "GF-E86",
           "kind": "wl",
           "floor": "GF",
           "room": "GF-DECK",
@@ -5252,7 +5626,7 @@
           "circuit": "L5"
         },
         {
-          "id": "GF-E77",
+          "id": "GF-E87",
           "kind": "wl",
           "floor": "GF",
           "room": "GF-DECK",
@@ -5264,7 +5638,7 @@
           "circuit": "L5"
         },
         {
-          "id": "GF-E78",
+          "id": "GF-E88",
           "kind": "gl",
           "floor": "GF",
           "room": "GF-COURT",
@@ -5275,7 +5649,7 @@
           "circuit": "L5"
         },
         {
-          "id": "GF-E79",
+          "id": "GF-E89",
           "kind": "gl",
           "floor": "GF",
           "room": "GF-COURT",
@@ -5286,7 +5660,7 @@
           "circuit": "L5"
         },
         {
-          "id": "GF-E80",
+          "id": "GF-E90",
           "kind": "wl",
           "floor": "GF",
           "room": "GF-COURT",
@@ -5298,7 +5672,7 @@
           "circuit": "L5"
         },
         {
-          "id": "GF-E81",
+          "id": "GF-E91",
           "kind": "wl",
           "floor": "GF",
           "room": "GF-COURT",
@@ -5310,7 +5684,7 @@
           "circuit": "L6"
         },
         {
-          "id": "GF-E82",
+          "id": "GF-E92",
           "kind": "ip65",
           "floor": "GF",
           "room": "GF-LAWN-B",
@@ -5319,10 +5693,10 @@
           "base": 0,
           "note": "weatherproof socket, rear lawn (A1)",
           "face": [-1.0, 0.0],
-          "circuit": "S3"
+          "circuit": "S4"
         },
         {
-          "id": "GF-E83",
+          "id": "GF-E93",
           "kind": "pump",
           "floor": "GF",
           "room": "GF-LAWN-B",
@@ -5334,7 +5708,7 @@
           "circuit": "PUMP1"
         },
         {
-          "id": "GF-E84",
+          "id": "GF-E94",
           "kind": "cctv",
           "floor": "GF",
           "room": "GF-DECK",
@@ -5346,7 +5720,7 @@
           "circuit": "AO"
         },
         {
-          "id": "GF-E85",
+          "id": "GF-E95",
           "kind": "cctv",
           "floor": "GF",
           "room": "GF-COURT",
@@ -5358,7 +5732,7 @@
           "circuit": "AO"
         },
         {
-          "id": "GF-E86",
+          "id": "GF-E96",
           "kind": "vdpo",
           "floor": "GF",
           "room": "GF-COURT",
@@ -5370,7 +5744,7 @@
           "circuit": "AO"
         },
         {
-          "id": "GF-E87",
+          "id": "GF-E97",
           "kind": "mtr",
           "floor": "GF",
           "room": "GF-COURT",
@@ -5382,7 +5756,7 @@
           "face": [0.0, 1.0]
         },
         {
-          "id": "GF-E88",
+          "id": "GF-E98",
           "kind": "spare",
           "floor": "GF",
           "room": "GF-COURT",
@@ -5393,7 +5767,7 @@
           "circuit": "SPARE1"
         },
         {
-          "id": "GF-E89",
+          "id": "GF-E99",
           "kind": "ev",
           "floor": "GF",
           "room": "GF-PARK",
@@ -5482,7 +5856,7 @@
           "base": 3750,
           "note": "",
           "face": [1.0, 0.0],
-          "circuit": "S4"
+          "circuit": "S5"
         },
         {
           "id": "FF-E08",
@@ -5494,7 +5868,7 @@
           "base": 3750,
           "note": "by the lounge chair",
           "face": [0.0, 1.0],
-          "circuit": "S4"
+          "circuit": "S5"
         },
         {
           "id": "FF-E09",
@@ -5518,7 +5892,7 @@
           "base": 3750,
           "note": "bedside socket",
           "face": [-1.0, 0.0],
-          "circuit": "S4"
+          "circuit": "S5"
         },
         {
           "id": "FF-E11",
@@ -5530,7 +5904,7 @@
           "base": 3750,
           "note": "bedside USB",
           "face": [-1.0, 0.0],
-          "circuit": "S4"
+          "circuit": "S5"
         },
         {
           "id": "FF-E12",
@@ -5554,7 +5928,7 @@
           "base": 3750,
           "note": "bedside socket",
           "face": [-1.0, 0.0],
-          "circuit": "S4"
+          "circuit": "S5"
         },
         {
           "id": "FF-E14",
@@ -5566,7 +5940,7 @@
           "base": 3750,
           "note": "bedside USB",
           "face": [-1.0, 0.0],
-          "circuit": "S4"
+          "circuit": "S5"
         },
         {
           "id": "FF-E15",
@@ -5636,7 +6010,7 @@
           "base": 3750,
           "note": "weatherproof (B1/B9)",
           "face": [0.0, -1.0],
-          "circuit": "S7"
+          "circuit": "S8"
         },
         {
           "id": "FF-E21",
@@ -5648,7 +6022,7 @@
           "base": 3750,
           "note": "weatherproof (B1/B9)",
           "face": [0.0, -1.0],
-          "circuit": "S7"
+          "circuit": "S8"
         },
         {
           "id": "FF-E22",
@@ -5683,7 +6057,7 @@
           "base": 3750,
           "note": "at the dressing table",
           "face": [1.0, 0.0],
-          "circuit": "S4"
+          "circuit": "S5"
         },
         {
           "id": "FF-E25",
@@ -5789,7 +6163,7 @@
           "base": 3750,
           "note": "0.75 m clear of the tub, RCD",
           "face": [0.0, -1.0],
-          "circuit": "S4"
+          "circuit": "S5"
         },
         {
           "id": "FF-E34",
@@ -5905,7 +6279,7 @@
           "base": 3750,
           "note": "pantry counter (R1-C8)",
           "face": [0.0, 1.0],
-          "circuit": "S5"
+          "circuit": "S6"
         },
         {
           "id": "FF-E44",
@@ -5917,7 +6291,7 @@
           "base": 3750,
           "note": "pantry counter (R1-C8)",
           "face": [0.0, 1.0],
-          "circuit": "S5"
+          "circuit": "S6"
         },
         {
           "id": "FF-E45",
@@ -5998,7 +6372,7 @@
           "base": 3750,
           "note": "",
           "face": [-1.0, 0.0],
-          "circuit": "S5"
+          "circuit": "S6"
         },
         {
           "id": "FF-E52",
@@ -6010,7 +6384,7 @@
           "base": 3750,
           "note": "",
           "face": [-1.0, 0.0],
-          "circuit": "S5"
+          "circuit": "S6"
         },
         {
           "id": "FF-E53",
@@ -6046,7 +6420,7 @@
           "base": 3750,
           "note": "bedside socket",
           "face": [1.0, 0.0],
-          "circuit": "S5"
+          "circuit": "S6"
         },
         {
           "id": "FF-E56",
@@ -6070,7 +6444,7 @@
           "base": 3750,
           "note": "bedside socket",
           "face": [1.0, 0.0],
-          "circuit": "S5"
+          "circuit": "S6"
         },
         {
           "id": "FF-E58",
@@ -6139,7 +6513,7 @@
           "base": 3750,
           "note": "TV niche in the wardrobe run, facing the bed",
           "face": [1, 0],
-          "circuit": "S5"
+          "circuit": "S6"
         },
         {
           "id": "FF-E64",
@@ -6175,7 +6549,7 @@
           "base": 3750,
           "note": "bedside socket",
           "face": [-1.0, 0.0],
-          "circuit": "S5"
+          "circuit": "S6"
         },
         {
           "id": "FF-E67",
@@ -6199,7 +6573,7 @@
           "base": 3750,
           "note": "bedside socket",
           "face": [-1.0, 0.0],
-          "circuit": "S6"
+          "circuit": "S7"
         },
         {
           "id": "FF-E69",
@@ -6210,7 +6584,7 @@
           "at": [5856, 20411, 3750],
           "base": 3750,
           "note": "floor box under the study desk",
-          "circuit": "S6"
+          "circuit": "S7"
         },
         {
           "id": "FF-E70",
@@ -6360,7 +6734,7 @@
           "base": 7050,
           "note": "at the desk",
           "face": [0.0, -1.0],
-          "circuit": "S8"
+          "circuit": "S9"
         },
         {
           "id": "SF-E09",
@@ -6372,7 +6746,7 @@
           "base": 7050,
           "note": "bedside",
           "face": [1.0, 0.0],
-          "circuit": "S8"
+          "circuit": "S9"
         },
         {
           "id": "SF-E10",
@@ -6489,7 +6863,7 @@
           "base": 7050,
           "note": "washer-dryer, 0.68 m from the utility sink (R1-D11)",
           "face": [0.0, -1.0],
-          "circuit": "P4"
+          "circuit": "P6"
         },
         {
           "id": "SF-E20",
@@ -6501,7 +6875,7 @@
           "base": 7050,
           "note": "ironing counter (R1-D11)",
           "face": [0.0, -1.0],
-          "circuit": "S9"
+          "circuit": "S10"
         },
         {
           "id": "SF-E21",
@@ -6513,7 +6887,7 @@
           "base": 7050,
           "note": "terrace weatherproof socket",
           "face": [0.0, -1.0],
-          "circuit": "S9"
+          "circuit": "S10"
         },
         {
           "id": "SF-E22",
@@ -6525,7 +6899,7 @@
           "base": 7050,
           "note": "water softener controller (R1-F20)",
           "face": [0.0, 1.0],
-          "circuit": "S9"
+          "circuit": "S10"
         },
         {
           "id": "SF-E23",
@@ -6581,7 +6955,7 @@
           "id": "L1",
           "cls": "lighting",
           "db": "DB-1",
-          "points": ["GF-E01", "GF-E02", "GF-E03", "GF-E04", "GF-E05", "GF-E06", "GF-E07", "GF-E13", "GF-E14", "GF-E16", "GF-E17"],
+          "points": ["GF-E01", "GF-E02", "GF-E03", "GF-E04", "GF-E05", "GF-E06", "GF-E07", "GF-E08", "GF-E09", "GF-E10", "GF-E11"],
           "mcb": "10A",
           "cable": "1.5 sq mm",
           "rcd": false
@@ -6590,25 +6964,25 @@
           "id": "L2",
           "cls": "lighting",
           "db": "DB-1",
-          "points": ["GF-E18", "GF-E19", "GF-E20", "GF-E21", "GF-E22", "GF-E27", "GF-E28", "GF-E29", "GF-E30", "GF-E31", "GF-E32", "GF-E33", "GF-E36"],
-          "mcb": "10A",
-          "cable": "1.5 sq mm",
-          "rcd": true
-        },
-        {
-          "id": "L3",
-          "cls": "lighting",
-          "db": "DB-1",
-          "points": ["GF-E37", "GF-E38", "GF-E39", "GF-E40", "GF-E41", "GF-E42", "GF-E44", "GF-E45", "GF-E47", "GF-E48", "GF-E49", "GF-E50", "GF-E54", "GF-E55", "GF-E56", "GF-E58"],
+          "points": ["GF-E23", "GF-E24", "GF-E26", "GF-E27", "GF-E28", "GF-E29", "GF-E30", "GF-E31", "GF-E32", "GF-E37", "GF-E38", "GF-E39"],
           "mcb": "10A",
           "cable": "1.5 sq mm",
           "rcd": false
         },
         {
+          "id": "L3",
+          "cls": "lighting",
+          "db": "DB-1",
+          "points": ["GF-E40", "GF-E41", "GF-E42", "GF-E43", "GF-E46", "GF-E47", "GF-E48", "GF-E49", "GF-E50", "GF-E51", "GF-E52", "GF-E54", "GF-E55", "GF-E57"],
+          "mcb": "10A",
+          "cable": "1.5 sq mm",
+          "rcd": true
+        },
+        {
           "id": "L4",
           "cls": "lighting",
           "db": "DB-1",
-          "points": ["GF-E60", "GF-E61", "GF-E62", "GF-E69", "GF-E70"],
+          "points": ["GF-E58", "GF-E59", "GF-E60", "GF-E64", "GF-E65", "GF-E66", "GF-E68", "GF-E70", "GF-E71", "GF-E72", "GF-E79", "GF-E80"],
           "mcb": "10A",
           "cable": "1.5 sq mm",
           "rcd": false
@@ -6617,7 +6991,7 @@
           "id": "S1",
           "cls": "sockets",
           "db": "DB-1",
-          "points": ["GF-E08", "GF-E09", "GF-E24", "GF-E25", "GF-E26", "GF-E35", "GF-E52", "GF-E53"],
+          "points": ["GF-E12", "GF-E13", "GF-E14", "GF-E15", "GF-E20", "GF-E21", "GF-E34", "GF-E35"],
           "mcb": "16A",
           "cable": "2.5 sq mm",
           "rcd": true
@@ -6626,7 +7000,16 @@
           "id": "S2",
           "cls": "sockets",
           "db": "DB-1",
-          "points": ["GF-E57", "GF-E59", "GF-E64", "GF-E65", "GF-E66"],
+          "points": ["GF-E36", "GF-E45", "GF-E62", "GF-E63", "GF-E67", "GF-E69", "GF-E74", "GF-E75"],
+          "mcb": "16A",
+          "cable": "2.5 sq mm",
+          "rcd": true
+        },
+        {
+          "id": "S3",
+          "cls": "sockets",
+          "db": "DB-1",
+          "points": ["GF-E76"],
           "mcb": "16A",
           "cable": "2.5 sq mm",
           "rcd": true
@@ -6635,7 +7018,7 @@
           "id": "L5",
           "cls": "lighting",
           "db": "DB-1",
-          "points": ["GF-E71", "GF-E72", "GF-E73", "GF-E74", "GF-E75", "GF-E76", "GF-E77", "GF-E78", "GF-E79", "GF-E80"],
+          "points": ["GF-E81", "GF-E82", "GF-E83", "GF-E84", "GF-E85", "GF-E86", "GF-E87", "GF-E88", "GF-E89", "GF-E90"],
           "mcb": "10A",
           "cable": "1.5 sq mm",
           "rcd": true,
@@ -6645,17 +7028,17 @@
           "id": "L6",
           "cls": "lighting",
           "db": "DB-1",
-          "points": ["GF-E81"],
+          "points": ["GF-E91"],
           "mcb": "10A",
           "cable": "1.5 sq mm",
           "rcd": true,
           "note": "outdoor"
         },
         {
-          "id": "S3",
+          "id": "S4",
           "cls": "sockets",
           "db": "DB-1",
-          "points": ["GF-E82"],
+          "points": ["GF-E92"],
           "mcb": "16A",
           "cable": "2.5 sq mm",
           "rcd": true,
@@ -6665,7 +7048,7 @@
           "id": "P1",
           "cls": "power",
           "db": "DB-1",
-          "points": ["GF-E10"],
+          "points": ["GF-E16"],
           "mcb": "20A",
           "cable": "4 sq mm",
           "rcd": true
@@ -6674,7 +7057,7 @@
           "id": "P2",
           "cls": "power",
           "db": "DB-1",
-          "points": ["GF-E11"],
+          "points": ["GF-E17"],
           "mcb": "20A",
           "cable": "4 sq mm",
           "rcd": true
@@ -6683,7 +7066,25 @@
           "id": "P3",
           "cls": "power",
           "db": "DB-1",
-          "points": ["GF-E12"],
+          "points": ["GF-E18"],
+          "mcb": "20A",
+          "cable": "4 sq mm",
+          "rcd": true
+        },
+        {
+          "id": "P4",
+          "cls": "power",
+          "db": "DB-1",
+          "points": ["GF-E19"],
+          "mcb": "20A",
+          "cable": "4 sq mm",
+          "rcd": true
+        },
+        {
+          "id": "P5",
+          "cls": "power",
+          "db": "DB-1",
+          "points": ["GF-E22"],
           "mcb": "20A",
           "cable": "4 sq mm",
           "rcd": true
@@ -6692,7 +7093,7 @@
           "id": "AC1",
           "cls": "ac",
           "db": "DB-1",
-          "points": ["GF-E23"],
+          "points": ["GF-E33"],
           "mcb": "25A",
           "cable": "4 sq mm",
           "rcd": false
@@ -6701,7 +7102,7 @@
           "id": "G1",
           "cls": "geyser",
           "db": "DB-1",
-          "points": ["GF-E34"],
+          "points": ["GF-E44"],
           "mcb": "20A",
           "cable": "4 sq mm",
           "rcd": true
@@ -6710,7 +7111,7 @@
           "id": "AC2",
           "cls": "ac",
           "db": "DB-1",
-          "points": ["GF-E51"],
+          "points": ["GF-E61"],
           "mcb": "20A",
           "cable": "4 sq mm",
           "rcd": false
@@ -6719,7 +7120,7 @@
           "id": "AC3",
           "cls": "ac",
           "db": "DB-1",
-          "points": ["GF-E63"],
+          "points": ["GF-E73"],
           "mcb": "20A",
           "cable": "4 sq mm",
           "rcd": false
@@ -6728,7 +7129,7 @@
           "id": "PUMP1",
           "cls": "power",
           "db": "DB-1",
-          "points": ["GF-E83"],
+          "points": ["GF-E93"],
           "mcb": "as maker",
           "cable": "as maker",
           "rcd": true
@@ -6737,7 +7138,7 @@
           "id": "SPARE1",
           "cls": "power",
           "db": "DB-1",
-          "points": ["GF-E88"],
+          "points": ["GF-E98"],
           "mcb": "as maker",
           "cable": "as maker",
           "rcd": true
@@ -6746,7 +7147,7 @@
           "id": "EV",
           "cls": "power",
           "db": "DB-1",
-          "points": ["GF-E89"],
+          "points": ["GF-E99"],
           "mcb": "40A (maker)",
           "cable": "6 sq mm (maker)",
           "rcd": true,
@@ -6780,7 +7181,7 @@
           "rcd": true
         },
         {
-          "id": "S4",
+          "id": "S5",
           "cls": "sockets",
           "db": "DB-2",
           "points": ["FF-E07", "FF-E08", "FF-E10", "FF-E11", "FF-E13", "FF-E14", "FF-E24", "FF-E33"],
@@ -6789,7 +7190,7 @@
           "rcd": true
         },
         {
-          "id": "S5",
+          "id": "S6",
           "cls": "sockets",
           "db": "DB-2",
           "points": ["FF-E43", "FF-E44", "FF-E51", "FF-E52", "FF-E55", "FF-E57", "FF-E63", "FF-E66"],
@@ -6798,7 +7199,7 @@
           "rcd": true
         },
         {
-          "id": "S6",
+          "id": "S7",
           "cls": "sockets",
           "db": "DB-2",
           "points": ["FF-E68", "FF-E69"],
@@ -6817,7 +7218,7 @@
           "note": "outdoor"
         },
         {
-          "id": "S7",
+          "id": "S8",
           "cls": "sockets",
           "db": "DB-2",
           "points": ["FF-E20", "FF-E21"],
@@ -6890,7 +7291,7 @@
           "rcd": true
         },
         {
-          "id": "S8",
+          "id": "S9",
           "cls": "sockets",
           "db": "DB-3",
           "points": ["SF-E08", "SF-E09"],
@@ -6909,7 +7310,7 @@
           "note": "outdoor"
         },
         {
-          "id": "S9",
+          "id": "S10",
           "cls": "sockets",
           "db": "DB-3",
           "points": ["SF-E20", "SF-E21", "SF-E22"],
@@ -6937,7 +7338,7 @@
           "rcd": true
         },
         {
-          "id": "P4",
+          "id": "P6",
           "cls": "power",
           "db": "DB-3",
           "points": ["SF-E19"],
@@ -6967,7 +7368,7 @@
           "id": "AO",
           "cls": "sockets",
           "db": "DB-1",
-          "points": ["GF-E43", "GF-E46", "GF-E67", "GF-E84", "GF-E85", "GF-E86"],
+          "points": ["GF-E53", "GF-E56", "GF-E77", "GF-E94", "GF-E95", "GF-E96"],
           "mcb": "16A",
           "cable": "2.5 sq mm",
           "rcd": true,
@@ -6977,7 +7378,7 @@
           "id": "DATA",
           "cls": "data",
           "db": "RACK",
-          "points": ["GF-E24", "GF-E52", "GF-E64", "GF-E68", "FF-E07", "FF-E51", "FF-E63", "FF-E70"],
+          "points": ["GF-E34", "GF-E62", "GF-E74", "GF-E78", "FF-E07", "FF-E51", "FF-E63", "FF-E70"],
           "mcb": "-",
           "cable": "Cat-6",
           "rcd": false,
@@ -6988,45 +7389,65 @@
         {
           "circuit": "L1",
           "cls": "lighting",
-          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [1700, 9451, 3600], [1700, 9800, 3600], [1700, 8500, 3600], [1700, 7300, 3600], [430, 7300, 3600], [430, 7757, 3600], [2950, 7757, 3600], [2950, 7800, 3600], [3130, 7800, 3600], [3130, 9200, 3600], [2090, 9200, 3600], [2090, 11190, 3600], [1051, 11190, 3600], [1051, 11050, 3600], [2650, 11050, 3600], [2650, 5685, 3600], [4800, 5685, 3600], [4800, 6400, 3600], [8200, 6400, 3600]],
+          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [1200, 9451, 3600], [1200, 9300, 3600], [2300, 9300, 3600], [3130, 9300, 3600], [3130, 9250, 3600], [1700, 9250, 3600], [1700, 8500, 3600], [430, 8500, 3600], [430, 7757, 3600], [1200, 7757, 3600], [1200, 6900, 3600], [2300, 6900, 3600], [2950, 6900, 3600], [2950, 7000, 3600], [1600, 7000, 3600], [1600, 5700, 3600], [2000, 5700, 3600], [2000, 11000, 3600], [2090, 11000, 3600], [2090, 11190, 3600]],
           "drops": [
-            [[1700, 9800, 3600], [1700, 9800, 3200]],
+            [[1200, 9300, 3600], [1200, 9300, 3200]],
+            [[2300, 9300, 3600], [2300, 9300, 3200]],
+            [[3130, 9250, 3600], [3130, 9250, 1650]],
             [[1700, 8500, 3600], [1700, 8500, 3200]],
-            [[1700, 7300, 3600], [1700, 7300, 3200]],
             [[430, 7757, 3600], [430, 7757, 1900]],
-            [[2950, 7800, 3600], [2950, 7800, 1900]],
-            [[3130, 9200, 3600], [3130, 9200, 1650]],
-            [[2090, 11190, 3600], [2090, 11190, 1900]],
-            [[1051, 11050, 3600], [1051, 11050, 1850]],
-            [[2650, 5685, 3600], [2650, 5685, 2700]],
-            [[4800, 6400, 3600], [4800, 6400, 3200]],
-            [[8200, 6400, 3600], [8200, 6400, 3200]]
+            [[1200, 6900, 3600], [1200, 6900, 3200]],
+            [[2300, 6900, 3600], [2300, 6900, 3200]],
+            [[2950, 7000, 3600], [2950, 7000, 1900]],
+            [[1600, 5700, 3600], [1600, 5700, 2450]],
+            [[2000, 11000, 3600], [2000, 11000, 3200]],
+            [[2090, 11190, 3600], [2090, 11190, 1900]]
           ]
         },
         {
           "circuit": "L2",
           "cls": "lighting",
-          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [3900, 9451, 3600], [3900, 9700, 3600], [3750, 9700, 3600], [3750, 11345, 3600], [3300, 11345, 3600], [3300, 12800, 3600], [4370, 12800, 3600], [4370, 12950, 3600], [1700, 12950, 3600], [1700, 12800, 3600], [630, 12800, 3600], [630, 12985, 3600], [3320, 12985, 3600], [3320, 8350, 3600], [3320, 5900, 3600], [7000, 5900, 3600], [7000, 7083, 3600], [6000, 7083, 3600], [6000, 8400, 3600], [5700, 8400, 3600], [5700, 9850, 3600], [7400, 9850, 3600], [7400, 10746, 3600], [8200, 10746, 3600], [8200, 9700, 3600]],
+          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [1051, 9451, 3600], [1051, 11050, 3600], [3750, 11050, 3600], [3750, 11345, 3600], [3900, 11345, 3600], [3900, 9700, 3600], [5700, 9700, 3600], [5700, 9850, 3600], [6000, 9850, 3600], [6000, 8400, 3600], [7000, 8400, 3600], [7000, 7083, 3600], [8200, 7083, 3600], [8200, 6400, 3600], [8200, 9700, 3600], [7400, 9700, 3600], [7400, 10746, 3600], [4800, 10746, 3600], [4800, 6400, 3600], [3320, 6400, 3600], [3320, 5900, 3600], [2650, 5900, 3600], [2650, 5685, 3600]],
           "drops": [
-            [[3900, 9700, 3600], [3900, 9700, 3200]],
+            [[1051, 11050, 3600], [1051, 11050, 1850]],
             [[3750, 11345, 3600], [3750, 11345, 2450]],
-            [[3300, 12800, 3600], [3300, 12800, 3050]],
-            [[4370, 12950, 3600], [4370, 12950, 1650]],
-            [[1700, 12800, 3600], [1700, 12800, 3050]],
-            [[630, 12985, 3600], [630, 12985, 2700]],
-            [[3320, 8350, 3600], [3320, 8350, 2800]],
-            [[3320, 5900, 3600], [3320, 5900, 1650]],
-            [[7000, 7083, 3600], [7000, 7083, 3200]],
-            [[6000, 8400, 3600], [6000, 8400, 3200]],
+            [[3900, 9700, 3600], [3900, 9700, 3200]],
             [[5700, 9850, 3600], [5700, 9850, 3200]],
+            [[6000, 8400, 3600], [6000, 8400, 3200]],
+            [[7000, 7083, 3600], [7000, 7083, 3200]],
+            [[8200, 6400, 3600], [8200, 6400, 3200]],
+            [[8200, 9700, 3600], [8200, 9700, 3200]],
             [[7400, 10746, 3600], [7400, 10746, 1650]],
-            [[8200, 9700, 3600], [8200, 9700, 3200]]
+            [[4800, 6400, 3600], [4800, 6400, 3200]],
+            [[3320, 5900, 3600], [3320, 5900, 1650]],
+            [[2650, 5685, 3600], [2650, 5685, 2700]]
           ]
         },
         {
           "circuit": "L3",
           "cls": "lighting",
-          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [250, 15455, 3600], [1900, 15455, 3600], [1900, 15300, 3600], [1900, 16000, 3600], [1900, 16845, 3600], [1900, 18300, 3600], [250, 18300, 3600], [250, 17575, 3600], [5100, 17575, 3600], [5100, 18000, 3600], [4800, 18000, 3600], [4800, 19300, 3600], [5880, 19300, 3600], [5880, 20100, 3600], [5100, 20100, 3600], [5100, 15800, 3600], [4180, 15800, 3600], [4180, 15850, 3600], [5100, 15850, 3600], [5100, 14000, 3600], [6100, 14000, 3600], [6100, 14150, 3600], [7000, 14150, 3600], [7000, 14600, 3600], [7180, 14600, 3600], [7180, 12500, 3600], [5100, 12500, 3600], [5100, 12000, 3600]],
+          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [630, 9451, 3600], [630, 12985, 3600], [1700, 12985, 3600], [1700, 12800, 3600], [3300, 12800, 3600], [4370, 12800, 3600], [4370, 12950, 3600], [5100, 12950, 3600], [5100, 12000, 3600], [5100, 14000, 3600], [5100, 15800, 3600], [5100, 18000, 3600], [4800, 18000, 3600], [4800, 19300, 3600], [5880, 19300, 3600], [5880, 20100, 3600], [7000, 20100, 3600], [7000, 15110, 3600], [7000, 14600, 3600], [7180, 14600, 3600], [7180, 12500, 3600], [3320, 12500, 3600], [3320, 8350, 3600]],
+          "drops": [
+            [[630, 12985, 3600], [630, 12985, 2700]],
+            [[1700, 12800, 3600], [1700, 12800, 3050]],
+            [[3300, 12800, 3600], [3300, 12800, 3050]],
+            [[4370, 12950, 3600], [4370, 12950, 1650]],
+            [[5100, 12000, 3600], [5100, 12000, 3200]],
+            [[5100, 14000, 3600], [5100, 14000, 3200]],
+            [[5100, 15800, 3600], [5100, 15800, 3200]],
+            [[5100, 18000, 3600], [5100, 18000, 3200]],
+            [[4800, 19300, 3600], [4800, 19300, 3200]],
+            [[5880, 20100, 3600], [5880, 20100, 1650]],
+            [[7000, 15110, 3600], [7000, 15110, 1650]],
+            [[7000, 14600, 3600], [7000, 14600, 2550]],
+            [[7180, 12500, 3600], [7180, 12500, 1650]],
+            [[3320, 8350, 3600], [3320, 8350, 2800]]
+          ]
+        },
+        {
+          "circuit": "L4",
+          "cls": "lighting",
+          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [250, 15455, 3600], [1900, 15455, 3600], [1900, 15300, 3600], [1900, 16000, 3600], [1900, 16845, 3600], [1900, 18300, 3600], [250, 18300, 3600], [250, 17575, 3600], [4180, 17575, 3600], [4180, 15850, 3600], [6100, 15850, 3600], [6100, 15350, 3600], [7600, 15350, 3600], [7600, 16300, 3600], [7600, 16900, 3600], [7600, 17300, 3600], [7600, 18500, 3600]],
           "drops": [
             [[250, 15455, 3600], [250, 15455, 1050]],
             [[1900, 15300, 3600], [1900, 15300, 3200]],
@@ -7034,24 +7455,8 @@
             [[1900, 16845, 3600], [1900, 16845, 3200]],
             [[1900, 18300, 3600], [1900, 18300, 3200]],
             [[250, 17575, 3600], [250, 17575, 1050]],
-            [[5100, 18000, 3600], [5100, 18000, 3200]],
-            [[4800, 19300, 3600], [4800, 19300, 3200]],
-            [[5880, 20100, 3600], [5880, 20100, 1650]],
-            [[5100, 15800, 3600], [5100, 15800, 3200]],
             [[4180, 15850, 3600], [4180, 15850, 1650]],
-            [[5100, 14000, 3600], [5100, 14000, 3200]],
-            [[6100, 14150, 3600], [6100, 14150, 1650]],
-            [[7000, 14600, 3600], [7000, 14600, 2550]],
-            [[7180, 12500, 3600], [7180, 12500, 1650]],
-            [[5100, 12000, 3600], [5100, 12000, 3200]]
-          ]
-        },
-        {
-          "circuit": "L4",
-          "cls": "lighting",
-          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [6100, 9451, 3600], [6100, 16600, 3600], [7600, 16600, 3600], [7600, 16300, 3600], [7600, 16900, 3600], [7600, 17300, 3600], [7600, 18500, 3600]],
-          "drops": [
-            [[6100, 16600, 3600], [6100, 16600, 1650]],
+            [[6100, 15350, 3600], [6100, 15350, 1650]],
             [[7600, 16300, 3600], [7600, 16300, 3200]],
             [[7600, 16900, 3600], [7600, 16900, 3200]],
             [[7600, 17300, 3600], [7600, 17300, 3200]],
@@ -7061,28 +7466,39 @@
         {
           "circuit": "S1",
           "cls": "sockets",
-          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [250, 8700, 3600], [250, 7300, 3600], [3320, 7300, 3600], [3320, 6200, 3600], [9131, 6200, 3600], [9131, 7083, 3600], [9131, 8100, 3600], [4180, 8100, 3600], [4180, 12800, 3600], [4180, 15300, 3600], [4180, 16845, 3600]],
+          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [250, 8700, 3600], [250, 7750, 3600], [250, 7300, 3600], [3130, 7300, 3600], [3130, 6950, 3600], [3130, 6650, 3600], [3080, 6650, 3600], [3080, 11345, 3600], [9131, 11345, 3600], [9131, 8100, 3600], [9131, 7083, 3600]],
           "drops": [
             [[250, 8700, 3600], [250, 8700, 1550]],
+            [[250, 7750, 3600], [250, 7750, 1000]],
             [[250, 7300, 3600], [250, 7300, 2650]],
-            [[3320, 6200, 3600], [3320, 6200, 750]],
-            [[9131, 7083, 3600], [9131, 7083, 1550]],
+            [[3130, 6950, 3600], [3130, 6950, 1550]],
+            [[3130, 6650, 3600], [3130, 6650, 1550]],
+            [[3080, 11345, 3600], [3080, 11345, 1900]],
             [[9131, 8100, 3600], [9131, 8100, 750]],
-            [[4180, 12800, 3600], [4180, 12800, 1550]],
-            [[4180, 15300, 3600], [4180, 15300, 750]],
-            [[4180, 16845, 3600], [4180, 16845, 1550]]
+            [[9131, 7083, 3600], [9131, 7083, 1550]]
           ]
         },
         {
           "circuit": "S2",
           "cls": "sockets",
-          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [250, 16115, 3600], [250, 18235, 3600], [6100, 18235, 3600], [6100, 18600, 3600], [6100, 19100, 3600], [9131, 19100, 3600], [9131, 17300, 3600]],
+          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [3320, 9451, 3600], [3320, 6200, 3600], [4180, 6200, 3600], [4180, 12800, 3600], [4180, 15300, 3600], [4180, 16845, 3600], [6100, 16845, 3600], [6100, 18600, 3600], [9131, 18600, 3600], [9131, 17300, 3600], [250, 17300, 3600], [250, 18235, 3600], [250, 16115, 3600]],
           "drops": [
-            [[250, 16115, 3600], [250, 16115, 750]],
-            [[250, 18235, 3600], [250, 18235, 750]],
+            [[3320, 6200, 3600], [3320, 6200, 750]],
+            [[4180, 12800, 3600], [4180, 12800, 1550]],
+            [[4180, 15300, 3600], [4180, 15300, 750]],
+            [[4180, 16845, 3600], [4180, 16845, 1550]],
             [[6100, 18600, 3600], [6100, 18600, 1350]],
-            [[6100, 19100, 3600], [6100, 19100, 1350]],
-            [[9131, 17300, 3600], [9131, 17300, 1550]]
+            [[9131, 17300, 3600], [9131, 17300, 1550]],
+            [[250, 18235, 3600], [250, 18235, 750]],
+            [[250, 16115, 3600], [250, 16115, 750]]
+          ]
+        },
+        {
+          "circuit": "S3",
+          "cls": "sockets",
+          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [6100, 9451, 3600], [6100, 19100, 3600]],
+          "drops": [
+            [[6100, 19100, 3600], [6100, 19100, 1350]]
           ]
         },
         {
@@ -7111,7 +7527,7 @@
           ]
         },
         {
-          "circuit": "S3",
+          "circuit": "S4",
           "cls": "sockets",
           "trunk": [[250, 9451, 1950], [250, 9451, 3600], [9131, 9451, 3600], [9131, 9451, -300], [9131, 3000, -300]],
           "drops": [
@@ -7129,13 +7545,29 @@
         {
           "circuit": "P2",
           "cls": "power",
+          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [3130, 9451, 3600], [3130, 7900, 3600]],
+          "drops": [
+            [[3130, 7900, 3600], [3130, 7900, 1600]]
+          ]
+        },
+        {
+          "circuit": "P3",
+          "cls": "power",
+          "trunk": [[250, 9451, 1950], [250, 9451, 3600], [3130, 9451, 3600], [3130, 8100, 3600]],
+          "drops": [
+            [[3130, 8100, 3600], [3130, 8100, 2000]]
+          ]
+        },
+        {
+          "circuit": "P4",
+          "cls": "power",
           "trunk": [[250, 9451, 1950], [250, 9451, 3600], [250, 10051, 3600]],
           "drops": [
             [[250, 10051, 3600], [250, 10051, 750]]
           ]
         },
         {
-          "circuit": "P3",
+          "circuit": "P5",
           "cls": "power",
           "trunk": [[250, 9451, 1950], [250, 9451, 3600], [2850, 9451, 3600], [2850, 11345, 3600]],
           "drops": [
@@ -7262,7 +7694,7 @@
           ]
         },
         {
-          "circuit": "S4",
+          "circuit": "S5",
           "cls": "sockets",
           "trunk": [[2973, 5950, 5250], [2973, 5950, 6900], [3163, 5950, 6900], [3163, 8550, 6900], [1500, 8550, 6900], [1500, 10649, 6900], [250, 10649, 6900], [250, 6850, 6900], [6000, 6850, 6900], [6000, 6825, 6900], [9131, 6825, 6900], [9131, 7803, 6900], [9131, 10333, 6900]],
           "drops": [
@@ -7277,7 +7709,7 @@
           ]
         },
         {
-          "circuit": "S5",
+          "circuit": "S6",
           "cls": "sockets",
           "trunk": [[2973, 5950, 5250], [2973, 5950, 6900], [5700, 5950, 6900], [5700, 10869, 6900], [6700, 10869, 6900], [4249, 10869, 6900], [4249, 15576, 6900], [4249, 16050, 6900], [4944, 16050, 6900], [4944, 19084, 6900], [9131, 19084, 6900], [9131, 18354, 6900], [250, 18354, 6900], [250, 16966, 6900], [250, 14846, 6900]],
           "drops": [
@@ -7292,7 +7724,7 @@
           ]
         },
         {
-          "circuit": "S6",
+          "circuit": "S7",
           "cls": "sockets",
           "trunk": [[2973, 5950, 5250], [2973, 5950, 6900], [5856, 5950, 6900], [5856, 20411, 6900], [9131, 20411, 6900], [9131, 20474, 6900]],
           "drops": [
@@ -7312,7 +7744,7 @@
           ]
         },
         {
-          "circuit": "S7",
+          "circuit": "S8",
           "cls": "sockets",
           "trunk": [[2973, 5950, 5250], [2973, 5950, 6900], [5420, 5950, 6900], [5420, 6635, 6900], [9070, 6635, 6900]],
           "drops": [
@@ -7389,7 +7821,7 @@
           ]
         },
         {
-          "circuit": "S8",
+          "circuit": "S9",
           "cls": "sockets",
           "trunk": [[250, 13300, 8550], [250, 13300, 10200], [250, 14100, 10200], [3600, 14100, 10200], [3600, 15286, 10200]],
           "drops": [
@@ -7407,7 +7839,7 @@
           ]
         },
         {
-          "circuit": "S9",
+          "circuit": "S10",
           "cls": "sockets",
           "trunk": [[250, 13300, 8550], [250, 13300, 10200], [650, 13300, 10200], [650, 10649, 10200], [3231, 10649, 10200], [5600, 10649, 10200]],
           "drops": [
@@ -7433,7 +7865,7 @@
           ]
         },
         {
-          "circuit": "P4",
+          "circuit": "P6",
           "cls": "power",
           "trunk": [[250, 13300, 8550], [250, 13300, 10200], [1200, 13300, 10200], [1200, 10649, 10200]],
           "drops": [
@@ -7510,7 +7942,7 @@
       ],
       "refrigerant": [
         {
-          "ac": "GF-E23",
+          "ac": "GF-E33",
           "odu": "SF-AC3",
           "note": "out above the GL-5b window head, up the balcony west wall (inside the plot), over the parapet",
           "pts": [[9131, 7083, 2600], [9050, 7083, 3300], [9050, 5750, 3300], [9050, 5750, 8250], [9050, 6900, 8250], [7775, 6900, 8250], [7775, 6955, 7650]],
@@ -7538,14 +7970,14 @@
           "length": 3159
         },
         {
-          "ac": "GF-E63",
+          "ac": "GF-E73",
           "odu": "SF-AC6",
           "note": "up the SS-3 boxed duct to the front terrace",
           "pts": [[8500, 15294, 2600], [8850, 15400, 2600], [8850, 15400, 7350], [7400, 15650, 7350], [7400, 15455, 7650]],
           "length": 6945
         },
         {
-          "ac": "GF-E51",
+          "ac": "GF-E61",
           "odu": "GF-O08",
           "note": "through the north wall, down to the front-lawn unit (A6)",
           "pts": [[1566, 19086, 2900], [1566, 19300, 3150], [2700, 19300, 3150], [2700, 19550, 3150], [2700, 19700, 650]],

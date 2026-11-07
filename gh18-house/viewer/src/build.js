@@ -431,22 +431,24 @@ function buildOpening(batch, colliders, surfaces, fid, w, o, y0, y1, fy) {
 
   // jamb lining and head casing (hinged doors, glass doors, pivot, gates)
   const glassy = type === 'glass_door' || type === 'pivot_door' || type === 'gate';
-  if (!glassy) {
+  if (!glassy && !o.flush) {
     const lin = o.mark === 'D1' ? 'walnut' : 'lacquer_white#door';
     addStrip(batch, fid, 'struct', lin, w, t0, t0 + 25, y0, head, T + 20, 0, fy);
     addStrip(batch, fid, 'struct', lin, w, t1 - 25, t1, y0, head, T + 20, 0, fy);
     addStrip(batch, fid, 'struct', lin, w, t0, t1, head - 0.025, head, T + 20, 0, fy);
   }
-  const leafMat = glassy ? 'glass' : o.mark === 'D1' ? 'walnut' : 'lacquer_white#door';
+  const leafMat = glassy ? 'glass' : o.flush ? 'walnut_fluted' : o.mark === 'D1' ? 'walnut' : 'lacquer_white#door';
   const leafT = glassy ? 0.012 : 0.04;
   const s = o.swing ? swingSign(w, o.swing) : 1;
   const leaves = o.hinge === 'both' || o.leaves === 2 ? [[t0, (t0 + t1) / 2], [t1, (t0 + t1) / 2]]
     : o.hinge === 'b' ? [[t1, t0]] : [[t0, t1]];
-  const angle = type === 'pivot_door' ? 60 : type === 'gate' ? 80 : 88;
+  // a concealed flush door (R1-F23) is drawn closed and in the panelling's plane, with no casing or handle
+  const angle = o.closed ? 0 : type === 'pivot_door' ? 60 : type === 'gate' ? 80 : 88;
   for (const [ht, ft] of leaves) {
     const width = Math.abs(ft - ht) - 8;
-    const hp = wallPoint(w, ht, s * (T / 2 - (glassy ? T / 2 : 20)));
-    const fp = wallPoint(w, ft, s * (T / 2 - (glassy ? T / 2 : 20)));
+    const off = o.flush && o.closed ? -s * (T / 2 + 10) : s * (T / 2 - (glassy ? T / 2 : 20));
+    const hp = wallPoint(w, ht, off);
+    const fp = wallPoint(w, ft, off);
     let u = [fp[0] - hp[0], fp[1] - hp[1]];
     const Lu = Math.hypot(u[0], u[1]) || 1;
     u = [u[0] / Lu, u[1] / Lu];
@@ -464,7 +466,7 @@ function buildOpening(batch, colliders, surfaces, fid, w, o, y0, y1, fy) {
       const back = [-dir[0], -dir[1]];
       addBoxSplit(batch, fid, 'glass', 'glass', pivot[0] + back[0] * width * 0.125, pivot[1] + back[1] * width * 0.125, back, mm(width * 0.25), leafT, y0 + 0.01, head - 0.01, fy);
     }
-    if (!glassy || type === 'pivot_door') {     // pull handle
+    if (!o.flush && (!glassy || type === 'pivot_door')) {     // pull handle
       const hx = pivot[0] + dir[0] * (len - 60), hy = pivot[1] + dir[1] * (len - 60);
       batch.add(fid, 'struct', o.mark === 'D1' ? 'brass' : 'black_metal', orientedBox(hx, hy, [-dir[1], dir[0]], 0.08, 0.02, y0 + (o.mark === 'D1' ? 0.6 : 0.95), o.mark === 'D1' ? 1.2 : 0.2));
     }

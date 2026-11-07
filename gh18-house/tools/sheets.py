@@ -82,6 +82,8 @@ REVISION_NOTES = [
     ("F19", "Electrical", "No inverter or battery: society DG backs up 100% of the load (ACs, geysers, lift included). CCTV, door phone, rack and desk socket on always-on circuit AO (DB-1)."),
     ("F20", "Water", "No underground tank (society supply): 2 × 2000 L soft-water tanks on the roof (W zone), softener on the SF terrace, bypass at the meter for a future booster pump; solar heater + geysers kept."),
     ("F21", "FF Master bedroom", "All-glass GL-7 replaced: uPVC sliding door GL-7a (3'-5\" clear, east end) + window GL-7b on a 2'-11\" half wall along the bed; mesh, grilles."),
+    ("F22", "GF Kitchen", "Working kitchen in 3 zones: fridge, tall pantry, OTG + microwave tower (N); prep, mixer station, sink, RO, bins (S/W/N); PNG hob + chimney (E)."),
+    ("F23", "GF Under-stair", "Store entered by a concealed flush door in walnut panelling from the guest lounge / study; lobby door closed; shelves, drawers."),
     ("C10", "FF Master suite", "Washroom and dresser swapped (bedroom → dresser → washroom); bath tub with over-tub screen; vent KW-2."),
     ("D-04, C9", "FF Bedrooms", "Front-left room is Bedroom 3, front-right is the Kids Room; kids toilet back at its R0 place."),
     ("C8", "FF Lobby", "Cupboard by the lift becomes a pantry counter with wall cupboards, 10\" clear of the lift door."),
@@ -101,6 +103,8 @@ HOLD_POINTS = [
     ("Tulsi in the plot's SE zone; guest-room AC unit in the NE; DB-3 in the E zone", "Vastu consultant"),
     ("Master headboard on the W wall (red-line asks S); SF rooms not in the S / SW", "Vastu consultant"),
     ("Sewer invert levels and the municipal connection", "Plumber, RWA / MCG"),
+    ("PNG route from the society main to the meter on the rear wall (F22)", "Gas company, RWA"),
+    ("Lintel over the new store door in the 150 partition under the stair (F23)", "Structural"),
 ]
 
 

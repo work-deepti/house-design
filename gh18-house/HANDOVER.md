@@ -7,13 +7,13 @@
 - `main` is the repository's default branch and the live branch. GitHub Pages and Netlify both deploy from it.
 - `house-design-v1` is the working branch. Changes are made there and merged into `main` to go live.
 - The first Claude session worked on an auto-named branch, `claude/zen-shannon-ilvm07`, which was then the default. It was renamed to `house-design-v1` and `main` was created from it. The owner has since deleted the old branch (and with it an unneeded Imgbot pull request).
-- **What is where (31 Oct 2026):** `main` has everything up to **F20** (F17 R1 drawing sheets, F18 practical rear wall, F19 no inverter + 100% society backup, F20 water: no UGT, softener, two roof tanks), merged with the owner's approval; `house-design-v1` matches it. **F21** (master balcony: door + half wall with window) is on the working branch `house-design-v1-3cmazu` and waits for approval. Netlify is now connected too (`house-deepti.netlify.app`).
+- **What is where (Nov 2026):** `main` has everything up to **F21** (rear wall, no inverter, water tanks, master balcony), merged with the owner's approval; `house-design-v1` matches it. **F22** (kitchen), **F23** (under-stair store) and the R1 house-tour pipeline are on the working branch `house-design-v1-3cmazu` and wait for approval.
 **Live sites:**
 - GitHub Pages: https://work-deepti.github.io/house-design/ (R1 at https://work-deepti.github.io/house-design/v1/). Live since 31 Oct 2026. Pages was switched on for the new repo (Source: GitHub Actions); the first deploy had to be started with the workflow's *Run workflow* button, because the earlier push to `main` came before Actions were enabled. Pushes to `main` that touch `gh18-house/**` now deploy on their own.
 - The old site, https://aditya-pandey.github.io/interior-design/, still serves the old repo's `main` and no longer receives updates.
 - Netlify: was linked to the old repository's `main`. It must be re-linked to `work-deepti/house-design` (production branch `main`) to follow the new repo. Netlify sometimes lags behind GitHub Pages.
 
-**State at handover (31 Oct 2026):** everything described here is committed and pushed. The last change is **F21** (master bedroom balcony: uPVC door GL-7a + window GL-7b on a half wall), on `house-design-v1-3cmazu`, not yet merged into `main`. Before it came **F20** (water), **F19** (no inverter), **F18** (rear wall) and **F17** (R1 drawing sheets), all live. All automated checks pass (`check_dims` PASS for main and R1; `check_services` all PASS with 4 warnings, 0 fail).
+**State at handover (Nov 2026):** everything described here is committed and pushed. The last changes are **F22** (detailed kitchen) and **F23** (under-stair store with a concealed door from the guest lounge / study), plus the first-person R1 house tour, on `house-design-v1-3cmazu`, not yet merged into `main`. All automated checks pass (`check_dims` PASS for main and R1; `check_services` all PASS with 4 warnings, 0 fail).
 
 This document is meant to be pasted into a new Claude (or other agent) session as the opening context. It tries to carry everything the previous sessions learned: the goal, the data model, the code, the design decisions and why they were made, the user's preferences, the traps, and the open items. If anything here disagrees with the code, trust the code and fix this document.
 
@@ -101,6 +101,7 @@ This document is meant to be pasted into a new Claude (or other agent) session a
 11. **F19 no inverter:** the owner said the society has power backup, so the inverter goes. Proposed first (architecture + electrical), then built: the under-stair bay becomes a network shelf + cupboard; the inverter, battery, SM-4 feed and inverter board go; CCTV, door phone, rack and desk UPS socket move to always-on circuit AO on DB-1. The owner then confirmed the society backs up 100% of the load, so nothing is split off backup.
 12. **F20 water:** the owner said there is no underground tank (the society's set-up delivers the water) and asked for two storage tanks with a softener and heater. Proposed with options first; the owner chose both tanks soft, 2 × 2000 L, a bypass at the meter for a future booster, and heater option (a): keep the solar heater + geysers on soft water. Tank 2 first landed in the house centre (Brahmasthan) and was moved over the stair (W zone).
 13. **F21 master balcony:** the owner asked for half wall and half glass with a door instead of the full-glass GL-7. Options asked first (door position, type, grilles); built as GL-7a uPVC sliding door at the east end (west sash opens) + GL-7b window on a 900 half wall, F18's system; balcony seating moved west; 6-ft walk test passed.
+14. **F22 kitchen + F23 under-stair store + house tour:** the owner sent a reference tour video and asked for a detailed working kitchen, an under-stair store with a concealed door on the lounge side, and a tour of every room. Inspected first: the family lounge does not touch the stair, so the door went on the guest lounge / study wall (owner's choice; lobby door closed). The film became a 16:9 first-person tour (`viewer/film/r1/`, 41 shots, about 3 min 55 s) with floor + room labels, a neutral score and an optional Indian-English voice-over (edge-tts on the owner's Mac).
 
 ---
 
@@ -339,6 +340,8 @@ The R1 checks pass at handover:
   | `b15_tulsi` | B15 | tulsi platform GF-O09 at (645, 1650), rot 270, in the back lawn's NE corner; bamboo planters O10 / O11; fluted panel O12 on the E boundary wall |
   | `e12_plumbing` | E12 | `services.plumbing` |
   | `e13_electrical` | E13 | `services.electrical`; also re-places the ODUs (drops SF-AC2, moves SF-AC1, adds SF-AC5/6 and GF-O08) |
+  | `f22_kitchen` | F22 | three-zone kitchen: fridge_unit, appliance_tower, pantry, mixer station, hob_png, hood + duct, dish_rack, water_purifier, drainboard, bin_pullout, drawer_open (shown pulled out), exposed gas_pipe / gas_valve / gas_meter; GAS-1 run in the plumbing |
+  | `f23_under_stair` | F23 | concealed flush door GF-D3c (`flush`, `closed`) on GF-W23, wall_panel + reveal_frame, lobby door D3b closed, D2b rehung (hinge b), shelves, tool_rail, drawer_stack |
   | `f21_master_balcony` | F21 | GL-7 → uPVC sliding door GL-7a (2200 × 2400 at offset 150 on FF-W06, `open: 'b'` = west sash, grille inside) + window GL-7b (1300 × 1500 on a 900 sill, grille outside); lounge chair FF-M07 and balcony seating FF-L02/L03/L04 moved. Runs after F18. |
   | `f18_rear_glazing` | F18 | GL-5 → uPVC sliding door GL-5a (2200 × 2400, east sash opens, `open: 'a'`, grille inside) + window GL-5b (3000 × 1500 on a 900 sill, `fixed: 750`, grille outside); floor lamp GF-F08 to (7000, 5950); pergola `z_top` 3150. Runs before the services. |
   | `f16_materials` | F16 | kitchen, wash-nook and pantry counter tops get `top: 'granite_black'` (the BOQ's granite); quantities come from `tools/boq.py` |
@@ -566,11 +569,11 @@ It runs three sections and writes `plans/r1/services_report.txt`.
 - **Post:** `post.py` does the edit, grade, letterbox titles, score (`score.py` synthesises it) and the encode.
 - **Context:** `?cinema` adds a neighbourhood (`context.js`); it is scenery only.
 - **Output:** 54 s, 1920 × 1080 at 24 fps, 2.39:1. The mp4 is not committed.
-- **R1 walkthrough film (`viewer/film/r1/`, Nov 2026):** the owner asked for a 2–3 minute premium walkthrough of the finalised R1 model. A separate pipeline so the original film stays as it was:
-  - `shots.mjs`: 23 camera moves (arrival, GF, stair, FF, SF terraces, time-lapse, finale), cut on the bars of an 80 BPM score (1 bar = 3 s); 51 bars + 2-bar title + end card = 163 s. The camera only moves through the model; nothing is added.
-  - `render.mjs`: renders `/v1/?headless&cinema`. `gpu` = visible Chromium on the real GPU (a Mac); `4k` = 3840 × 1608 JPEG frames; `part=k/n` splits the work across processes; resumable. CPU SwiftShader in the cloud is about 5 s per 1920 × 804 frame (3.2 s with two processes).
-  - `score.py`: original felt-piano / string-pad score, synthesised (no samples). `post.py`: grade, 2.39:1 letterbox, title, chapter and room captions, dips between floors, H.264 + AAC; `--4k` for UHD (also downsizes 4K frames to a 1080p film without it).
-  - One-line run on a Mac: `npm run film:r1` (after `npm install`, `npx playwright install chromium`, `npm run build`, and numpy + pillow + ffmpeg). Output: `viewer/film/r1/GH-18_R1_walkthrough_4K.mp4` (not committed).
+- **R1 house tour (`viewer/film/r1/`, Nov 2026):** the owner's 2–3 minute walkthrough, then reworked after a reference tour video into a first-person, eye-level, wide-lens walk through every room (16:9). A separate pipeline, so the original film stays as it was:
+  - `shots.mjs`: 41 moves (arrival, GF incl. every kitchen zone and the concealed store door, FF, SF, time-lapse, finale), each with `sec`, `lvl` + `room` (the on-screen label; `floor` is the viewer's floor filter, never use it for the label) and an optional `vo` line. Total about 3 min 55 s. No neighbourhood scenery: only the house and its plot.
+  - `render.mjs`: renders `/v1/?headless&cinema`. `gpu` = visible Chromium on the real GPU (a Mac, about 0.2–0.3 s per 4K frame); `4k` = 3840 × 2160 JPEG frames; `part=k/n`; resumable. Cloud CPU (SwiftShader) is about 5 s per 1080p frame.
+  - `score.py`: neutral synthesised score whose length follows the shot list. `voice.py`: Indian-English neural voice (edge-tts, `en-IN-NeerjaNeural` or `en-IN-PrabhatNeural`; needs internet, blocked in the cloud container). `post.py`: grade, labels, dips at floor changes, music ducked under the voice, H.264 + AAC; `--4k` for UHD.
+  - On a Mac: `node film/r1/render.mjs gpu 4k`, `python3 film/r1/voice.py`, `python3 film/r1/post.py --4k`. Output `film/r1/GH-18_R1_house_tour_4K.mp4` (not committed).
 
 ---
 
@@ -703,6 +706,7 @@ Hold points and open questions:
 - **Master washroom over the kitchen:** sunken floor, waterproofing, flood test (architect, structural, plumber).
 - **F18 rear wall:** deck-to-lawn 1'-0" (0.30 m) drop has no step in the model (architect); door on the south wall (Vastu consultant); lintel and the raised pergola ledger (structural).
 - **F20 water:** the roof slab and stands for two full 2000 L tanks (about 4.4 t; tank 2 over the stair) - structural; society pressure at the roof tanks - plumber / RWA (else fit the booster at VB-1).
+- **F22 / F23:** the PNG route from the society main to the meter (gas company); the lintel over the new store door (structural).
 - **Living-area floors:** the owner still has to choose A (Italian marble) or B (large-format tiles); both are in the materials schedule.
 - **Master headboard on the W wall** against red-line 13 (S wall). The electrical sheet assumes W.
 - **SF rooms not in the S / SW** (red-line T); the SF is a proposal.

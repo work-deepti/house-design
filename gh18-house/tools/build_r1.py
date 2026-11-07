@@ -424,6 +424,8 @@ def e12_plumbing(h):
         run(rid, 'cold', 25, pts, what)
     run('DT-2', 'cold', 25, [[OHT[0] + 600, OHT[1], roof + 400], [OHT[0] + 600, 15300, roof + 100], [8950, 15300, roof + 100],
                              [8950, 15300, 4600], [7562, 15400, 4600], [6580, 15400, 4600]], 'down-take in the SS-3 duct: FF kids toilet')
+    run('GAS-1', 'gas', 15, [[420, 5440, 1820], [420, 5440, 1880], [420, 5690, 1880], [270, 5690, 1880], [270, 5690, 1150], [270, 6600, 1150],
+                             [270, 6600, 900], [530, 7300, 900]], 'society PNG -> meter on the rear wall -> exposed line -> appliance valve -> hob (R1-F22)')
     sol = fur['SF-R02']['pos']
     run('HW-1', 'hot', 25, [[sol[0], sol[1] - 600, roof + 1200], [sol[0], 10900, roof + 100], [400, 10900, roof + 100], [400, 10900, 4400],
                             [700, 9600, 4400], [2618, 9600, 4400]], 'solar hot water -> FF master washroom')
@@ -492,16 +494,24 @@ def e13_electrical(h):
 
     # ---------------- GF (DB-1 = main DB)
     K = 'GF-KIT'
-    P('light', K, 1700, 7300); P('light', K, 1700, 9800)
-    P('ucl', K, 430, 7757, note='under the east wall cabinets'); P('ucl', K, 2950, 7800, note='under the west wall cabinets')
-    P('ucl', K, 2090, 11190, note='under the wash-nook cabinet (R1-B4)')
+    for x, y in ((1200, 6900), (2300, 6900), (1200, 9300), (2300, 9300)):
+        P('light', K, x, y, note='general downlight (R1-F22: four instead of two)')
+    P('light', K, 2000, 11000, note='task light over the sink (R1-F22)')
+    P('ucl', K, 430, 7757, note='under the east wall cabinets (prep + hob task light)'); P('ucl', K, 2950, 7000, note='under the west wall cabinets, mixer station')
+    P('ucl', K, 1600, 5700, z=2000, note='over the south prep counter (R1-F22)')
+    P('ucl', K, 2090, 11190, note='under the dish rack (R1-B4, F22)')
     P('hd', K, 1700, 8500, note='heat detector (A3)')
-    P('sb', K, 3130, 9200, note='by the kitchen door')
-    P('ch', K, 250, 7300, note='chimney over the hob on the east wall (A3), duct along the cabinets to the rear wall')
-    P('s6c', K, 250, 8700, note='counter socket')
-    P('s16', K, 3130, 7300, z=1100, note='microwave, west counter')
+    P('sb', K, 3130, 9250, note='by the kitchen door')
+    P('ch', K, 250, 7300, note='chimney over the hob on the east wall (A3), duct over the cabinets to the rear wall (R1-F22)')
+    P('s6c', K, 250, 8700, note='counter socket, prep between hob and fridge')
+    P('s6', K, 3130, 6650, z=1100, note='mixer-grinder station (R1-F22)'); P('s6', K, 3130, 6950, z=1100, note='mixer-grinder station (R1-F22)')
+    P('s16', K, 3130, 7300, z=1100, note='mixer station 16 A: juicer / wet grinder (R1-F22)')
+    P('s16', K, 3130, 7900, z=1150, note='OTG, inside the appliance tower (R1-F22)')
+    P('s16', K, 3130, 8100, z=1550, note='microwave, inside the appliance tower (R1-F22)')
     P('s16', K, 250, 10051, note='fridge, in the tall unit')
-    P('s16', K, 2850, 11345, note='dishwasher under the wash-nook counter, 0.65 m from the sink')
+    P('s6', K, 3080, 11345, z=1450, note='RO purifier, beside it (R1-F22)')
+    P('s6', K, 250, 7750, z=550, note='hob auto-ignition, inside the base unit (R1-F22)')
+    P('s16', K, 2850, 11345, note='spare 16 A under the wash-nook counter (dishwasher-ready)')
     P('ef', K, 2650, 5685, note='exhaust fan on the rear external wall (A3)')
     P('ef', K, 1051, 11050, z=1400, note='wash-nook exhaust into the OTS through KW-1 (R1-B4)')
     P('db', K, 250, 9451, note='DB-1 (main), 400 mm enclosed cabinet on the kitchen east wall, SE zone (A3, R1-B7)', tag='DB-1')
@@ -529,7 +539,7 @@ def e13_electrical(h):
     P('sb2w', B, 7180, 12500, z=1200, note='2-way stair switching (A5)')
     J = 'GF-JAN'
     P('light', J, 7000, 14600, z=2100)
-    P('sb', J, 6100, 14150)
+    P('sb', J, 7000, 15110, z=1200, note='inside the concealed door (R1-F23)')
     P('rack', J, 8775, 12885, note='network rack: router + CCTV recorder (A5); no inverter, society DG backup (R1-F19)', tag='RACK')
     Y = 'GF-FOY'
     P('light', Y, 5100, 18000); P('light', Y, 4800, 19300)
@@ -550,7 +560,7 @@ def e13_electrical(h):
     P('s6', S, 6100, 18600, z=900, note='desk (A7)'); P('s6', S, 6100, 19100, z=900, note='desk (A7)')
     P('ups', S, 6100, 18850, note='desk socket for a plug-in UPS (A7; R1-F19 no inverter, on the always-on circuit)')
     P('data', S, 6100, 18350, z=900, note='Cat-6 at the desk (A7)')
-    P('sb', S, 6100, 16600, note='by the door')
+    P('sb', S, 6100, 15350, note='by the door, latch side (R1-F23: door rehung)')
     P('sd', S, 7600, 16900, note='smoke detector (R1 addition)')
     # outside (DB-1, RCD)
     for x in (2000, 3600, 5900, 8200):
@@ -862,8 +872,107 @@ def f21_master_balcony(h):
         find(ff['furniture'], fid).update(pos=pos, note='R1-F21 moved to the deep west end of the balcony, clear of the door')
 
 
+def f22_kitchen(h):
+    """F22 (owner, Nov 2026): a detailed, working kitchen in the existing closed kitchen (walls, KD-1, GL-4, KW-1 and the
+    hob position unchanged; the cook still faces east), organised in three zones:
+    1. Storage + refrigeration (north end, by the door): full-size double-door fridge in the east tall unit (the oven
+       leaves it); on the west wall an appliance tower (OTG at counter height, microwave at eye level, sockets inside)
+       and a 900 tall pantry with pull-out baskets. DB-1's cabinet stays beside the fridge, reachable.
+    2. Preparation + washing: the 2.0 m south counter under GL-4 is the main uninterrupted prep top (cutlery-organiser
+       drawers); the 1.4 m west counter is the mixer-grinder station (2 x 6 A + 1 x 16 A at 1.1 m); the north wash
+       nook has the double-bowl sink, a drainboard, an open dish-drying rack above, under-sink storage, a 3-bin
+       segregated pull-out (wet / dry / recyclable) and a wall-mounted RO purifier with its own tap.
+    3. Cooking (east wall): PNG hob with a 900 chimney (lower edge 700 above the hob), duct over the wall cabinets to
+       the rear external wall (the east wall is a party wall); deep pan drawers under the hob, spice/cutlery drawer
+       beside it; 1.5 m clear counter between the hob and the fridge.
+    Gas: society PNG to a meter + main valve on the rear external wall at the SE corner, sleeved through the wall at
+    ~1880, exposed 15 mm yellow GI line (never concealed) down the SE corner and along the east wall at ~1150 to a
+    quarter-turn appliance valve 300 clear of the hob, then an approved connector to the hob. The route from the
+    society main to the meter is for the gas company to confirm. Aisle between the runs stays 1.72 m."""
+    gf = floor(h, 'GF')
+    drop(gf['furniture'], 'GF-K02', 'GF-K04', 'GF-K05', 'GF-K06', 'GF-K08', 'GF-K09', 'GF-K13')
+    find(gf['furniture'], 'GF-K01').update(drawers=True, note='R1-F22 zone 2: main prep counter under GL-4, 2.0 m uninterrupted; cutlery-organiser + utensil drawers')
+    find(gf['furniture'], 'GF-K03').update(drawers=True, note='R1-F22 zone 3: hob run; deep pan drawers under the hob, spice/cutlery drawer beside it, 1.5 m prep to the fridge')
+    find(gf['furniture'], 'GF-K10').update(note='R1-F22 wash nook: double-bowl sink, drainboard, under-sink storage, bin pull-out')
+    find(gf['furniture'], 'GF-K12')['note'] = 'DB-1 (main), enclosed cabinet beside the fridge; front kept clear for access (R1-F22)'
+    find(gf['rooms'], 'GF-KIT')['note'] = 'R1-F22 working kitchen in three zones: storage + fridge (N), prep + washing (S, W, N nook), cooking (E)'
+    T = lambda fid, typ, pos, size, rot, z=0, **kw: F(fid, 'GF-KIT', typ, pos, size, rot, z=z, **kw)  # noqa: E731
+    gf['furniture'] += [
+        # zone 1: storage + refrigeration
+        T('GF-K04', 'fridge_unit', (580, 10051), (800, 700, 2250), 270, note='R1-F22 full-size double-door fridge (about 700 x 1800) in a ventilated tall unit; 16 A socket inside'),
+        T('GF-K14', 'appliance_tower', (2850, 8000), (600, 600, 2250), 90, note='R1-F22 appliance tower: OTG at 900, microwave at eye level (1400-1780), 16 A sockets inside, vented'),
+        T('GF-K15', 'storage_tall', (2850, 8750), (900, 600, 2250), 90, note='R1-F22 tall pantry: groceries and dry storage, pull-out baskets'),
+        # zone 2: preparation + washing
+        T('GF-K02', 'counter', (2850, 7000), (1400, 600, 900), 90, top='granite_black', drawers=True, note='R1-F22 mixer-grinder station, 1.4 m; sockets at 1.1 m'),
+        T('GF-K09', 'wall_cabinet', (2975, 7000), (1400, 350, 750), 90, z=1500, note='R1-F22 overheads above the mixer station'),
+        T('GF-K17', 'mixer_grinder', (2930, 6750), (220, 220, 420), 90, z=900, note='R1-F22 mixer-grinder in its station, plugged in'),
+        T('GF-K18', 'drainboard', (2420, 11065), (500, 450, 12), 180, z=900, note='R1-F22 drainboard beside the sink'),
+        T('GF-K22', 'drawer_open', (1030, 7300), (700, 450, 300), 270, z=120, contents='pots', note='R1-F22 deep pan drawer under the hob, shown pulled out (pressure cookers, kadhai, tawa)'),
+        T('GF-K23', 'drawer_open', (1600, 6465), (600, 400, 110), 0, z=745, contents='cutlery', note='R1-F22 cutlery-organiser drawer in the prep counter, shown pulled out'),
+        T('GF-K19', 'bin_pullout', (2895, 10790), (450, 500, 650), 180, note='R1-F22 3-bin segregated pull-out (wet / dry / recyclable), shown pulled out'),
+        T('GF-K13', 'dish_rack', (1770, 11190), (1460, 350, 700), 180, z=1500, note='R1-F22 open dish-drying rack over the sink (drips into the sink)'),
+        T('GF-K20', 'wall_cabinet', (2820, 11190), (640, 350, 700), 180, z=1500, note='R1-F22 overhead beside the dish rack'),
+        T('GF-K21', 'water_purifier', (2900, 11250), (300, 230, 420), 180, z=1030, note='R1-F22 wall-mounted RO purifier with its own tap; feed from DT-1b, reject to the sink waste'),
+        # zone 3: cooking
+        T('GF-K05', 'wall_cabinet', (405, 6557), (586, 350, 750), 270, z=1500, note='R1-F22 overhead, left of the chimney'),
+        T('GF-K05b', 'wall_cabinet', (405, 8500), (1500, 350, 750), 270, z=1500, note='R1-F22 overheads, right of the chimney'),
+        T('GF-K06', 'hood', (480, 7300), (900, 500, 850), 270, z=1600, note='R1-F22 900 chimney, lower edge 700 above the hob; stack to the duct'),
+        T('GF-K16', 'duct', (430, 6445), (1710, 220, 160), 270, z=2450, note='R1-F22 150 mm chimney duct over the wall cabinets to the rear external wall (not through the east party wall)'),
+        T('GF-K08', 'hob_png', (530, 7300), (750, 520, 50), 270, z=900, note='R1-F22 4-burner PNG hob (society gas)'),
+        # gas: exposed 15 mm yellow GI line, meter outside
+        T('GF-K31', 'gas_pipe', (420, 5555), (290, 25, 25), 90, z=1868, note='R1-F22 PNG line through the rear wall in a sleeve'),
+        T('GF-K32', 'gas_pipe', (345, 5690), (150, 25, 25), 0, z=1868, note='R1-F22 PNG line'),
+        T('GF-K33', 'gas_pipe', (270, 5690), (25, 25, 730), 0, z=1150, vertical=True, note='R1-F22 PNG line down the SE corner'),
+        T('GF-K34', 'gas_pipe', (270, 6145), (910, 25, 25), 90, z=1138, note='R1-F22 PNG line along the east wall, above the backsplash'),
+        T('GF-K35', 'gas_valve', (285, 6600), (90, 70, 90), 270, z=1105, note='R1-F22 quarter-turn appliance isolation valve, 300 clear of the hob, at hand height'),
+        T('GF-K36', 'gas_pipe', (270, 6600), (25, 25, 205), 0, z=900, vertical=True, note='R1-F22 drop to the hob connector inside the base unit'),
+    ]
+    gf['furniture'].append(F('GF-O13', 'GF-DECK', 'gas_meter', (420, 5440), (320, 150, 420), 180, z=1400,
+                             note='R1-F22 PNG meter + main valve on the rear external wall at the SE corner (gas company to confirm the incoming route)'))
+
+
+def f23_under_stair(h):
+    """F23 (owner, Nov 2026): the stair cavity becomes a proper household store, entered through a concealed, flush,
+    handleless door in new walnut wall panelling on the guest lounge / study side (the family lounge does not touch the
+    stair; the guest lounge / study is the only lounge with a wall onto it). Inspection of the cavity:
+    - under flight F2 (x 6080-7899, y 14070-15124, 1054 deep): soffit falls from ~2.95 m at x 6.08 to ~1.45 m at 7.9;
+    - under the landing (x 7899-9151, y 12865-15124): 1.5 m clear; network rack at its south end.
+    The door (800 x 2100, offset 60 on the 150 partition GF-W23) sits at the high end, where the soffit is ~2.27 m at
+    its far jamb, below the flight: no stair waist, landing, beam or support wall is cut (lintel to be confirmed by
+    the structural engineer). It opens inward (the guest lounge's own door D2b sweeps the same corner) and parks against
+    the east wall. The lobby door D3b is closed, so the lobby wall is plain. Inside: open shelving stepped to the soffit
+    along the spine wall (luggage on the high shelves), a cleaning-tools rail on the north wall, deep pull-out drawers
+    under the landing reached along a 650 bay, and the network rack kept reachable at the south end."""
+    gf = floor(h, 'GF')
+    drop(find(gf['walls'], 'GF-W19')['openings'], 'GF-D3b')
+    find(gf['walls'], 'GF-W23').setdefault('openings', []).append(
+        O('GF-D3c', 'D3c', 'door', 60, 800, 2100, 0, hinge='a', swing='-y', flush=True, closed=True,
+          note='R1-F23 concealed flush handleless push-latch door in the walnut panelling; opens into the store'))
+    h['schedule']['unscheduled']['D3c'] = {'desc': 'R1-F23 concealed flush door to the under-stair store, 800 x 2100, push-latch, handleless, '
+                                                   'faced in the walnut wall panelling; opens inward.'}
+    # clearance: the guest lounge's own door D2b (hinged at its south jamb) parked open right across the new door;
+    # rehung on its north jamb it opens back against the east wall, clear of the store door and of the sofa (70 mm)
+    opening(find(gf['walls'], 'GF-W19'), 'GF-D2b').update(hinge='b', note='guest lounge / study door; R1-F23 rehung on its north jamb so it parks clear of the store door')
+    jan = find(gf['rooms'], 'GF-JAN')
+    jan['note'] = 'R1-F23 household store under the stair, entered from the guest lounge / study through a concealed door; lobby door closed'
+    drop(gf['furniture'], 'GF-J01', 'GF-J02', 'GF-J04')
+    find(gf['furniture'], 'GF-M05').update(pos=[8200, 15680], note='sethi / diwan with bolsters, against the new panelling (R1-F23)')
+    J = lambda fid, typ, pos, size, rot, z=0, **kw: F(fid, 'GF-JAN', typ, pos, size, rot, z=z, **kw)  # noqa: E731
+    gf['furniture'] += [
+        F('GF-M09', 'GF-MND', 'wall_panel', (8045, 15284), (2211, 20, 2700), 0, note='R1-F23 walnut fluted wall panelling, south wall'),
+        F('GF-M10', 'GF-MND', 'wall_panel', (6540, 15284), (800, 20, 600), 0, z=2100, note='R1-F23 panelling over the concealed door'),
+        F('GF-M11', 'GF-MND', 'wall_panel', (6110, 15284), (60, 20, 2700), 0, note='R1-F23 panelling, corner strip'),
+        F('GF-M12', 'GF-MND', 'reveal_frame', (6540, 15296), (800, 6, 2100), 0, note='R1-F23 4 mm shadow gap round the concealed door'),
+        J('GF-J01', 'shelf', (6400, 14295), (400, 450, 2450), 0, note='R1-F23 tall shelves at the high end: luggage on top, household supplies'),
+        J('GF-J02', 'shelf', (6900, 14295), (600, 450, 1950), 0, note='R1-F23 shelves under the falling soffit'),
+        J('GF-J06', 'shelf', (7500, 14295), (600, 450, 1450), 0, note='R1-F23 low shelves'),
+        J('GF-J07', 'tool_rail', (7400, 15090), (800, 60, 1400), 180, note='R1-F23 cleaning tools: mop, broom, vacuum on a wall rail'),
+        J('GF-J04', 'drawer_stack', (8850, 14250), (1700, 600, 1350), 90, note='R1-F23 deep pull-out drawers under the landing, reached along a 650 bay'),
+    ]
+
+
 PATCHES = [a1_orientation, a2_units, b3_family_lounge, b4_kitchen_wash, b5_guest_lounge, b6_mandir, b7_under_stair,
-           c8_pantry, c9_kids_toilet_back, c10_master_suite, d11_utility_terrace, b15_tulsi, f18_rear_glazing, f21_master_balcony,
+           c8_pantry, c9_kids_toilet_back, c10_master_suite, d11_utility_terrace, b15_tulsi, f18_rear_glazing, f21_master_balcony, f22_kitchen, f23_under_stair,
            e12_plumbing, e13_electrical, f16_materials]
 
 

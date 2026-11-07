@@ -93,6 +93,12 @@ export async function createMaterials(renderer) {
   flat('ground', 0xc9c4b8, { roughness: 1.0 });
   flat('lift_steel', 0xb9bcbf, { roughness: 0.25, metalness: 1.0 });
   flat('mirror', 0xdfe6ea, { roughness: 0.02, metalness: 1.0 });
+  // R1-F22 kitchen + gas (used only by the R1 model)
+  flat('gas_yellow', 0xe2b227, { roughness: 0.45, metalness: 0.3 });
+  flat('bin_green', 0x4f8a4b, { roughness: 0.6 });
+  flat('bin_blue', 0x3f6fa6, { roughness: 0.6 });
+  flat('bin_grey', 0x6f7276, { roughness: 0.6 });
+  flat('glass_black', 0x141619, { roughness: 0.08, metalness: 0.5 });
 
   M.glass = new THREE.MeshPhysicalMaterial({
     color: 0xcfe2e6, roughness: 0.03, metalness: 0.1, transparent: true, opacity: 0.3,

@@ -69,16 +69,7 @@
 <polygon points="5000,9700 6400,9700 6400,10000 5000,10000" fill="none" stroke="#b08d57" stroke-width="10" stroke-dasharray="30 30"/>
 <text x="5700" y="9640" font-size="80" fill="#b08d57" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >PENDANT</text>
 <polygon points="230,5665 2250,5665 2250,6265 230,6265" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
-<polygon points="3150,6500 3150,9100 2550,9100 2550,6500" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="230,9250 230,6264 830,6264 830,9250" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
-<polygon points="230,9250 230,6264 580,6264 580,9250" fill="none" stroke="#8a7a5c" stroke-width="8" stroke-dasharray="50 35"/>
-<polygon points="230,7750 230,6850 730,6850 730,7750" fill="none" stroke="#8a7a5c" stroke-width="8" stroke-dasharray="50 35"/>
-<polygon points="270,7675 270,6925 790,6925 790,7675" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
-<circle cx="400" cy="7487.5" r="70" fill="none" stroke="#8a7a5c" stroke-width="6"/>
-<circle cx="660" cy="7487.5" r="70" fill="none" stroke="#8a7a5c" stroke-width="6"/>
-<circle cx="400" cy="7112.5" r="70" fill="none" stroke="#8a7a5c" stroke-width="6"/>
-<circle cx="660" cy="7112.5" r="70" fill="none" stroke="#8a7a5c" stroke-width="6"/>
-<polygon points="3150,6500 3150,9100 2800,9100 2800,6500" fill="none" stroke="#8a7a5c" stroke-width="8" stroke-dasharray="50 35"/>
 <polygon points="4350,17000 4350,15800 4650,15800 4650,17000" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="5900,17600 5900,19400 5450,19400 5450,17600" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="5895,18100 5895,18900 5865,18900 5865,18100" fill="none" stroke="#8a7a5c" stroke-width="8" stroke-dasharray="50 35"/>
@@ -130,13 +121,12 @@
 <polygon points="3140,11365 1040,11365 1040,10765 3140,10765" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="2200,11290 1200,11290 1200,10840 2200,10840" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <ellipse cx="1700" cy="11065" rx="144" ry="99" fill="#fff" stroke="#8a7a5c" stroke-width="8"/>
-<polygon points="3140,11365 1040,11365 1040,11015 3140,11015" fill="none" stroke="#8a7a5c" stroke-width="8" stroke-dasharray="50 35"/>
 <polygon points="6080,19550 6080,18150 6680,18150 6680,19550" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="7255,18575 7255,19125 6705,19125 6705,18575" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polyline points="7165,18615 7165,19085" fill="none" stroke="#8a7a5c" stroke-width="8" />
 <polygon points="6080,18100 6080,16500 6930,16500 6930,18100" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="9151,16550 9151,18050 8751,18050 8751,16550" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
-<polygon points="7300,15275 9100,15275 9100,16025 7300,16025" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="7300,15305 9100,15305 9100,16055 7300,16055" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="7400,17750 7400,16850 7900,16850 7900,17750" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <circle cx="8900" cy="19400" r="225" fill="#e6efd9" stroke="#8a7a5c" stroke-width="10"/>
 <polygon points="3300,8900 3300,7800 3750,7800 3750,8900" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
@@ -147,27 +137,11 @@
 <polyline points="3690,8063.3 3570,7983.3 3690,7903.3" fill="none" stroke="#b08d57" stroke-width="8" />
 <text x="3525" y="8390" font-size="95" fill="#b08d57" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" transform="rotate(90 3525 8390)" >MANDIR</text>
 <circle cx="4300" cy="8350" r="225" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10"/>
-<polygon points="6880,15124 6080,15124 6080,14524 6880,14524" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
-<polyline points="6880,14564 6080,14564" fill="none" stroke="#8a7a5c" stroke-width="6" />
-<polyline points="6880,15124 6080,14524" fill="none" stroke="#8a7a5c" stroke-width="5" />
-<polyline points="6880,14524 6080,15124" fill="none" stroke="#8a7a5c" stroke-width="5" />
-<polygon points="7680,15124 6880,15124 6880,14524 7680,14524" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
-<polyline points="7680,14564 6880,14564" fill="none" stroke="#8a7a5c" stroke-width="6" />
-<polyline points="7680,15124 6880,14524" fill="none" stroke="#8a7a5c" stroke-width="5" />
-<polyline points="7680,14524 6880,15124" fill="none" stroke="#8a7a5c" stroke-width="5" />
 <polygon points="8475,12865 9075,12865 9075,13315 8475,13315" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="7975,12865 8475,12865 8475,13315 7975,13315" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polyline points="7975,13275 8475,13275" fill="none" stroke="#8a7a5c" stroke-width="6" />
 <polyline points="7975,12865 8475,13315" fill="none" stroke="#8a7a5c" stroke-width="5" />
 <polyline points="7975,13315 8475,12865" fill="none" stroke="#8a7a5c" stroke-width="5" />
-<polygon points="9075,15124 7975,15124 7975,14524 9075,14524" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
-<polyline points="9075,14564 7975,14564" fill="none" stroke="#8a7a5c" stroke-width="6" />
-<polyline points="9075,15124 7975,14524" fill="none" stroke="#8a7a5c" stroke-width="5" />
-<polyline points="9075,14524 7975,15124" fill="none" stroke="#8a7a5c" stroke-width="5" />
-<polygon points="230,10451 230,9651 830,9651 830,10451" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
-<polyline points="790,10451 790,9651" fill="none" stroke="#8a7a5c" stroke-width="6" />
-<polyline points="230,10451 830,9651" fill="none" stroke="#8a7a5c" stroke-width="5" />
-<polyline points="830,10451 230,9651" fill="none" stroke="#8a7a5c" stroke-width="5" />
 <polygon points="230,9651 230,9251 830,9251 830,9651" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polyline points="790,9651 790,9251" fill="none" stroke="#8a7a5c" stroke-width="6" />
 <polyline points="230,9651 830,9251" fill="none" stroke="#8a7a5c" stroke-width="5" />
@@ -178,6 +152,43 @@
 <circle cx="500" cy="750" r="225" fill="#e6efd9" stroke="#8a7a5c" stroke-width="10"/>
 <circle cx="500" cy="2550" r="225" fill="#e6efd9" stroke="#8a7a5c" stroke-width="10"/>
 <polygon points="230,2700 230,600 270,600 270,2700" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="230,10451 230,9651 930,9651 930,10451" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="3150,7700 3150,8300 2550,8300 2550,7700" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="3150,8300 3150,9200 2550,9200 2550,8300" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polyline points="2590,8300 2590,9200" fill="none" stroke="#8a7a5c" stroke-width="6" />
+<polyline points="3150,8300 2550,9200" fill="none" stroke="#8a7a5c" stroke-width="5" />
+<polyline points="2550,8300 3150,9200" fill="none" stroke="#8a7a5c" stroke-width="5" />
+<polygon points="3150,6300 3150,7700 2550,7700 2550,6300" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="3150,6300 3150,7700 2800,7700 2800,6300" fill="none" stroke="#8a7a5c" stroke-width="8" stroke-dasharray="50 35"/>
+<polygon points="3040,6640 3040,6860 2820,6860 2820,6640" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="2670,11290 2170,11290 2170,10840 2670,10840" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="805,7650 805,6950 1255,6950 1255,7650" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="1300,6265 1900,6265 1900,6665 1300,6665" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="3120,11040 2670,11040 2670,10540 3120,10540" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="2500,11365 1040,11365 1040,11015 2500,11015" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="3140,11365 2500,11365 2500,11015 3140,11015" fill="none" stroke="#8a7a5c" stroke-width="8" stroke-dasharray="50 35"/>
+<polygon points="3050,11365 2750,11365 2750,11135 3050,11135" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="230,6850 230,6264 580,6264 580,6850" fill="none" stroke="#8a7a5c" stroke-width="8" stroke-dasharray="50 35"/>
+<polygon points="230,9250 230,7750 580,7750 580,9250" fill="none" stroke="#8a7a5c" stroke-width="8" stroke-dasharray="50 35"/>
+<polygon points="230,7750 230,6850 730,6850 730,7750" fill="none" stroke="#8a7a5c" stroke-width="8" stroke-dasharray="50 35"/>
+<polygon points="320,7300 320,5590 540,5590 540,7300" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="270,7675 270,6925 790,6925 790,7675" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="432.5,5410 432.5,5700 407.5,5700 407.5,5410" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="270,5677.5 420,5677.5 420,5702.5 270,5702.5" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="257.5,5677.5 282.5,5677.5 282.5,5702.5 257.5,5702.5" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="282.5,5690 282.5,6600 257.5,6600 257.5,5690" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="250,6645 250,6555 320,6555 320,6645" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="257.5,6587.5 282.5,6587.5 282.5,6612.5 257.5,6612.5" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="580,5515 260,5515 260,5365 580,5365" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="6939.5,15274 9150.5,15274 9150.5,15294 6939.5,15294" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="6140,15274 6940,15274 6940,15294 6140,15294" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="6080,15274 6140,15274 6140,15294 6080,15294" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="6140,15293 6940,15293 6940,15299 6140,15299" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="6200,14070 6600,14070 6600,14520 6200,14520" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="6600,14070 7200,14070 7200,14520 6600,14520" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="7200,14070 7800,14070 7800,14520 7200,14520" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="7800,15120 7000,15120 7000,15060 7800,15060" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
+<polygon points="9150,13400 9150,15100 8550,15100 8550,13400" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 <polygon points="2325,19550 3075,19550 3075,19850 2325,19850" fill="#fffdf8" stroke="#8a7a5c" stroke-width="10" />
 </g>
 <g id="stair">
@@ -232,13 +243,13 @@
 <polygon points="3300,5665 3300,9350 3150,9350 3150,5665" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
 <polygon points="3300,10350 3300,11365 3150,11365 3150,10350" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
 <polygon points="230,13916 4200,13916 4200,14066 230,14066" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
-<polygon points="6080,13919 6080,14272 5900,14272 5900,13919" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
-<polygon points="6080,15072 6080,15426 5900,15426 5900,15072" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
+<polygon points="6080,13919 6080,15426 5900,15426 5900,13919" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
 <polygon points="6080,16425 6080,20602 5900,20602 5900,16425" fill="#262626" stroke="#262626" stroke-width="4" />
 <polygon points="4350,17196 4400,17196 4400,17376 4350,17376" fill="#262626" stroke="#262626" stroke-width="4" />
 <polygon points="5850,17196 5900,17196 5900,17376 5850,17376" fill="#262626" stroke="#262626" stroke-width="4" />
 <polygon points="5899,13920 7899,13920 7899,14070 5899,14070" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
-<polygon points="6080,15124 9151,15124 9151,15274 6080,15274" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
+<polygon points="6080,15124 6140,15124 6140,15274 6080,15274" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
+<polygon points="6940,15124 9151,15124 9151,15274 6940,15274" fill="#6f6f6f" stroke="#6f6f6f" stroke-width="4" />
 <polygon points="6080,19716 6232,19716 6232,19896 6080,19896" fill="#262626" stroke="#262626" stroke-width="4" />
 <polygon points="9002,19716 9151,19716 9151,19896 9002,19896" fill="#262626" stroke="#262626" stroke-width="4" />
 <polygon points="0,0 9381,0 9381,200 0,200" fill="#8c8c8c" stroke="#8c8c8c" stroke-width="4" />
@@ -301,20 +312,20 @@
 <polyline points="3150,9350 3150,10350" fill="none" stroke="#222" stroke-width="6" />
 <polyline points="3247.5,9350 3247.5,9950" fill="none" stroke="#2aa7c9" stroke-width="22" />
 <polyline points="3202.5,9750 3202.5,10350" fill="none" stroke="#2aa7c9" stroke-width="22" />
-<line x1="6080" y1="14272" x2="5900" y2="14272" stroke="#222" stroke-width="8" />
-<line x1="6080" y1="15072" x2="5900" y2="15072" stroke="#222" stroke-width="8" />
-<line x1="5900" y1="15072" x2="5100" y2="15072" stroke="#222" stroke-width="16" />
-<path d="M5900,14272 A800,800 0 0,0 5100,15072" fill="none" stroke="#222" stroke-width="6" stroke-dasharray="45 30"/>
 <line x1="6080" y1="15426" x2="5900" y2="15426" stroke="#222" stroke-width="8" />
 <line x1="6080" y1="16426" x2="5900" y2="16426" stroke="#222" stroke-width="8" />
-<line x1="6080" y1="15426" x2="7080" y2="15426" stroke="#222" stroke-width="16" />
-<path d="M6080,16426 A1000,1000 0 0,0 7080,15426" fill="none" stroke="#222" stroke-width="6" stroke-dasharray="45 30"/>
+<line x1="6080" y1="16426" x2="7080" y2="16426" stroke="#222" stroke-width="16" />
+<path d="M6080,15426 A1000,1000 0 0,1 7080,16426" fill="none" stroke="#222" stroke-width="6" stroke-dasharray="45 30"/>
 <line x1="4400" y1="17196" x2="4400" y2="17376" stroke="#222" stroke-width="8" />
 <line x1="5850" y1="17196" x2="5850" y2="17376" stroke="#222" stroke-width="8" />
 <line x1="4400" y1="17196" x2="4400" y2="16471" stroke="#222" stroke-width="16" />
 <path d="M5125,17196 A725,725 0 0,0 4400,16471" fill="none" stroke="#222" stroke-width="6" stroke-dasharray="45 30"/>
 <line x1="5850" y1="17196" x2="5850" y2="16471" stroke="#222" stroke-width="16" />
 <path d="M5125,17196 A725,725 0 0,1 5850,16471" fill="none" stroke="#222" stroke-width="6" stroke-dasharray="45 30"/>
+<line x1="6140" y1="15124" x2="6140" y2="15274" stroke="#222" stroke-width="8" />
+<line x1="6940" y1="15124" x2="6940" y2="15274" stroke="#222" stroke-width="8" />
+<line x1="6140" y1="15124" x2="6140" y2="14324" stroke="#222" stroke-width="16" />
+<path d="M6940,15124 A800,800 0 0,0 6140,14324" fill="none" stroke="#222" stroke-width="6" stroke-dasharray="45 30"/>
 <line x1="6232" y1="19716" x2="6232" y2="19896" stroke="#222" stroke-width="8" />
 <line x1="9002" y1="19716" x2="9002" y2="19896" stroke="#222" stroke-width="8" />
 <polyline points="6232,19716 9002,19716" fill="none" stroke="#222" stroke-width="8" />
@@ -467,12 +478,12 @@
 <text x="1566" y="19578" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >GL-1</text>
 <circle cx="2870" cy="9850" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>
 <text x="2870" y="9892" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >KD-1</text>
-<circle cx="6340" cy="14672" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>
-<text x="6340" y="14714" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >D3</text>
 <circle cx="5640" cy="15926" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>
 <text x="5640" y="15968" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >D2</text>
 <circle cx="5125" cy="17636" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>
 <text x="5125" y="17678" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >D1</text>
+<circle cx="6540" cy="15534" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>
+<text x="6540" y="15576" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >D3c</text>
 <circle cx="7617" cy="20176" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>
 <text x="7617" y="20218" font-size="115" fill="#c2185b" text-anchor="middle" font-weight="normal" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" >GL-2</text>
 <circle cx="4981.7" cy="20380" r="150" fill="#fff" stroke="#c2185b" stroke-width="10"/>

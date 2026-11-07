@@ -1,69 +1,119 @@
-// GH-18 R1 walkthrough film: shot list for the finalised Revision R1 model (/v1/).
+// GH-18 R1 house tour: shot list for the finalised Revision R1 model (/v1/), first-person, 16:9.
+// Style after the owner's reference tour: eye-level, wide lens, walking room to room through the doorways, with close-ups
+// of the details that matter (kitchen appliances, gas valve, storage, the concealed under-stair door).
 // World units are metres: X = plan x (East = -X, West = +X), Z = plan y (South / back lawn = 0, North / street = +Z),
-// Y up from natural ground. Floors: GF +0.45, FF +3.75, SF +7.05 (eye height about 1.5 above each).
-// Cuts land on the bar lines of the 80 BPM score (1 bar = 3 s = 72 frames at 24 fps).
-// time: 0 = afternoon, ~0.55 = golden hour, 1 = dusk (viewer.cine blends sun, sky and interior lights).
-// The camera only moves through the model as built: no object, room or material is added or changed.
-// No neighbourhood scenery (context.js): only the house and its own plot (owner, Nov 2026); a shot can opt in with context: true.
+// Y up from natural ground. Floors: GF +0.45, FF +3.75, SF +7.05; eye height 1.55 above each (Y 2.0 / 5.3 / 8.6).
+// time: 0 = afternoon, ~0.55 = golden hour, 1 = dusk. The camera only moves through the model as built: no object, room
+// or material is added or changed, and there is no neighbourhood scenery (only the house and its plot).
+// Each shot: sec (duration), lvl + room (the on-screen label; `floor` is the viewer's floor filter), optional vo (voice-over line, film/r1/voice.py).
 export const FPS = 24;
-export const BPM = 80;
-export const BAR = 240 / BPM;            // 3.0 s = 72 frames
-export const INTRO_BARS = 2;             // black + title, made in post
-export const OUTRO_FRAMES = 96;          // end card after the last shot
+export const INTRO_SEC = 4;
+export const OUTRO_SEC = 4;
 
-const DAY = 0.32, GOLD = 0.6;
+const D = 0.32, G = 0.6;                 // daylight, golden hour
+const IN = { time: D, exposure: 0.9, fov: 62, interior: true };
+const GF = 'Ground floor', FF = 'First floor', SF = 'Second floor (proposed)';
+const k = (pos, target) => ({ pos, target });
+
 export const SHOTS = [
   // ---------------------------------------------------------------- arrival
-  { id: 'a01_aerial', bars: 3, chapter: null, caption: null, time: 0.5, exposure: 1.0, fov: 34,
-    keys: [{ pos: [30, 24, 46], target: [4.7, 3.5, 14] }, { pos: [20, 11, 37], target: [4.7, 4.5, 16] }, { pos: [13.5, 3.6, 31], target: [5.0, 4.6, 18.5] }] },
-  { id: 'a02_facade', bars: 2, caption: 'The curved glass foyer', time: 0.5, exposure: 1.0, fov: 32,
-    keys: [{ pos: [-1.0, 3.4, 30.5], target: [3.8, 3.2, 19.5] }, { pos: [7.5, 3.2, 30.0], target: [5.2, 3.0, 19.8] }] },
-  { id: 'a03_approach', bars: 2, time: 0.5, exposure: 0.95, fov: 46,
-    keys: [{ pos: [3.6, 1.95, 24.2], target: [4.6, 1.7, 19.0] }, { pos: [5.0, 2.0, 21.4], target: [5.2, 1.75, 17.0] }] },
+  { id: 'x01_aerial', sec: 7, time: 0.5, exposure: 1.0, fov: 34,
+    keys: [k([30, 24, 46], [4.7, 3.5, 14]), k([20, 11, 37], [4.7, 4.5, 16]), k([13.5, 3.6, 31], [5.0, 4.6, 18.5])] },
+  { id: 'x02_approach', sec: 6, lvl: GF, room: 'Entrance court', time: 0.5, exposure: 0.95, fov: 60,
+    keys: [k([5.4, 1.95, 23.6], [5.0, 1.8, 17.0]), k([5.2, 2.0, 20.7], [5.0, 1.8, 16.5])],
+    vo: 'Welcome to G H 18, at Celebrity Homes, Palam Vihar. A home planned around light, Vastu and everyday living.' },
   // ---------------------------------------------------------------- ground floor
-  { id: 'g01_foyer', bars: 2, chapter: 'Ground floor', caption: 'Entrance foyer', time: DAY, exposure: 0.88, fov: 56, interior: true,
-    keys: [{ pos: [5.5, 2.0, 20.0], target: [4.8, 1.6, 16.8] }, { pos: [5.15, 1.98, 17.6], target: [5.1, 1.7, 13.0] }] },
-  { id: 'g02_study', bars: 2, caption: 'Guest lounge · Study', time: DAY, exposure: 0.88, fov: 56, interior: true,
-    keys: [{ pos: [8.6, 1.95, 19.35], target: [6.3, 1.2, 16.6] }, { pos: [8.2, 1.9, 19.3], target: [7.6, 1.1, 15.3] }] },
-  { id: 'g03_guest', bars: 2, caption: 'Guest room', time: DAY, exposure: 0.88, fov: 56, interior: true,
-    keys: [{ pos: [3.6, 2.0, 18.25], target: [0.9, 1.15, 15.4] }, { pos: [3.4, 1.9, 17.3], target: [0.7, 1.1, 17.0] }] },
-  { id: 'g04_lounge', bars: 3, caption: 'Family lounge', time: DAY, exposure: 0.88, fov: 52, interior: true,
-    keys: [{ pos: [4.0, 1.75, 9.6], target: [7.6, 1.2, 6.4] }, { pos: [5.6, 1.7, 10.1], target: [7.2, 1.15, 6.0] }, { pos: [7.4, 1.65, 10.0], target: [6.0, 1.1, 6.0] }] },
-  { id: 'g05_mandir', bars: 2, caption: 'Mandir', time: 0.88, exposure: 0.55, fov: 44, interior: true,
-    keys: [{ pos: [5.7, 1.6, 8.35], target: [3.45, 1.45, 8.35] }, { pos: [4.75, 1.5, 8.35], target: [3.45, 1.45, 8.35] }] },
-  { id: 'g06_dining', bars: 2, caption: 'Dining', time: DAY, exposure: 0.88, fov: 46, interior: true,
-    keys: [{ pos: [6.6, 1.95, 11.2], target: [5.7, 1.1, 9.85] }, { pos: [7.5, 1.9, 10.3], target: [5.7, 1.1, 9.85] }, { pos: [7.4, 1.85, 8.9], target: [5.7, 1.1, 9.85] }] },
-  { id: 'g07_kitchen', bars: 2, caption: 'Kitchen', time: DAY, exposure: 0.88, fov: 58, interior: true,
-    keys: [{ pos: [2.75, 1.85, 10.9], target: [1.3, 1.0, 6.2] }, { pos: [2.3, 1.75, 10.2], target: [1.0, 1.0, 6.0] }] },
-  { id: 'g09_deck', bars: 3, caption: 'Deck · Pergola', time: GOLD, exposure: 0.95, fov: 44,
-    keys: [{ pos: [2.2, 1.9, 1.0], target: [5.8, 1.1, 4.0] }, { pos: [5.8, 2.3, 0.4], target: [5.8, 1.1, 4.0] }, { pos: [9.2, 1.9, 1.2], target: [5.8, 1.1, 4.0] }] },
-  { id: 'g10_garden', bars: 2, caption: 'Back garden · Tulsi', time: GOLD, exposure: 0.95, fov: 46,
-    keys: [{ pos: [4.2, 1.6, 0.9], target: [0.6, 1.3, 1.65] }, { pos: [2.9, 1.5, 1.3], target: [0.6, 1.2, 1.65] }] },
-  { id: 'g11_stair', bars: 1, time: DAY, exposure: 0.88, fov: 58, interior: true,
-    keys: [{ pos: [4.9, 2.0, 13.0], target: [8.3, 2.5, 13.45] }, { pos: [5.7, 2.35, 13.35], target: [8.6, 3.1, 13.45] }] },
+  { id: 'g01_foyer', sec: 6, lvl: GF, room: 'Entrance foyer', ...IN,
+    keys: [k([5.2, 2.0, 20.0], [6.0, 1.5, 18.3]), k([5.1, 2.0, 17.9], [5.1, 1.8, 14.0])] },
+  { id: 'g02_lobby', sec: 5, lvl: GF, room: 'Lobby · stair and lift', ...IN,
+    keys: [k([5.1, 2.0, 17.4], [5.6, 1.9, 13.0]), k([5.0, 2.0, 15.6], [7.0, 2.1, 12.4])] },
+  { id: 'g03_study', sec: 7, lvl: GF, room: 'Guest lounge · study', ...IN,
+    keys: [k([5.4, 2.0, 15.9], [8.8, 1.3, 16.0]), k([6.9, 1.95, 16.0], [8.9, 1.3, 17.2]), k([7.6, 1.95, 17.4], [6.2, 1.3, 19.0])] },
+  { id: 'g04_store_door', sec: 6, lvl: GF, room: 'Concealed under-stair store door', ...IN, fov: 52,
+    keys: [k([7.4, 1.7, 16.35], [6.55, 1.25, 15.25]), k([6.7, 1.6, 16.2], [6.55, 1.2, 15.25])],
+    vo: 'In the guest lounge, a concealed, handleless door in the walnut panelling opens into storage under the staircase.' },
+  { id: 'g05_store', sec: 5, lvl: GF, room: 'Under-stair store', ...IN, fov: 66,
+    keys: [k([6.45, 1.95, 14.95], [7.6, 1.2, 14.2]), k([6.6, 1.85, 14.75], [8.2, 0.9, 14.4])] },
+  { id: 'g06_guest', sec: 6, lvl: GF, room: 'Guest room', ...IN,
+    keys: [k([4.6, 2.0, 15.1], [1.2, 1.3, 17.0]), k([3.4, 1.95, 15.6], [1.0, 1.2, 17.2])] },
+  { id: 'g07_toilet', sec: 5, lvl: GF, room: 'Toilet', ...IN,
+    keys: [k([4.5, 2.0, 13.5], [2.0, 1.4, 12.2]), k([3.3, 1.95, 12.9], [3.7, 1.2, 11.9])] },
+  { id: 'g08_dining', sec: 6, lvl: GF, room: 'Dining', ...IN,
+    keys: [k([5.2, 2.0, 11.0], [5.7, 1.2, 9.85]), k([7.2, 1.95, 10.6], [5.7, 1.2, 9.85])] },
+  { id: 'g09_kitchen', sec: 6, lvl: GF, room: 'Kitchen', ...IN,
+    keys: [k([3.9, 2.0, 9.85], [1.0, 1.5, 9.6]), k([2.4, 2.0, 9.4], [1.0, 1.3, 6.4])],
+    vo: 'The kitchen works in three zones: storage and refrigeration, preparation and washing, and cooking.' },
+  { id: 'g10_fridge', sec: 6, lvl: GF, room: 'Kitchen · fridge, pantry and appliance tower', ...IN,
+    keys: [k([1.7, 2.0, 8.3], [0.6, 1.5, 10.1]), k([1.15, 2.0, 8.6], [3.1, 1.3, 8.4])],
+    vo: 'A full-size refrigerator, a tall pantry, and a tower for the microwave and O T G.' },
+  { id: 'g11_mixer', sec: 5, lvl: GF, room: 'Kitchen · microwave, OTG and mixer station', ...IN, fov: 56,
+    keys: [k([1.7, 1.9, 7.9], [3.1, 1.5, 8.0]), k([2.0, 1.85, 7.6], [3.1, 1.2, 6.9])] },
+  { id: 'g12_hob', sec: 6, lvl: GF, room: 'Kitchen · PNG hob, chimney and gas valve', ...IN, fov: 56,
+    keys: [k([1.7, 1.85, 7.6], [0.4, 1.3, 7.2]), k([1.4, 1.8, 7.2], [0.4, 1.2, 6.7])],
+    vo: 'The gas hob faces east, under a chimney, with an exposed gas line and an isolation valve within easy reach.' },
+  { id: 'g13_drawers', sec: 5, lvl: GF, room: 'Kitchen · deep drawers and prep counter', ...IN, fov: 58,
+    keys: [k([2.1, 1.75, 7.9], [0.9, 0.6, 7.2]), k([2.0, 1.8, 7.2], [1.5, 0.8, 5.9])] },
+  { id: 'g14_wash', sec: 6, lvl: GF, room: 'Kitchen · sink, dish rack, RO water and bins', ...IN,
+    keys: [k([2.1, 2.0, 9.6], [1.9, 1.3, 11.4]), k([2.0, 1.95, 10.05], [2.8, 1.1, 11.2])],
+    vo: 'The washing zone has a double sink, a drainboard and dish rack, R O drinking water, and segregated waste bins.' },
+  { id: 'g15_lounge', sec: 7, lvl: GF, room: 'Family lounge', ...IN,
+    keys: [k([4.2, 2.0, 9.4], [7.6, 1.3, 6.4]), k([6.6, 1.95, 9.3], [8.6, 1.2, 7.0])] },
+  { id: 'g16_mandir', sec: 5, lvl: GF, room: 'Mandir', ...IN, time: 0.88, exposure: 0.55, fov: 48,
+    keys: [k([5.5, 1.8, 8.35], [3.45, 1.5, 8.35]), k([4.6, 1.7, 8.35], [3.45, 1.5, 8.35])] },
+  { id: 'g17_deck', sec: 8, lvl: GF, room: 'Deck · covered seating', time: G, exposure: 0.95, fov: 48,
+    keys: [k([2.2, 1.9, 1.0], [5.8, 1.1, 4.0]), k([5.8, 2.3, 0.4], [5.8, 1.1, 4.0]), k([9.2, 1.9, 1.2], [5.8, 1.1, 4.0])],
+    vo: 'At the back, a covered deck under the pergola opens onto the garden and the tulsi.' },
+  { id: 'g18_garden', sec: 5, lvl: GF, room: 'Back garden · tulsi', time: G, exposure: 0.95, fov: 50,
+    keys: [k([4.2, 1.6, 0.9], [0.6, 1.3, 1.65]), k([2.9, 1.5, 1.3], [0.6, 1.2, 1.65])] },
+  { id: 'g19_stair', sec: 4, lvl: GF, room: 'Stair', ...IN,
+    keys: [k([4.9, 2.0, 13.0], [8.3, 2.5, 13.45]), k([5.7, 2.35, 13.35], [8.6, 3.1, 13.45])] },
   // ---------------------------------------------------------------- first floor
-  { id: 'f01_lobby', bars: 1, chapter: 'First floor', caption: 'Lobby · Pantry', time: DAY, exposure: 0.88, fov: 58, interior: true,
-    keys: [{ pos: [5.2, 5.35, 14.4], target: [6.2, 4.6, 11.0] }, { pos: [5.5, 5.3, 13.6], target: [6.3, 4.65, 11.0] }] },
-  { id: 'f02_master', bars: 3, caption: 'Master bedroom', time: DAY, exposure: 0.88, fov: 54, interior: true,
-    keys: [{ pos: [4.7, 5.35, 9.7], target: [8.6, 4.4, 8.7] }, { pos: [5.2, 5.25, 9.3], target: [8.7, 4.4, 8.4] }, { pos: [5.7, 5.15, 8.3], target: [7.8, 4.6, 6.2] }] },
-  { id: 'f03_balcony', bars: 2, caption: 'Master balcony', time: GOLD, exposure: 0.95, fov: 48,
-    keys: [{ pos: [5.2, 5.6, 1.0], target: [7.0, 4.8, 6.6] }, { pos: [7.6, 6.4, 1.6], target: [7.6, 4.9, 6.6] }] },
-  { id: 'f04_bath', bars: 2, caption: 'Master washroom', time: DAY, exposure: 0.88, fov: 60, interior: true,
-    keys: [{ pos: [1.7, 5.35, 8.8], target: [2.6, 4.3, 10.3] }, { pos: [1.5, 5.32, 9.0], target: [2.65, 4.35, 10.0] }] },
-  { id: 'f05_bed3', bars: 2, caption: 'Bedroom 3', time: DAY, exposure: 0.88, fov: 56, interior: true,
-    keys: [{ pos: [3.9, 5.3, 19.4], target: [1.0, 4.4, 15.2] }, { pos: [3.6, 5.2, 18.0], target: [0.8, 4.4, 15.0] }] },
-  { id: 'f06_kids', bars: 2, caption: 'Kids room', time: DAY, exposure: 0.88, fov: 56, interior: true,
-    keys: [{ pos: [6.3, 5.3, 17.0], target: [6.0, 4.6, 21.0] }, { pos: [6.6, 5.25, 17.6], target: [8.4, 4.4, 19.6] }] },
+  { id: 'f01_lobby', sec: 4, lvl: FF, room: 'Lobby · pantry', ...IN,
+    keys: [k([5.2, 5.35, 14.4], [6.2, 4.6, 11.0]), k([5.5, 5.3, 13.6], [6.3, 4.65, 11.0])] },
+  { id: 'f02_master', sec: 7, lvl: FF, room: 'Master bedroom', ...IN,
+    keys: [k([4.7, 5.35, 9.7], [8.6, 4.4, 8.7]), k([5.2, 5.25, 9.3], [8.7, 4.4, 8.4]), k([5.7, 5.15, 8.3], [7.8, 4.6, 6.2])],
+    vo: 'Upstairs, the master bedroom opens onto its own balcony, with a walk-in dresser and a washroom with a bathtub.' },
+  { id: 'f03_balcony', sec: 5, lvl: FF, room: 'Master balcony', time: G, exposure: 0.95, fov: 48,
+    keys: [k([5.2, 5.6, 1.0], [7.0, 4.8, 6.6]), k([7.6, 6.4, 1.6], [7.6, 4.9, 6.6])] },
+  { id: 'f04_wardrobe', sec: 5, lvl: FF, room: 'Master wardrobes', ...IN,
+    keys: [k([6.0, 5.3, 8.8], [4.2, 4.6, 6.0]), k([5.2, 5.3, 8.4], [3.6, 4.6, 10.4])] },
+  { id: 'f05_dresser', sec: 5, lvl: FF, room: 'Dresser', ...IN, fov: 66,
+    keys: [k([3.7, 5.3, 6.9], [0.6, 4.7, 7.6]), k([2.7, 5.3, 7.1], [0.5, 4.6, 8.2])] },
+  { id: 'f06_bath', sec: 5, lvl: FF, room: 'Master washroom', ...IN, fov: 66,
+    keys: [k([1.7, 5.35, 8.8], [2.6, 4.3, 10.3]), k([1.5, 5.32, 9.0], [2.65, 4.35, 10.0])] },
+  { id: 'f07_bed3', sec: 6, lvl: FF, room: 'Bedroom 3', ...IN,
+    keys: [k([3.9, 5.3, 19.4], [1.0, 4.4, 15.2]), k([3.6, 5.2, 18.0], [0.8, 4.4, 15.0])] },
+  { id: 'f08_bed3_toilet', sec: 4, lvl: FF, room: 'Bedroom 3 toilet', ...IN, fov: 66,
+    keys: [k([2.85, 5.3, 13.4], [3.4, 4.4, 11.0]), k([2.9, 5.3, 12.6], [3.3, 4.3, 11.0])] },
+  { id: 'f09_kids', sec: 7, lvl: FF, room: 'Kids room · study and storage', ...IN,
+    keys: [k([6.3, 5.3, 17.0], [6.0, 4.6, 21.0]), k([6.6, 5.25, 17.6], [8.4, 4.4, 19.6]), k([7.0, 5.25, 18.0], [4.8, 4.8, 18.6])],
+    vo: 'The kids room has a study desk, full-height storage, and the curved glass front.' },
+  { id: 'f10_kids_glass', sec: 4, lvl: FF, room: 'Kids room · curved glazing', ...IN,
+    keys: [k([7.2, 5.3, 18.2], [5.6, 4.9, 21.2]), k([6.9, 5.3, 19.0], [5.6, 4.9, 21.2])] },
+  { id: 'f11_kids_toilet', sec: 4, lvl: FF, room: 'Kids toilet', ...IN, fov: 66,
+    keys: [k([6.6, 5.3, 17.6], [7.6, 4.4, 15.7]), k([6.6, 5.3, 17.0], [7.8, 4.4, 15.6])] },
   // ---------------------------------------------------------------- second floor (proposed)
-  { id: 's01_utility', bars: 3, chapter: 'Second floor · proposed', caption: 'Utility · Covered terrace', time: GOLD, exposure: 0.9, fov: 56,
-    keys: [{ pos: [8.4, 8.75, 7.0], target: [6.6, 7.7, 8.8] }, { pos: [7.6, 8.75, 7.0], target: [3.0, 7.8, 10.0] }] },
-  { id: 's02_terrace', bars: 3, caption: 'Front terrace', time: 0.66, exposure: 0.95, fov: 50,
-    keys: [{ pos: [6.8, 9.6, 20.6], target: [2.2, 7.4, 17.4] }, { pos: [3.6, 10.6, 21.4], target: [2.0, 7.3, 16.8] }] },
+  { id: 's01_lobby', sec: 4, lvl: SF, room: 'Lobby', ...IN,
+    keys: [k([6.6, 8.6, 13.9], [4.9, 8.0, 10.4]), k([5.6, 8.6, 12.6], [4.9, 8.0, 10.4])],
+    vo: 'The proposed second floor adds a servant room, storage, and a covered terrace for washing and ironing.' },
+  { id: 's02_servant', sec: 5, lvl: SF, room: 'Servant room', ...IN,
+    keys: [k([4.8, 8.6, 13.95], [1.2, 7.8, 14.7]), k([3.6, 8.55, 14.1], [1.0, 7.8, 14.9])] },
+  { id: 's03_servant_wc', sec: 4, lvl: SF, room: 'Servant washroom', ...IN, fov: 66,
+    keys: [k([1.5, 8.6, 13.6], [1.6, 7.7, 11.3]), k([1.5, 8.6, 13.05], [1.7, 7.7, 11.3])] },
+  { id: 's04_store', sec: 4, lvl: SF, room: 'Store · cupboards', ...IN, fov: 66,
+    keys: [k([4.9, 8.6, 11.9], [2.6, 7.9, 12.2]), k([4.2, 8.6, 11.9], [2.6, 7.9, 12.4])] },
+  { id: 's05_terrace_back', sec: 7, lvl: SF, room: 'Covered rear terrace', time: G, exposure: 0.9, fov: 60,
+    keys: [k([8.4, 8.75, 7.0], [6.6, 7.7, 8.8]), k([7.6, 8.75, 7.0], [3.0, 7.8, 10.0])] },
+  { id: 's06_laundry', sec: 5, lvl: SF, room: 'Washing and ironing', time: G, exposure: 0.9, fov: 60,
+    keys: [k([3.6, 8.6, 8.7], [1.8, 7.9, 10.4]), k([2.8, 8.55, 9.0], [1.6, 7.9, 10.4])] },
+  { id: 's07_terrace_front', sec: 7, lvl: SF, room: 'Front terrace', time: 0.66, exposure: 0.95, fov: 52,
+    keys: [k([6.8, 9.6, 20.6], [2.2, 7.4, 17.4]), k([3.6, 10.6, 21.4], [2.0, 7.3, 16.8])],
+    vo: 'And an open front terrace, for quiet evenings.' },
   // ---------------------------------------------------------------- evening
-  { id: 'e01_timelapse', bars: 2, caption: 'Afternoon to evening', time: [0.3, 1.0], exposure: [0.85, 1.1], fov: 46,
-    keys: [{ pos: [1.6, 3.3, -6.5], target: [5.4, 4.6, 10] }, { pos: [3.6, 3.5, -4.8], target: [5.2, 4.6, 10] }] },
-  { id: 'e02_finale', bars: 3, caption: null, time: 1.0, exposure: 1.15, fov: 34,
-    keys: [{ pos: [11, 9.5, 33], target: [4.7, 4.5, 16] }, { pos: [20, 19, 41], target: [4.7, 4.0, 15] }, { pos: [32, 30, 52], target: [4.7, 3.5, 14] }] },
+  { id: 'e01_timelapse', sec: 6, time: [0.3, 1.0], exposure: [0.85, 1.1], fov: 46,
+    keys: [k([1.6, 3.3, -6.5], [5.4, 4.6, 10]), k([3.6, 3.5, -4.8], [5.2, 4.6, 10])] },
+  { id: 'e02_finale', sec: 7, time: 1.0, exposure: 1.15, fov: 34,
+    keys: [k([11, 9.5, 33], [4.7, 4.5, 16]), k([20, 19, 41], [4.7, 4.0, 15]), k([32, 30, 52], [4.7, 3.5, 14])] },
 ];
 
 function catmull(p0, p1, p2, p3, t) {
@@ -95,4 +145,4 @@ export function poseAt(shot, u) {
     time: value(shot.time, u), exposure: shot.exposure === undefined ? undefined : value(shot.exposure, u), explode: 0,
     interior: !!shot.interior, cutaway: !!shot.cutaway, context: shot.context === true, floor: shot.floor || 'ALL' };
 }
-export const framesOf = (shot) => Math.round(shot.bars * BAR * FPS);
+export const framesOf = (shot) => Math.round(shot.sec * FPS);

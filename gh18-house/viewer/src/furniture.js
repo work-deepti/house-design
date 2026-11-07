@@ -244,7 +244,8 @@ B.crockery_unit = (p, w, d, h) => {
   box(p, 'cove', w - 0.1, 0.01, 0.03, 0, 1.34, 0, 0);
 };
 B.counter = (p, w, d, h, f) => {
-  cabinet(p, w, d - 0.02, h - 0.03, 'lacquer_greige', 0, 0.6, 0.1);
+  if (f && f.drawers) drawerBank(p, w, d - 0.02, h - 0.03, 'lacquer_greige', [0.32, 0.3, 0.16]);
+  else cabinet(p, w, d - 0.02, h - 0.03, 'lacquer_greige', 0, 0.6, 0.1);
   box(p, (f && f.top) || 'marble_white', w, 0.03, d, 0, h - 0.03, 0.01, 0.004);
 };
 B.utility_counter = (p, w, d, h) => {
@@ -609,6 +610,161 @@ B.lounger = (p, w, d, h) => {
   g.rotateX(-0.6); g.translate(0, 0.45, -d / 2 + d * 0.17);
   p.push({ g, m: 'linen_white' });
 };
+
+// ------------------------------------------------------------------ R1-F22 kitchen, R1-F23 store (only the R1 model uses these)
+// handleless drawer bank: plinth, carcass, horizontal reveals for `rows` (drawer heights in m, bottom up) and a
+// vertical reveal every ~0.6 m, with a recessed J-pull line under each drawer top
+function drawerBank(p, w, d, h, mat, rows, plinth = 0.1) {
+  box(p, 'black_metal', w - 0.04, plinth, d - 0.06, 0, 0, -0.03, 0.002);
+  box(p, mat, w, h - plinth, d, 0, plinth, 0, 0.006);
+  let y = plinth;
+  for (const r of rows.slice(0, -1)) {
+    y += r;
+    box(p, 'black_metal', w - 0.01, 0.005, 0.004, 0, y, d / 2 + 0.001, 0);
+  }
+  grooves(p, w, h - plinth, d, plinth, 0.6);
+}
+B.fridge_unit = (p, w, d, h) => {                    // ventilated tall housing with a double-door fridge
+  const fh = 1.8, fw = w - 0.07;
+  box(p, 'lacquer_greige', 0.025, h, d, -w / 2 + 0.0125, 0, 0, 0.003);
+  box(p, 'lacquer_greige', 0.025, h, d, w / 2 - 0.0125, 0, 0, 0.003);
+  box(p, 'lacquer_greige', w, h - fh - 0.08, d, 0, fh + 0.08, 0, 0.006);          // top cabinet
+  grooves(p, w, h - fh - 0.08, d, fh + 0.08, w / 2);
+  box(p, 'black_metal', w - 0.06, 0.06, d - 0.05, 0, 0.0, -0.02, 0.002);            // vented plinth
+  box(p, 'steel', fw, fh - 0.06, d - 0.08, 0, 0.06, -0.03, 0.01);                   // fridge body
+  box(p, 'black_metal', 0.006, fh - 0.08, 0.01, 0, 0.07, d / 2 - 0.065, 0);          // door split
+  for (const sx of [-1, 1]) box(p, 'black_metal', 0.02, 0.55, 0.03, sx * 0.045, 0.75, d / 2 - 0.05, 0.004);   // pulls
+  box(p, 'glass_black', 0.12, 0.2, 0.004, -fw / 4, 1.25, d / 2 - 0.066, 0);        // water / ice panel
+};
+B.appliance_tower = (p, w, d, h) => {                 // OTG at counter height, microwave at eye level
+  drawerBank(p, w, d, 0.88, 'lacquer_greige', [0.4, 0.38]);
+  box(p, 'lacquer_greige', 0.02, h - 0.88, d, -w / 2 + 0.01, 0.88, 0, 0.003);
+  box(p, 'lacquer_greige', 0.02, h - 0.88, d, w / 2 - 0.01, 0.88, 0, 0.003);
+  box(p, 'lacquer_greige', w, h - 1.82, d, 0, 1.82, 0, 0.006);                     // top cabinet
+  grooves(p, w, h - 1.82, d, 1.82, w);
+  box(p, 'lacquer_greige', w - 0.04, 0.02, d - 0.02, 0, 1.36, 0, 0.002);           // shelf between
+  // OTG
+  box(p, 'black_metal', w - 0.06, 0.42, d - 0.12, 0, 0.9, -0.04, 0.008);
+  box(p, 'glass_black', w * 0.62, 0.3, 0.006, -w * 0.08, 0.95, d / 2 - 0.1, 0.002);
+  box(p, 'steel', w * 0.62, 0.02, 0.025, -w * 0.08, 1.26, d / 2 - 0.085, 0.004);
+  for (let i = 0; i < 3; i++) { const g = new THREE.CylinderGeometry(0.016, 0.016, 0.02, 16); g.rotateX(Math.PI / 2); g.translate(w / 2 - 0.08, 1.2 - i * 0.09, d / 2 - 0.09); p.push({ g, m: 'steel' }); }
+  // microwave
+  box(p, 'black_metal', w - 0.06, 0.34, d - 0.14, 0, 1.4, -0.05, 0.008);
+  box(p, 'glass_black', w * 0.66, 0.26, 0.006, -w * 0.07, 1.44, d / 2 - 0.12, 0.002);
+  box(p, 'steel', 0.012, 0.22, 0.02, w * 0.3, 1.46, d / 2 - 0.11, 0.003);
+  box(p, 'window_lit', 0.07, 0.025, 0.004, w / 2 - 0.08, 1.66, d / 2 - 0.118, 0);  // display
+};
+B.mixer_grinder = (p, w, d, h) => {
+  box(p, 'lacquer_white', w, h * 0.38, d, 0, 0, 0, 0.03);                          // motor base
+  box(p, 'black_metal', w * 0.5, 0.02, 0.01, 0, h * 0.18, d / 2 + 0.002, 0);
+  { const g = new THREE.CylinderGeometry(0.02, 0.02, 0.012, 16); g.rotateX(Math.PI / 2); g.translate(0, h * 0.12, d / 2 + 0.006); p.push({ g, m: 'black_metal' }); }
+  cyl(p, 'steel', w * 0.32, w * 0.26, h * 0.5, 0, h * 0.38, 0, 24);                // jar
+  cyl(p, 'black_metal', w * 0.34, w * 0.34, h * 0.07, 0, h * 0.88, 0, 24);         // lid
+  box(p, 'black_metal', 0.025, h * 0.4, 0.04, w * 0.36, h * 0.44, 0, 0.008);       // jar handle
+};
+B.water_purifier = (p, w, d, h) => {                 // wall-mounted RO with a tap
+  box(p, 'lacquer_white', w, h, d, 0, 0, 0, 0.03);
+  box(p, 'glass_black', w * 0.7, h * 0.35, 0.006, 0, h * 0.5, d / 2 + 0.002, 0.003);
+  box(p, 'bin_blue', w * 0.5, 0.012, 0.004, 0, h * 0.45, d / 2 + 0.004, 0);
+  cyl(p, 'steel', 0.012, 0.012, 0.08, 0, -0.08, d / 2 - 0.03, 10);                  // tap stem
+  box(p, 'steel', 0.02, 0.02, 0.06, 0, -0.085, d / 2, 0.004);
+};
+B.drainboard = (p, w, d) => {
+  box(p, 'steel', w, 0.006, d, 0, 0, 0, 0.002);
+  for (let i = 1; i < 8; i++) box(p, 'black_metal', 0.006, 0.002, d - 0.08, -w / 2 + (w * i) / 8, 0.006, 0, 0);
+};
+B.dish_rack = (p, w, d, h) => {                      // open wall unit with a steel plate + glass rack
+  box(p, 'lacquer_greige', w, 0.02, d, 0, h - 0.02, 0, 0.003);                     // top
+  box(p, 'lacquer_greige', w, h, 0.02, 0, 0, -d / 2 + 0.01, 0.003);                // back
+  for (const sx of [-1, 1]) box(p, 'lacquer_greige', 0.02, h, d, sx * (w / 2 - 0.01), 0, 0, 0.003);
+  box(p, 'lacquer_greige', w * 0.45, h - 0.02, d, w * 0.275 - 0.01, 0, 0, 0.004);  // closed bay on one side
+  grooves(p, w * 0.45, h - 0.02, d, 0, w * 0.45);
+  const x0 = -w / 2 + 0.03, x1 = w * 0.05 - 0.02;
+  for (const y of [0.05, 0.38]) {
+    for (const z of [-d / 2 + 0.08, d / 2 - 0.06]) { const g = new THREE.CylinderGeometry(0.004, 0.004, x1 - x0, 6); g.rotateZ(Math.PI / 2); g.translate((x0 + x1) / 2, y, z); p.push({ g, m: 'steel' }); }
+  }
+  for (let i = 0; i < 9; i++) {                       // plates on edge
+    const g = new THREE.CylinderGeometry(0.12, 0.12, 0.008, 28);
+    g.rotateZ(Math.PI / 2); g.translate(x0 + 0.08 + i * 0.05, 0.17, -0.01);
+    p.push({ g, m: 'ceramic' });
+  }
+  for (let i = 0; i < 6; i++) cyl(p, 'steel', 0.035, 0.03, 0.11, x0 + 0.08 + i * 0.09, 0.4, 0, 16);   // tumblers / katoris
+};
+B.bin_pullout = (p, w, d, h) => {                    // pulled-out 3-bin drawer under the counter
+  box(p, 'lacquer_greige', w, h, 0.02, 0, 0.1, d / 2 - 0.01, 0.004);               // drawer front
+  box(p, 'black_metal', w - 0.02, 0.005, 0.004, 0, h + 0.08, d / 2 + 0.001, 0);
+  box(p, 'steel', w - 0.04, 0.02, d - 0.04, 0, 0.12, -0.01, 0.002);                // tray
+  const bw = (w - 0.07) / 3;
+  ['bin_green', 'bin_blue', 'bin_grey'].forEach((m, i) => {
+    const x = -w / 2 + 0.035 + bw / 2 + i * (bw + 0.0);
+    box(p, m, bw - 0.01, h - 0.12, d - 0.1, x, 0.14, -0.03, 0.01);
+    box(p, 'black_metal', bw - 0.03, 0.012, d - 0.13, x, h + 0.02, -0.03, 0.004);  // lids
+  });
+};
+B.hob_png = (p, w, d) => {                           // 4-burner glass-top PNG hob with brass burners and cast pan supports
+  box(p, 'glass_black', w, 0.01, d, 0, 0.0, 0, 0.004);
+  const pos = [[-w * 0.27, -d * 0.2], [w * 0.27, -d * 0.2], [-w * 0.27, d * 0.22], [w * 0.27, d * 0.22]];
+  pos.forEach(([x, z], i) => {
+    const r = i === 3 ? 0.055 : 0.045;
+    cyl(p, 'brass', r, r, 0.022, x, 0.01, z, 24);
+    cyl(p, 'black_metal', r * 0.6, r * 0.6, 0.012, x, 0.032, z, 20);
+    for (let k = 0; k < 4; k++) {                      // pan support fingers
+      const g = new THREE.BoxGeometry(0.012, 0.03, 0.07);
+      g.translate(0, 0.025, r + 0.03); g.rotateY((k * Math.PI) / 2 + Math.PI / 4); g.translate(x, 0.0, z);
+      p.push({ g, m: 'black_metal' });
+    }
+  });
+  for (let i = 0; i < 4; i++) { const g = new THREE.CylinderGeometry(0.016, 0.016, 0.02, 16); g.translate(-w * 0.3 + i * w * 0.2, 0.015, d / 2 - 0.04); p.push({ g, m: 'steel' }); }
+};
+B.drawer_open = (p, w, d, h, f) => {                 // a drawer drawn pulled out to show its organisation
+  box(p, 'lacquer_greige', w, h, 0.02, 0, 0, d / 2 - 0.01, 0.004);                 // front
+  box(p, 'lacquer_white', w - 0.04, 0.012, d - 0.03, 0, 0.0, -0.01, 0.002);         // base
+  for (const sx of [-1, 1]) box(p, 'lacquer_white', 0.012, h * 0.85, d - 0.03, sx * (w / 2 - 0.02), 0, -0.01, 0.002);
+  if (f && f.contents === 'cutlery') {
+    for (let i = 1; i < 5; i++) box(p, 'lacquer_greige', 0.008, h * 0.6, d - 0.06, -w / 2 + (w * i) / 5, 0.012, -0.01, 0);
+    for (let i = 0; i < 5; i++) for (let k = 0; k < 3; k++) box(p, 'steel', 0.018, 0.008, d * 0.55, -w / 2 + w * (i + 0.5) / 5 + (k - 1) * 0.025, 0.014, -0.01, 0.003);
+  } else {
+    cyl(p, 'steel', 0.11, 0.11, 0.2, -w * 0.25, 0.012, -0.02, 28);                 // pressure cooker
+    box(p, 'black_metal', 0.2, 0.02, 0.025, -w * 0.25 + 0.15, 0.2, -0.02, 0.005);
+    cyl(p, 'black_metal', 0.13, 0.08, 0.09, w * 0.15, 0.012, -0.02, 28);            // kadhai
+    cyl(p, 'black_metal', 0.12, 0.12, 0.01, w * 0.36, 0.012, 0.06, 28);             // tawa
+  }
+};
+B.duct = (p, w, d, h) => { box(p, 'lacquer_greige', w, h, d, 0, 0, 0, 0.004); };
+B.gas_pipe = (p, w, d, h, f) => {                    // exposed yellow GI line; horizontal along local X, or vertical
+  if (f && f.vertical) { cyl(p, 'gas_yellow', 0.0125, 0.0125, h, 0, 0, 0, 12); return; }
+  const g = new THREE.CylinderGeometry(0.0125, 0.0125, w, 12);
+  g.rotateZ(Math.PI / 2); g.translate(0, 0.0125, 0);
+  p.push({ g, m: 'gas_yellow' });
+  for (const x of [-w / 2 + 0.05, w / 2 - 0.05]) box(p, 'black_metal', 0.015, 0.035, 0.035, x, -0.005, -0.005, 0.002);   // clamps
+};
+B.gas_valve = (p, w, d, h) => {
+  cyl(p, 'brass', 0.022, 0.022, h * 0.6, 0, 0, 0, 16);
+  box(p, 'gas_yellow', 0.11, 0.014, 0.025, 0.04, h * 0.62, 0.02, 0.005);         // lever, in line = open
+};
+B.gas_meter = (p, w, d, h) => {
+  box(p, 'lacquer_white', w, h, d, 0, 0, 0, 0.01);
+  box(p, 'glass_black', w * 0.5, h * 0.18, 0.004, 0, h * 0.62, d / 2 + 0.002, 0);
+  box(p, 'gas_yellow', w * 0.8, 0.03, 0.004, 0, h * 0.85, d / 2 + 0.002, 0);
+  cyl(p, 'gas_yellow', 0.0125, 0.0125, 0.06, -w * 0.3, h, 0, 10);
+  cyl(p, 'gas_yellow', 0.0125, 0.0125, 0.06, w * 0.3, -0.06, 0, 10);
+};
+B.wall_panel = (p, w, d, h) => {                     // walnut fluted wall panelling with a hairline top reveal
+  box(p, 'walnut_fluted', w, h, d, 0, 0, 0, 0.002);
+};
+B.reveal_frame = (p, w, d, h) => {                   // shadow gap round a flush door: two jambs and a head
+  for (const sx of [-1, 1]) box(p, 'black_metal', 0.004, h, d, sx * (w / 2), 0, 0, 0);
+  box(p, 'black_metal', w + 0.004, 0.004, d, 0, h - 0.002, 0, 0);
+};
+B.tool_rail = (p, w, d, h) => {                      // cleaning tools hung on a wall rail
+  box(p, 'black_metal', w, 0.03, 0.02, 0, h, -d / 2 + 0.01, 0.003);
+  [[-w * 0.35, 'bin_blue', 1.25], [-w * 0.1, 'walnut', 1.2], [w * 0.15, 'bin_grey', 1.3]].forEach(([x, m, l]) => {
+    cyl(p, 'steel', 0.012, 0.012, l, x, h - l + 0.02, 0, 10);
+    box(p, m, 0.25, 0.06, 0.06, x, h - l, 0, 0.01);
+  });
+  box(p, 'lacquer_white', 0.26, 0.9, 0.26, w * 0.38, 0, 0, 0.04);                 // upright vacuum on the floor
+};
+B.drawer_stack = (p, w, d, h) => drawerBank(p, w, d, h, 'lacquer_greige', [0.4, 0.4, 0.45]);
 
 const DEFAULT = (p, w, d, h) => box(p, 'walnut', w, h, d, 0, 0, 0, 0.01);
 

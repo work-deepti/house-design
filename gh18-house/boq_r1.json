@@ -16,11 +16,11 @@
   ],
   [
    "3. Wires",
-   "Power and lighting cable 3681 m, Cat-6 75 m, conduit 1302 m"
+   "Power and lighting cable 3835 m, Cat-6 75 m, conduit 1353 m"
   ],
   [
    "4. Paint",
-   "Interior walls 3891 sq ft, ceilings 2535 sq ft, exterior 2738 sq ft; about 93 L interior emulsion, 51 L exterior"
+   "Interior walls 3901 sq ft, ceilings 2535 sq ft, exterior 2738 sq ft; about 93 L interior emulsion, 51 L exterior"
   ],
   [
    "5. POP",
@@ -28,19 +28,19 @@
   ],
   [
    "6. Granite",
-   "Counter tops 84 sq ft, 14 sills 56 sq ft, 24 thresholds 37 sq ft, stair 236 sq ft, flamed paving 147 sq ft"
+   "Counter tops 76 sq ft, 14 sills 56 sq ft, 24 thresholds 37 sq ft, stair 236 sq ft, flamed paving 147 sq ft"
   ],
   [
    "7. Timber",
-   "15 door frames (22.7 cft) + 16 shutters; pergola 36.5 cft; handrail 43 rft; veneer cladding 684 sq ft; fluted walnut 301 sq ft"
+   "15 door frames (22.6 cft) + 16 shutters; pergola 36.5 cft; handrail 43 rft; veneer cladding 686 sq ft; fluted walnut 373 sq ft"
   ],
   [
    "8. MDF",
-   "Wardrobes 72 sheets 18 mm + 24 sheets 8 mm; other storage 75 + 31; BWP ply (wet) 15 sheets; 369 soft-close hinges"
+   "Wardrobes 72 sheets 18 mm + 24 sheets 8 mm; other storage 76 + 32; BWP ply (wet) 15 sheets; 363 soft-close hinges"
   ],
   [
    "9. Lights",
-   "88 downlights (on 36 light points), 7 fans, 181 m cove LED, 9 m under-cabinet LED, 4 mirror, 10 wall, 8 garden lights"
+   "88 downlights (on 39 light points), 7 fans, 181 m cove LED, 10 m under-cabinet LED, 4 mirror, 10 wall, 8 garden lights"
   ],
   [
    "10. uPVC",
@@ -67,11 +67,11 @@
     "boxes": 7
    },
    "skirting_m": 16.2,
-   "backsplash_m2": 5.82,
-   "paint_walls_m2": 36.77,
+   "backsplash_m2": 5.1,
+   "paint_walls_m2": 37.49,
    "lights": {
     "downlights": 7,
-    "light": 2,
+    "light": 5,
     "ef": 2,
     "hd": 1
    },
@@ -165,8 +165,8 @@
     "net_m2": 12.7,
     "boxes": 6
    },
-   "skirting_m": 7.9,
-   "wall_cladding_m2": 23.99,
+   "skirting_m": 8.7,
+   "wall_cladding_m2": 25.91,
    "lights": {
     "downlights": 5,
     "light": 2,
@@ -288,8 +288,8 @@
     "net_m2": 13.64,
     "boxes": 6
    },
-   "skirting_m": 14.0,
-   "wall_cladding_m2": 32.55,
+   "skirting_m": 13.2,
+   "wall_cladding_m2": 30.87,
    "lights": {
     "downlights": 6,
     "light": 2,
@@ -311,7 +311,7 @@
    "perimeter_m": 9.71,
    "height_mm": 2400,
    "floor_granite_m2": 4.75,
-   "paint_walls_m2": 21.37,
+   "paint_walls_m2": 21.61,
    "lights": {
     "light": 1
    }
@@ -748,15 +748,15 @@
  "totals": {
   "marble_m2": 195.5,
   "skirting_living_m": 156.1,
-  "backsplash_m2": 5.82,
-  "paint_int_m2": 361.47,
+  "backsplash_m2": 5.1,
+  "paint_int_m2": 362.43,
   "downlights": 88,
   "pop_m2": 235.53,
   "cove_m": 180.57,
   "paint_ceil_m2": 235.53,
   "pop_perim_m": 261.38,
-  "fluted_m2": 28.01,
-  "cladding_m2": 63.53,
+  "fluted_m2": 34.62,
+  "cladding_m2": 63.77,
   "tile_floor_m2:tile_matte_lg": 30.56,
   "tile_wall_m2": 127.83,
   "waterproofing_m2": 41.33,
@@ -767,12 +767,12 @@
   "cobble_m2": 12.26,
   "paint_ext_m2": 254.37,
   "granite_stair_m2": 21.89,
-  "granite_counter_m2": 7.82,
+  "granite_counter_m2": 7.1,
   "granite_sill_m2": 5.19,
   "sills": 14,
-  "granite_threshold_m2": 3.44,
+  "granite_threshold_m2": 3.41,
   "thresholds": 24,
-  "door_frame_cft": 22.74,
+  "door_frame_cft": 22.58,
   "doors": 15,
   "shutters": 16,
   "pergola_cft": 36.51,
@@ -783,16 +783,16 @@
   "upvc_mesh_m2": 10.61,
   "upvc_grille_m2": 11.73,
   "handrail_m": 12.97,
-  "mdf_other_sheets18": 75,
-  "mdf_other_sheets8": 31,
-  "mdf_other_hinges": 189,
+  "mdf_other_sheets18": 76,
+  "mdf_other_sheets8": 32,
+  "mdf_other_hinges": 183,
   "mdf_wardrobe_sheets18": 72,
   "mdf_wardrobe_sheets8": 24,
   "mdf_wardrobe_hinges": 140,
   "ply_sheets18": 15,
   "ply_sheets8": 8,
   "ply_hinges": 40,
-  "light:light": 36,
+  "light:light": 39,
   "light:pd": 1,
   "light:ml": 4,
   "light:wl": 10,
@@ -801,9 +801,10 @@
   "light:ef": 7,
   "light:sd": 10,
   "light:hd": 1,
-  "ucl_m": 9.19,
+  "ucl_m": 10.01,
   "pipe_m:cold/25": 34.07,
   "pipe_m:cold/32": 50.92,
+  "pipe_m:gas/15": 3.1,
   "pipe_m:hot/25": 17.45,
   "pipe_m:rain/100": 40.61,
   "pipe_m:sewer/110": 4.91,
@@ -813,10 +814,10 @@
   "pipe_m:waste/75": 20.74,
   "copper_m": 45.18,
   "wire_m:Cat-6 U/UTP (data, from the rack)": 74.88,
-  "conduit_m": 1301.97,
-  "wire_m:FRLS Cu 1.5 sq mm": 1655.48,
-  "wire_m:FRLS Cu 2.5 sq mm": 1126.35,
-  "wire_m:FRLS Cu 4 sq mm": 544.13,
+  "conduit_m": 1353.17,
+  "wire_m:FRLS Cu 1.5 sq mm": 1638.91,
+  "wire_m:FRLS Cu 2.5 sq mm": 1245.14,
+  "wire_m:FRLS Cu 4 sq mm": 595.48,
   "wire_m:Per maker / vendor (lift, pumps, spare): use 4 sq mm until confirmed": 355.32
  }
 }

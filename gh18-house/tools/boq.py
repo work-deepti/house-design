@@ -39,7 +39,7 @@ MARBLE = ('Italian marble (Botticino / Perlato type), 18 mm, polished in place',
 PIPE_SPEC = {
     ('soil', 110): 'uPVC SWR 110 mm, Type B, ring-fit', ('waste', 75): 'uPVC SWR 75 mm, Type A', ('waste', 50): 'uPVC SWR 50 mm, Type A',
     ('sewer', 150): 'uPVC SN8 150 mm, underground', ('sewer', 110): 'uPVC SN8 110 mm, underground', ('rain', 100): 'uPVC SWR 110 mm (rainwater)',
-    ('cold', 25): 'CPVC SDR 11, 1" (25 mm)', ('cold', 32): 'CPVC SDR 11, 1 1/4" (32 mm)', ('hot', 25): 'CPVC SDR 11, 1" (25 mm), hot',
+    ('gas', 15): 'GI 1/2" (15 mm) PNG line, yellow, exposed on clamps (gas company to install)',     ('cold', 25): 'CPVC SDR 11, 1" (25 mm)', ('cold', 32): 'CPVC SDR 11, 1 1/4" (32 mm)', ('hot', 25): 'CPVC SDR 11, 1" (25 mm), hot',
     ('pumped', 32): 'CPVC SDR 11, 1 1/4" (32 mm), pumped riser',
 }
 PAINT = {   # per m2: putty kg (2 coats), primer L (1 coat), emulsion L (2 coats); indicative, confirm with the brand's data sheet
@@ -49,7 +49,8 @@ CABLE_SUBMAIN = {'SM-1': '4C x 16 sq mm Cu armoured (indicative)', 'SM-2': '4C x
                  'SM-3': '4C x 6 sq mm Cu armoured (indicative)'}
 MDF_TYPES = {'wardrobe': 'Wardrobe', 'storage_tall': 'Tall storage', 'tall_unit': 'Kitchen tall unit', 'crockery_unit': 'Crockery unit',
              'storage_bench': 'Storage bench', 'wall_cabinet': 'Wall cabinet', 'counter': 'Kitchen / pantry base unit', 'tv_unit': 'TV unit',
-             'shoe_console': 'Shoe console', 'dresser': 'Dresser', 'dressing_table': 'Dressing table', 'study_desk': 'Study desk', 'desk': 'Desk'}
+             'shoe_console': 'Shoe console', 'dresser': 'Dresser', 'dressing_table': 'Dressing table', 'study_desk': 'Study desk', 'desk': 'Desk',
+             'fridge_unit': 'Fridge tall unit', 'appliance_tower': 'Appliance tower', 'drawer_stack': 'Pull-out drawer stack'}
 WET_JOINERY = ('vanity', 'utility_counter')          # always BWP ply; plus the base unit that holds the kitchen sink
 
 
@@ -423,6 +424,10 @@ def take_off(h):
     rows['timber'].append(['GF-SF', 'Stair handrail', 'Walnut handrail 60 x 50 mm on the spine', 'm', r(rail, 1), r(rail * FT, 1), ''])
     add('handrail_m', rail)
     for fid, f in fur:
+        if f['type'] == 'wall_panel':
+            a = f['size'][0] * f['size'][2] / 1e6
+            rows['timber'].append([fid, f['id'] + ' (guest lounge panelling, R1-F23)', 'Fluted walnut wall panelling, veneered MDF on ply', 'm2', r(a, 2), sqft(a), ''])
+            add('fluted_m2', a)
         if f['type'] == 'fluted_panel':
             a = f['size'][0] * f['size'][2] / 1e6
             rows['timber'].append([fid, f['id'] + ' (tulsi backdrop)', 'Fluted walnut cladding, exterior grade, PU', 'm2', r(a, 2), sqft(a), ''])
