@@ -7,3 +7,7 @@ gh18-house/assets/polyhaven/
 gh18-house/viewer/film/frames/
 gh18-house/viewer/film/stills/
 gh18-house/viewer/film/score.wav
+gh18-house/viewer/film/r1/frames/
+gh18-house/viewer/film/r1/stills/
+gh18-house/viewer/film/r1/*.wav
+gh18-house/viewer/film/r1/*.mp4

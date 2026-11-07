@@ -566,6 +566,11 @@ It runs three sections and writes `plans/r1/services_report.txt`.
 - **Post:** `post.py` does the edit, grade, letterbox titles, score (`score.py` synthesises it) and the encode.
 - **Context:** `?cinema` adds a neighbourhood (`context.js`); it is scenery only.
 - **Output:** 54 s, 1920 × 1080 at 24 fps, 2.39:1. The mp4 is not committed.
+- **R1 walkthrough film (`viewer/film/r1/`, Nov 2026):** the owner asked for a 2–3 minute premium walkthrough of the finalised R1 model. A separate pipeline so the original film stays as it was:
+  - `shots.mjs`: 23 camera moves (arrival, GF, stair, FF, SF terraces, time-lapse, finale), cut on the bars of an 80 BPM score (1 bar = 3 s); 51 bars + 2-bar title + end card = 163 s. The camera only moves through the model; nothing is added.
+  - `render.mjs`: renders `/v1/?headless&cinema`. `gpu` = visible Chromium on the real GPU (a Mac); `4k` = 3840 × 1608 JPEG frames; `part=k/n` splits the work across processes; resumable. CPU SwiftShader in the cloud is about 5 s per 1920 × 804 frame (3.2 s with two processes).
+  - `score.py`: original felt-piano / string-pad score, synthesised (no samples). `post.py`: grade, 2.39:1 letterbox, title, chapter and room captions, dips between floors, H.264 + AAC; `--4k` for UHD (also downsizes 4K frames to a 1080p film without it).
+  - One-line run on a Mac: `npm run film:r1` (after `npm install`, `npx playwright install chromium`, `npm run build`, and numpy + pillow + ffmpeg). Output: `viewer/film/r1/GH-18_R1_walkthrough_4K.mp4` (not committed).
 
 ---
 
