@@ -4,6 +4,7 @@
 // Cuts land on the bar lines of the 80 BPM score (1 bar = 3 s = 72 frames at 24 fps).
 // time: 0 = afternoon, ~0.55 = golden hour, 1 = dusk (viewer.cine blends sun, sky and interior lights).
 // The camera only moves through the model as built: no object, room or material is added or changed.
+// No neighbourhood scenery (context.js): only the house and its own plot (owner, Nov 2026); a shot can opt in with context: true.
 export const FPS = 24;
 export const BPM = 80;
 export const BAR = 240 / BPM;            // 3.0 s = 72 frames
@@ -92,6 +93,6 @@ export function poseAt(shot, u) {
   const e = ease(u);
   return { pos: path(shot.keys.map((k) => k.pos), e), target: path(shot.keys.map((k) => k.target), e), fov: shot.fov,
     time: value(shot.time, u), exposure: shot.exposure === undefined ? undefined : value(shot.exposure, u), explode: 0,
-    interior: !!shot.interior, cutaway: !!shot.cutaway, context: shot.context !== false, floor: shot.floor || 'ALL' };
+    interior: !!shot.interior, cutaway: !!shot.cutaway, context: shot.context === true, floor: shot.floor || 'ALL' };
 }
 export const framesOf = (shot) => Math.round(shot.bars * BAR * FPS);
